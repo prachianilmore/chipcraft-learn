@@ -2,58 +2,34 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Code, ExternalLink, CheckCircle } from "lucide-react";
+import { useState, useEffect } from "react";
+
+interface Module {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  difficulty: string;
+  topics: string[];
+  completed: boolean;
+}
 
 const Modules = () => {
-  const modules = [
-    {
-      id: "01",
-      title: "Verilog Basics",
-      description: "Introduction to hardware description, modules, and basic syntax",
-      difficulty: "Beginner",
-      topics: ["Data Types", "Operators", "Module Structure"],
-      completed: false,
-    },
-    {
-      id: "02",
-      title: "Counters and FSMs",
-      description: "Build counters and finite state machines with practical examples",
-      difficulty: "Beginner",
-      topics: ["Sequential Logic", "State Machines", "Timing"],
-      completed: false,
-    },
-    {
-      id: "03",
-      title: "Combinational Circuits",
-      description: "Design adders, multiplexers, and other combinational logic",
-      difficulty: "Intermediate",
-      topics: ["Adders", "Multiplexers", "Decoders"],
-      completed: false,
-    },
-    {
-      id: "04",
-      title: "SystemVerilog Fundamentals",
-      description: "Explore enhanced features of SystemVerilog for verification",
-      difficulty: "Intermediate",
-      topics: ["Classes", "Interfaces", "Assertions"],
-      completed: false,
-    },
-    {
-      id: "05",
-      title: "UVM Basics",
-      description: "Introduction to Universal Verification Methodology",
-      difficulty: "Advanced",
-      topics: ["Testbenches", "Sequences", "Scoreboards"],
-      completed: false,
-    },
-    {
-      id: "06",
-      title: "Advanced UVM",
-      description: "Deep dive into UVM factories, configs, and advanced patterns",
-      difficulty: "Advanced",
-      topics: ["Factory Pattern", "Configuration", "Phasing"],
-      completed: false,
-    },
-  ];
+  const [modules, setModules] = useState<Module[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/modules.json')
+      .then(res => res.json())
+      .then(data => {
+        setModules(data.modules);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error loading modules:', error);
+        setLoading(false);
+      });
+  }, []);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -81,8 +57,13 @@ const Modules = () => {
         </div>
 
         {/* Modules Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {modules.map((module) => (
+        {loading ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">Loading modules...</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {modules.map((module) => (
             <Card key={module.id} className="border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 flex flex-col">
               <CardHeader>
                 <div className="flex items-start justify-between mb-2">
@@ -114,7 +95,7 @@ const Modules = () => {
                 </div>
                 <div className="flex gap-2 mt-6">
                   <Button variant="default" className="flex-1" asChild>
-                    <a href={`/modules/${module.id}`}>Start Module</a>
+                    <a href={`/modules/${module.slug}`}>Start Module</a>
                   </Button>
                   <Button variant="outline" size="icon" asChild>
                     <a 
@@ -129,8 +110,9 @@ const Modules = () => {
                 </div>
               </CardContent>
             </Card>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Bottom CTA */}
         <div className="mt-16 p-8 bg-gradient-card rounded-lg border border-border text-center">

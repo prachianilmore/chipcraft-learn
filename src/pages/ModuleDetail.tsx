@@ -6,12 +6,12 @@ import { Separator } from "@/components/ui/separator";
 import { ArrowLeft, ExternalLink, Code, FileText, HelpCircle } from "lucide-react";
 
 const ModuleDetail = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
 
   // Module data (matches the structure in Modules.tsx)
   const modulesData: Record<string, any> = {
-    "01": {
+    "verilog-basics": {
       id: "01",
       title: "Verilog Basics",
       description: "Introduction to hardware description, modules, and basic syntax",
@@ -55,7 +55,7 @@ endmodule`,
         { question: "What does the 'assign' statement do?", answer: "It creates continuous assignment for combinational logic." }
       ]
     },
-    "02": {
+    "counters-and-fsms": {
       id: "02",
       title: "Counters and FSMs",
       description: "Build counters and finite state machines with practical examples",
@@ -115,7 +115,7 @@ endmodule`,
         { question: "Why do we need separate always blocks for state and next_state?", answer: "To separate sequential (state update) from combinational (next state logic) behavior." }
       ]
     },
-    "03": {
+    "combinational-circuits": {
       id: "03",
       title: "Combinational Circuits",
       description: "Design adders, multiplexers, and other combinational logic",
@@ -165,7 +165,7 @@ endmodule`,
         { question: "How does a multiplexer use the select signal?", answer: "It uses the select bits as an index to choose which input to route to the output." }
       ]
     },
-    "04": {
+    "systemverilog-fundamentals": {
       id: "04",
       title: "SystemVerilog Fundamentals",
       description: "Explore enhanced features of SystemVerilog for verification",
@@ -224,7 +224,7 @@ endmodule`,
         { question: "What do assertions verify?", answer: "Assertions verify that design properties and protocols are followed during simulation." }
       ]
     },
-    "05": {
+    "uvm-basics": {
       id: "05",
       title: "UVM Basics",
       description: "Introduction to Universal Verification Methodology",
@@ -297,7 +297,7 @@ endclass`,
         { question: "What is a UVM sequence?", answer: "A sequence generates stimulus (transactions) that are sent to the driver." }
       ]
     },
-    "06": {
+    "advanced-uvm": {
       id: "06",
       title: "Advanced UVM",
       description: "Deep dive into UVM factories, configs, and advanced patterns",
@@ -372,7 +372,7 @@ endclass`,
     }
   };
 
-  const module = modulesData[id || "01"];
+  const module = modulesData[slug || "verilog-basics"];
 
   if (!module) {
     return (
