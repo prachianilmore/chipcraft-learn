@@ -113,8 +113,8 @@ const Modules = () => {
                   </div>
                 </div>
                 <div className="flex gap-2 mt-6">
-                  <Button variant="default" className="flex-1">
-                    Start Module
+                  <Button variant="default" className="flex-1" asChild>
+                    <a href={`/modules/${module.id}`}>Start Module</a>
                   </Button>
                   <Button variant="outline" size="icon" asChild>
                     <a 

@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Modules from "./pages/Modules";
+import ModuleDetail from "./pages/ModuleDetail";
 import Visualizer from "./pages/Visualizer";
 import Community from "./pages/Community";
 import About from "./pages/About";
@@ -23,6 +24,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/modules" element={<Modules />} />
+            <Route path="/modules/:id" element={<ModuleDetail />} />
             <Route path="/visualizer" element={<Visualizer />} />
             <Route path="/community" element={<Community />} />
             <Route path="/about" element={<About />} />
