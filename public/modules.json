@@ -1,58 +1,58 @@
 {
   "modules": [
-    {
-      "id": "01",
-      "slug": "verilog-basics",
-      "title": "Verilog Basics",
-      "description": "Introduction to hardware description, modules, and basic syntax",
-      "difficulty": "Beginner",
-      "topics": ["Data Types", "Operators", "Module Structure"],
-      "completed": false
-    },
-    {
-      "id": "02",
-      "slug": "counters-and-fsms",
-      "title": "Counters and FSMs",
-      "description": "Build counters and finite state machines with practical examples",
-      "difficulty": "Beginner",
-      "topics": ["Sequential Logic", "State Machines", "Timing"],
-      "completed": false
-    },
-    {
-      "id": "03",
-      "slug": "combinational-circuits",
-      "title": "Combinational Circuits",
-      "description": "Design adders, multiplexers, and other combinational logic",
-      "difficulty": "Intermediate",
-      "topics": ["Adders", "Multiplexers", "Decoders"],
-      "completed": false
-    },
-    {
-      "id": "04",
-      "slug": "systemverilog-fundamentals",
-      "title": "SystemVerilog Fundamentals",
-      "description": "Explore enhanced features of SystemVerilog for verification",
-      "difficulty": "Intermediate",
-      "topics": ["Classes", "Interfaces", "Assertions"],
-      "completed": false
-    },
-    {
-      "id": "05",
-      "slug": "uvm-basics",
-      "title": "UVM Basics",
-      "description": "Introduction to Universal Verification Methodology",
-      "difficulty": "Advanced",
-      "topics": ["Testbenches", "Sequences", "Scoreboards"],
-      "completed": false
-    },
-    {
-      "id": "06",
-      "slug": "advanced-uvm",
-      "title": "Advanced UVM",
-      "description": "Deep dive into UVM factories, configs, and advanced patterns",
-      "difficulty": "Advanced",
-      "topics": ["Factory Pattern", "Configuration", "Phasing"],
-      "completed": false
-    }
+  {
+    "id": "01",
+    "slug": "verilog-basics",
+    "title": "Verilog Basics",
+    "description": "To be added by contributor",
+    "difficulty": "Beginner",
+    "topics": ["Topic 1", "Topic 2", "Topic 3"],
+    "completed": false
+  },
+  {
+    "id": "02",
+    "slug": "counters-and-fsms",
+    "title": "Counters and FSMs",
+    "description": "To be added by contributor",
+    "difficulty": "Beginner",
+    "topics": ["Topic 1", "Topic 2", "Topic 3"],
+    "completed": false
+  },
+  {
+    "id": "03",
+    "slug": "combinational-circuits",
+    "title": "Combinational Circuits",
+    "description": "To be added by contributor",
+    "difficulty": "Intermediate",
+    "topics": ["Topic 1", "Topic 2", "Topic 3"],
+    "completed": false
+  },
+  {
+    "id": "04",
+    "slug": "systemverilog-fundamentals",
+    "title": "SystemVerilog Fundamentals",
+    "description": "To be added by contributor",
+    "difficulty": "Intermediate",
+    "topics": ["Topic 1", "Topic 2", "Topic 3"],
+    "completed": false
+  },
+  {
+    "id": "05",
+    "slug": "uvm-basics",
+    "title": "UVM Basics",
+    "description": "To be added by contributor",
+    "difficulty": "Advanced",
+    "topics": ["Topic 1", "Topic 2", "Topic 3"],
+    "completed": false
+  },
+  {
+    "id": "06",
+    "slug": "advanced-uvm",
+    "title": "Advanced UVM",
+    "description": "To be added by contributor",
+    "difficulty": "Advanced",
+    "topics": ["Topic 1", "Topic 2", "Topic 3"],
+    "completed": false
+  }
   ]
 }
