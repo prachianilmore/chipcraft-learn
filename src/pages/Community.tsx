@@ -1,37 +1,29 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GitFork, GitPullRequest, Github, MessageSquare, Users } from "lucide-react";
-
 const Community = () => {
-  const steps = [
-    {
-      number: "01",
-      icon: GitFork,
-      title: "Fork the Repository",
-      description: "Start by forking the ChipLearn repository to your GitHub account",
-    },
-    {
-      number: "02",
-      icon: GitPullRequest,
-      title: "Add Your Module",
-      description: "Create a new module with examples, explanations, and test cases",
-    },
-    {
-      number: "03",
-      icon: MessageSquare,
-      title: "Submit a Pull Request",
-      description: "Open a PR with your changes and describe what you've added",
-    },
-    {
-      number: "04",
-      icon: Users,
-      title: "Collaborate & Review",
-      description: "Work with maintainers to refine and merge your contribution",
-    },
-  ];
-
-  return (
-    <div className="min-h-screen py-20">
+  const steps = [{
+    number: "01",
+    icon: GitFork,
+    title: "Fork the Repository",
+    description: "Start by forking the ChipLearn repository to your GitHub account"
+  }, {
+    number: "02",
+    icon: GitPullRequest,
+    title: "Add Your Module",
+    description: "Create a new module with examples, explanations, and test cases"
+  }, {
+    number: "03",
+    icon: MessageSquare,
+    title: "Submit a Pull Request",
+    description: "Open a PR with your changes and describe what you've added"
+  }, {
+    number: "04",
+    icon: Users,
+    title: "Collaborate & Review",
+    description: "Work with maintainers to refine and merge your contribution"
+  }];
+  return <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -46,8 +38,7 @@ const Community = () => {
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-12">How to Contribute</h2>
           <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-            {steps.map((step) => (
-              <Card key={step.number} className="border-border hover:shadow-glow transition-all duration-300">
+            {steps.map(step => <Card key={step.number} className="border-border hover:shadow-glow transition-all duration-300">
                 <CardHeader>
                   <div className="flex items-center gap-4 mb-2">
                     <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg">
@@ -60,8 +51,7 @@ const Community = () => {
                   <CardTitle>{step.title}</CardTitle>
                   <CardDescription className="text-base">{step.description}</CardDescription>
                 </CardHeader>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
 
@@ -69,40 +59,32 @@ const Community = () => {
         <div className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-8">What Can You Contribute?</h2>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                title: "New Modules",
-                description: "Create lessons on topics you're passionate about",
-                examples: ["Memory designs", "Protocol implementations", "Advanced verification"],
-              },
-              {
-                title: "Code Examples",
-                description: "Share working code snippets and testbenches",
-                examples: ["Real-world designs", "Common patterns", "Best practices"],
-              },
-              {
-                title: "Improvements",
-                description: "Enhance existing content and fix issues",
-                examples: ["Better explanations", "Bug fixes", "Updated examples"],
-              },
-            ].map((item, index) => (
-              <Card key={index} className="border-border">
+            {[{
+            title: "New Modules",
+            description: "Create lessons on topics you're passionate about",
+            examples: ["Memory designs", "Protocol implementations", "Advanced verification"]
+          }, {
+            title: "Code Examples",
+            description: "Share working code snippets and testbenches",
+            examples: ["Real-world designs", "Common patterns", "Best practices"]
+          }, {
+            title: "Improvements",
+            description: "Enhance existing content and fix issues",
+            examples: ["Better explanations", "Bug fixes", "Updated examples"]
+          }].map((item, index) => <Card key={index} className="border-border">
                 <CardHeader>
                   <CardTitle className="text-xl">{item.title}</CardTitle>
                   <CardDescription>{item.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-2">
-                    {item.examples.map((example, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
+                    {item.examples.map((example, i) => <li key={i} className="flex items-center gap-2 text-sm text-muted-foreground">
                         <span className="w-1.5 h-1.5 rounded-full bg-accent"></span>
                         {example}
-                      </li>
-                    ))}
+                      </li>)}
                   </ul>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
 
@@ -121,9 +103,7 @@ const Community = () => {
               </a>
             </Button>
             <Button asChild size="lg" variant="outline" className="border-primary-foreground/30 hover:bg-primary-foreground/10 text-primary-foreground">
-              <a href="https://github.com/chiplearn/discussions" target="_blank" rel="noopener noreferrer">
-                Join Discussions
-              </a>
+              
             </Button>
           </div>
         </div>
@@ -142,8 +122,6 @@ const Community = () => {
           </Card>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Community;
