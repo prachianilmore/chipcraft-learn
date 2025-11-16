@@ -31,16 +31,16 @@ Add your module entry to `public/modules.json`:
 
 ### Step 2: Create Module Content
 
-Add your module details to `src/pages/ModuleDetail.tsx` in the `modulesData` object:
+Add your module details to `src/pages/ModuleDetail.tsx` in the `modulesData` object. Replace all TODO placeholders with actual content:
 
 ```javascript
 "your-module-slug": {
   id: "07",
   title: "Your Module Title",
-  description: "Brief description",
+  description: "Brief description (replace 'To be added by contributor')",
   difficulty: "Beginner",
-  topics: ["Topic 1", "Topic 2"],
-  concept: "Detailed explanation of the concept (2-3 paragraphs)",
+  topics: ["Topic 1", "Topic 2", "Topic 3"], // Replace TODO topics
+  concept: "Detailed explanation of the concept (2-3 paragraphs). Replace 'TODO: Add concept explanation here'",
   exampleCode: `// Your SystemVerilog/Verilog code example
 module your_module (
   input wire clk,
@@ -53,13 +53,21 @@ endmodule
 module tb_your_module;
   // Testbench code
 endmodule`,
-  expectedOutput: "Description of what the simulation should produce",
+  expectedOutput: "Description of what the simulation should produce. Replace 'TODO: Describe expected simulation output'",
   quiz: [
-    { question: "Your question?", answer: "Expected answer" },
-    { question: "Another question?", answer: "Another answer" }
+    { question: "Your question? (replace TODO)", answer: "Expected answer (replace TODO)" },
+    { question: "Another question? (replace TODO)", answer: "Another answer (replace TODO)" }
   ]
 }
 ```
+
+**Important**: Make sure to replace all placeholder text including:
+- Module description
+- Topic names
+- Concept explanation
+- Example code
+- Expected output
+- Quiz questions and answers
 
 ### Step 3: Test Your Module
 
