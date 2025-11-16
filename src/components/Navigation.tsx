@@ -9,7 +9,6 @@ const Navigation = () => {
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/modules", label: "Modules" },
-    { to: "/visualizer", label: "Visualizer" },
     { to: "/community", label: "Community" },
     { to: "/about", label: "About" },
   ];
