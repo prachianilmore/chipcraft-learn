@@ -35,15 +35,6 @@
       "difficulty": "Beginner",
       "topics": ["Testbench Structure", "initial Blocks", "Stimulus", "$display"],
       "completed": false
-    },
-    {
-      "id": "VF-05",
-      "slug": "verilog-05-mini-project",
-      "title": "Verilog 05 – Mini Project",
-      "description": "Build a complete 4-bit counter with load and reset",
-      "difficulty": "Beginner",
-      "topics": ["Counter Design", "Control Signals", "State Management", "Testing"],
-      "completed": false
     }
   ]
 }
