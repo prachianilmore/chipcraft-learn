@@ -290,6 +290,123 @@ The testbench applies all possible input combinations and displays the results. 
         { question: "What command ends the simulation?", answer: "$finish" },
         { question: "What is DUT?", answer: "Design Under Test (the module being tested)" }
       ]
+    },
+    "verilog-05-mini-project": {
+      id: "VF-05",
+      title: "Verilog 05 – Mini Project",
+      description: "Build a complete 4-bit counter with load and reset",
+      difficulty: "Beginner",
+      topics: ["Counter Design", "Control Signals", "State Management", "Testing"],
+      concept: `In this mini project, you'll design a 4-bit up counter with synchronous load and asynchronous reset.
+
+**Features:**
+- **4-bit counter**: Counts from 0 to 15
+- **Load signal**: Loads a parallel value when asserted
+- **Reset signal**: Asynchronously resets counter to 0
+- **Enable signal**: Controls counting
+
+**Design Requirements:**
+1. Count up on each clock edge when enabled
+2. Load parallel data when load signal is high
+3. Reset to 0 when reset is asserted
+4. Wrap around from 15 to 0`,
+      keySyntax: `// Counter control priority:
+// 1. Asynchronous reset (highest)
+// 2. Synchronous load
+// 3. Count enable
+// 4. Hold current value (default)
+
+always @(posedge clk or posedge reset) begin
+  if (reset)
+    // Reset action
+  else if (load)
+    // Load action
+  else if (enable)
+    // Count action
+end`,
+      exampleCode: `// 4-bit Counter with Load and Reset
+module counter_4bit (
+  input wire clk,
+  input wire reset,
+  input wire load,
+  input wire enable,
+  input wire [3:0] data,
+  output reg [3:0] count
+);
+  always @(posedge clk or posedge reset) begin
+    if (reset)
+      count <= 4'b0000;
+    else if (load)
+      count <= data;
+    else if (enable)
+      count <= count + 1;
+  end
+endmodule
+
+// Testbench
+module tb_counter_4bit;
+  reg clk, reset, load, enable;
+  reg [3:0] data;
+  wire [3:0] count;
+  
+  counter_4bit uut (
+    .clk(clk),
+    .reset(reset),
+    .load(load),
+    .enable(enable),
+    .data(data),
+    .count(count)
+  );
+  
+  // Clock generation
+  initial clk = 0;
+  always #5 clk = ~clk;
+  
+  initial begin
+    $display("Time\\tRst\\tLd\\tEn\\tData\\tCount");
+    $monitor("%0t\\t%b\\t%b\\t%b\\t%h\\t%h", 
+             $time, reset, load, enable, data, count);
+    
+    // Test reset
+    reset = 1; load = 0; enable = 0; data = 0;
+    #10 reset = 0;
+    
+    // Test counting
+    #10 enable = 1;
+    #80 enable = 0;
+    
+    // Test load
+    #10 load = 1; data = 4'hA;
+    #10 load = 0; enable = 1;
+    #40 $finish;
+  end
+endmodule`,
+      expectedOutput: `Time  Rst Ld  En  Data Count
+0     1   0   0   0    0
+10    0   0   0   0    0
+20    0   0   1   0    1
+30    0   0   1   0    2
+40    0   0   1   0    3
+...
+90    0   0   1   0    8
+100   0   0   0   0    8
+110   0   1   0   A    A
+120   0   0   1   A    B
+130   0   0   1   A    C
+...
+
+The counter:
+1. Resets to 0
+2. Counts up when enabled (0→1→2...→8)
+3. Loads value A (10) when load is asserted
+4. Continues counting from A (A→B→C→D...)`,
+      quiz: [
+        { question: "What happens when reset is asserted?", answer: "Counter resets to 0 immediately (asynchronous)" },
+        { question: "What is the priority between load and enable?", answer: "Load has higher priority than enable" },
+        { question: "What value does the counter wrap to after 15 (F)?", answer: "0" },
+        { question: "Is the reset synchronous or asynchronous?", answer: "Asynchronous (doesn't wait for clock)" },
+        { question: "What happens when enable=0?", answer: "Counter holds its current value" }
+      ]
     }
   };
 
