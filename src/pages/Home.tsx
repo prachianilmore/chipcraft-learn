@@ -1,20 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, Zap, Users, BookOpen } from "lucide-react";
+import { BookOpen, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 const Home = () => {
   const features = [{
     icon: BookOpen,
     title: "Interactive Lessons",
     description: "Learn Verilog, SystemVerilog, and UVM through hands-on, bite-sized modules"
-  }, {
-    icon: Code,
-    title: "Real Simulations",
-    description: "Run actual HDL simulations directly in your browser with EDA Playground"
-  }, {
-    icon: Zap,
-    title: "Instant Feedback",
-    description: "See waveforms, debug your code, and understand hardware behavior in real-time"
   }, {
     icon: Users,
     title: "Community Driven",
