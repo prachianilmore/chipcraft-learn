@@ -1,58 +1,49 @@
 {
   "modules": [
-  {
-    "id": "01",
-    "slug": "verilog-basics",
-    "title": "Verilog Basics",
-    "description": "To be added by contributor",
-    "difficulty": "Beginner",
-    "topics": ["Topic 1", "Topic 2", "Topic 3"],
-    "completed": false
-  },
-  {
-    "id": "02",
-    "slug": "counters-and-fsms",
-    "title": "Counters and FSMs",
-    "description": "To be added by contributor",
-    "difficulty": "Beginner",
-    "topics": ["Topic 1", "Topic 2", "Topic 3"],
-    "completed": false
-  },
-  {
-    "id": "03",
-    "slug": "combinational-circuits",
-    "title": "Combinational Circuits",
-    "description": "To be added by contributor",
-    "difficulty": "Intermediate",
-    "topics": ["Topic 1", "Topic 2", "Topic 3"],
-    "completed": false
-  },
-  {
-    "id": "04",
-    "slug": "systemverilog-fundamentals",
-    "title": "SystemVerilog Fundamentals",
-    "description": "To be added by contributor",
-    "difficulty": "Intermediate",
-    "topics": ["Topic 1", "Topic 2", "Topic 3"],
-    "completed": false
-  },
-  {
-    "id": "05",
-    "slug": "uvm-basics",
-    "title": "UVM Basics",
-    "description": "To be added by contributor",
-    "difficulty": "Advanced",
-    "topics": ["Topic 1", "Topic 2", "Topic 3"],
-    "completed": false
-  },
-  {
-    "id": "06",
-    "slug": "advanced-uvm",
-    "title": "Advanced UVM",
-    "description": "To be added by contributor",
-    "difficulty": "Advanced",
-    "topics": ["Topic 1", "Topic 2", "Topic 3"],
-    "completed": false
-  }
+    {
+      "id": "VF-01",
+      "slug": "verilog-01-basics-syntax",
+      "title": "Verilog 01 – Basics & Syntax",
+      "description": "Learn fundamental Verilog syntax, module structure, and basic operators",
+      "difficulty": "Beginner",
+      "topics": ["Module Declaration", "Data Types", "Operators", "Basic Syntax"],
+      "completed": false
+    },
+    {
+      "id": "VF-02",
+      "slug": "verilog-02-combinational-logic",
+      "title": "Verilog 02 – Combinational Logic",
+      "description": "Master combinational circuits including gates, multiplexers, and decoders",
+      "difficulty": "Beginner",
+      "topics": ["Logic Gates", "assign Statements", "Multiplexers", "Decoders"],
+      "completed": false
+    },
+    {
+      "id": "VF-03",
+      "slug": "verilog-03-sequential-logic",
+      "title": "Verilog 03 – Sequential Logic",
+      "description": "Understand sequential circuits, flip-flops, and always blocks",
+      "difficulty": "Beginner",
+      "topics": ["always Blocks", "Flip-Flops", "Registers", "Clocking"],
+      "completed": false
+    },
+    {
+      "id": "VF-04",
+      "slug": "verilog-04-testbenches",
+      "title": "Verilog 04 – Verilog Testbenches",
+      "description": "Write testbenches to verify your Verilog designs",
+      "difficulty": "Beginner",
+      "topics": ["Testbench Structure", "initial Blocks", "Stimulus", "$display"],
+      "completed": false
+    },
+    {
+      "id": "VF-05",
+      "slug": "verilog-05-mini-project",
+      "title": "Verilog 05 – Mini Project",
+      "description": "Build a complete 4-bit counter with load and reset",
+      "difficulty": "Beginner",
+      "topics": ["Counter Design", "Control Signals", "State Management", "Testing"],
+      "completed": false
+    }
   ]
 }
