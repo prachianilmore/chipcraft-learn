@@ -35,6 +35,51 @@
       "difficulty": "Beginner",
       "topics": ["Testbench Structure", "initial Blocks", "Stimulus", "$display"],
       "completed": false
+    },
+    {
+      "id": "SV-01",
+      "slug": "systemverilog-01-from-verilog",
+      "title": "SV 01 – From Verilog to SystemVerilog",
+      "description": "Understand the key differences and enhancements SystemVerilog brings over Verilog",
+      "difficulty": "Intermediate",
+      "topics": ["Enhancements", "New Data Types", "Logic vs Wire/Reg", "Always Constructs"],
+      "completed": false
+    },
+    {
+      "id": "SV-02",
+      "slug": "systemverilog-02-types-arrays",
+      "title": "SV 02 – Types, Arrays, and typedef",
+      "description": "Master SystemVerilog's rich type system including packed/unpacked arrays and typedefs",
+      "difficulty": "Intermediate",
+      "topics": ["logic Type", "Packed Arrays", "Unpacked Arrays", "typedef", "enum", "struct"],
+      "completed": false
+    },
+    {
+      "id": "SV-03",
+      "slug": "systemverilog-03-always-constructs",
+      "title": "SV 03 – always_comb, always_ff, always_latch",
+      "description": "Learn SystemVerilog's specialized always blocks for safer RTL coding",
+      "difficulty": "Intermediate",
+      "topics": ["always_comb", "always_ff", "always_latch", "Intent vs Implementation"],
+      "completed": false
+    },
+    {
+      "id": "SV-04",
+      "slug": "systemverilog-04-interfaces",
+      "title": "SV 04 – Interfaces & Modports",
+      "description": "Simplify module connections with SystemVerilog interfaces and modports",
+      "difficulty": "Intermediate",
+      "topics": ["interface", "modport", "Bundle Signals", "Design Hierarchy"],
+      "completed": false
+    },
+    {
+      "id": "SV-05",
+      "slug": "systemverilog-05-sva",
+      "title": "SV 05 – Intro to SVA",
+      "description": "Introduction to SystemVerilog Assertions for verification and debugging",
+      "difficulty": "Intermediate",
+      "topics": ["Assertions", "Properties", "Sequences", "Immediate vs Concurrent"],
+      "completed": false
     }
   ]
 }
