@@ -7,6 +7,8 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Modules from "./pages/Modules";
 import VerilogModules from "./pages/VerilogModules";
+import SystemVerilogModules from "./pages/SystemVerilogModules";
+import UVMModules from "./pages/UVMModules";
 import ModuleDetail from "./pages/ModuleDetail";
 import Visualizer from "./pages/Visualizer";
 import Community from "./pages/Community";
@@ -26,6 +28,8 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/modules" element={<Modules />} />
             <Route path="/verilog-modules" element={<VerilogModules />} />
+            <Route path="/systemverilog-modules" element={<SystemVerilogModules />} />
+            <Route path="/uvm-modules" element={<UVMModules />} />
             <Route path="/modules/:slug" element={<ModuleDetail />} />
             <Route path="/visualizer" element={<Visualizer />} />
             <Route path="/community" element={<Community />} />
