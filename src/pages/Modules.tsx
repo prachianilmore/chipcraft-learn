@@ -59,17 +59,82 @@ const Modules = () => {
             </CardContent>
           </Card>
 
-          {/* Placeholder for future tracks */}
-          <Card className="border-border border-dashed opacity-50">
+          {/* SystemVerilog Track */}
+          <Card className="border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 flex flex-col">
             <CardHeader>
-              <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center mb-2">
-                <Code className="w-6 h-6 text-muted-foreground" />
+              <div className="flex items-start justify-between mb-2">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Code className="w-6 h-6 text-primary" />
+                </div>
+                <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20">
+                  Intermediate
+                </Badge>
               </div>
-              <CardTitle className="text-2xl">More Tracks Coming Soon</CardTitle>
+              <CardTitle className="text-2xl">SystemVerilog Track</CardTitle>
               <CardDescription>
-                SystemVerilog and UVM tracks will be available soon
+                Advance from Verilog to SystemVerilog with modern features and best practices
               </CardDescription>
             </CardHeader>
+            <CardContent className="flex-1 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <BookOpen className="w-4 h-4" />
+                  <span>5 Modules</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary" className="text-xs">Data Types</Badge>
+                  <Badge variant="secondary" className="text-xs">always_* Blocks</Badge>
+                  <Badge variant="secondary" className="text-xs">Interfaces</Badge>
+                  <Badge variant="secondary" className="text-xs">Assertions</Badge>
+                </div>
+              </div>
+              <Button 
+                variant="default" 
+                className="w-full mt-6"
+                onClick={() => navigate("/systemverilog-modules")}
+              >
+                Start Track <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* UVM Track */}
+          <Card className="border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 flex flex-col">
+            <CardHeader>
+              <div className="flex items-start justify-between mb-2">
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <Code className="w-6 h-6 text-primary" />
+                </div>
+                <Badge variant="outline" className="bg-purple-500/10 text-purple-600 border-purple-500/20">
+                  Advanced
+                </Badge>
+              </div>
+              <CardTitle className="text-2xl">UVM Basics Track</CardTitle>
+              <CardDescription>
+                Learn Universal Verification Methodology fundamentals for advanced testbench design
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex-1 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <BookOpen className="w-4 h-4" />
+                  <span>5 Modules</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Badge variant="secondary" className="text-xs">Architecture</Badge>
+                  <Badge variant="secondary" className="text-xs">Transactions</Badge>
+                  <Badge variant="secondary" className="text-xs">Sequences</Badge>
+                  <Badge variant="secondary" className="text-xs">Monitors</Badge>
+                </div>
+              </div>
+              <Button 
+                variant="default" 
+                className="w-full mt-6"
+                onClick={() => navigate("/uvm-modules")}
+              >
+                Start Track <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </CardContent>
           </Card>
         </div>
 
