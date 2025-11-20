@@ -36,7 +36,7 @@ const Navigation = () => {
               </NavLink>
             ))}
             <Button asChild variant="default" size="sm" className="gap-2">
-              <a href="https://github.com/chiplearn" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/prachianilmore/ChipLearn_CDF" target="_blank" rel="noopener noreferrer">
                 <Github className="w-4 h-4" />
                 GitHub
               </a>
@@ -69,7 +69,7 @@ const Navigation = () => {
                 </NavLink>
               ))}
               <Button asChild variant="default" size="sm" className="gap-2 w-full">
-                <a href="https://github.com/chiplearn" target="_blank" rel="noopener noreferrer">
+                <a href="https://github.com/prachianilmore/ChipLearn_CDF" target="_blank" rel="noopener noreferrer">
                   <Github className="w-4 h-4" />
                   GitHub
                 </a>
