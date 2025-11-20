@@ -8,7 +8,7 @@ const Community = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contribute Code Examples</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contribute Your Code Examples</h1>
           <p className="text-lg text-muted-foreground">
             ChipLearn is a collaborative platform, and you can contribute by sharing Verilog, SystemVerilog, 
             and UVM example projects that help learners explore real designs and verification patterns.
