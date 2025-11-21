@@ -6,11 +6,11 @@ const Home = () => {
   const features = [{
     icon: BookOpen,
     title: "Interactive Lessons",
-    description: "Learn Verilog, SystemVerilog, and UVM through hands-on, bite-sized modules"
+    description: "Learn Verilog, SystemVerilog, and UVM through simple, hands-on modules."
   }, {
     icon: Users,
     title: "Community Driven",
-    description: "Contribute modules, share knowledge, and grow with fellow learners"
+    description: "Share code examples, collaborate, and grow with fellow learners."
   }];
   return <div className="min-h-screen">
       {/* Hero Section */}
@@ -19,11 +19,11 @@ const Home = () => {
         <div className="container mx-auto px-4 py-20 md:py-32 relative">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight animate-fade-in">
-              Learn, Simulate, and Verify Hardware Designs
+              Learn Digital Design & Verification the Practical Way
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/90 animate-fade-in">
-              Master digital design and hardware verification through interactive lessons, 
-              real simulations, and hands-on practice. From Verilog basics to advanced UVM concepts.
+              Free, open-source lessons covering Verilog, SystemVerilog, and UVM — built for beginners 
+              and future verification engineers. Learn step-by-step with clean examples and real hardware concepts.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 animate-fade-in">
               <Button asChild size="lg" variant="secondary" className="text-lg">
@@ -46,7 +46,7 @@ const Home = () => {
               Democratizing chip design verification education through open-source collaboration
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {features.map((feature, index) => <Card key={index} className="border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1">
                 <CardContent className="p-6 space-y-4">
                   <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
