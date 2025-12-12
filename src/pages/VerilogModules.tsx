@@ -13,7 +13,7 @@ const VerilogModules = () => {
       slug: "verilog-01-basics-syntax",
       title: "Verilog 01 – Basics & Syntax",
       description: "Learn fundamental Verilog syntax, module structure, and basic operators",
-      topics: ["Module Declaration", "Data Types", "Operators", "Basic Syntax"]
+      topics: ["Introduction", "Module Structure", "Data Types", "Operators", "Continuous Assignment", "Procedural Blocks", "Control Statements","Example Circuits","Common Beginner Mistakes"]
     },
     {
       id: "VF-02",
