@@ -16,37 +16,84 @@ const ModuleDetail = () => {
       title: "Verilog 01 – Basics & Syntax",
       description: "Learn fundamental Verilog syntax, module structure, and basic operators",
       difficulty: "Beginner",
-      topics: ["Module Declaration", "Data Types", "Operators", "Basic Syntax"],
-      concept: `Verilog is a Hardware Description Language (HDL) used to model digital circuits. Unlike software programming, Verilog describes hardware that operates in parallel.`,
-      keyIdeas: [
-        "**Modules** are the basic building blocks in Verilog. Every design starts with a module.",
-        "**Ports** define interfaces to the outside world: input, output, or inout.",
-        "**Data Types**: Use 'wire' for combinational logic and 'reg' for sequential logic.",
-        "**Operators** are similar to C: & (AND), | (OR), ^ (XOR), ~ (NOT), +, -, *, /",
-        "**assign** statements create continuous assignments for combinational logic."
-      ],
-      exampleCode: `// Example 1: Simple AND gate
-module and_gate (
-  input wire a,
-  input wire b,
-  output wire y
-);
-  assign y = a & b;
+      topics: ["Introduction", "Module Structure", "Data Types", "Operators", "Continuous Assignment", "Procedural Blocks", "Control Statements","Example Circuits","Common Beginner Mistakes"],
+      Introduction: `Verilog is a Hardware Description Language (HDL) used to model and implement digital logic hardware.It allows designers to describe circuits in terms of behavior, structure, and timing—before silicon is manufactured.This module introduces the essential building blocks of Verilog.`,
+      ModuleStructure: [
+        "A Verilog design begins with a module, which defines inputs, outputs, internal signals, and logic."],
+      Syntax:`module module_name (port_list);
+    // Declarations
+    // Logic`,
+
+      Example: `module and_gate(input a, input b, output y);
+    assign y = a & b;
 endmodule
-
-// Example 2: 4-bit adder
-module adder_4bit (
-  input wire [3:0] a,
-  input wire [3:0] b,
-  output wire [3:0] sum,
-  output wire carry_out
-);
-  assign {carry_out, sum} = a + b;
-endmodule`,
-      explanation: `**AND Gate:** The output 'y' is high only when both inputs 'a' and 'b' are high. The assign statement creates a continuous assignment.
-
-**4-bit Adder:** Adds two 4-bit numbers. The concatenation {carry_out, sum} captures both the 4-bit sum and the carry bit. For example, adding 15 (1111) and 1 (0001) gives sum=0 (0000) and carry_out=1.`
-    },
+`,
+      datatypes: `Commonly Used Types:
+- wire: Represents a physical connection; used in combinational logic.
+- reg: Holds a value assigned inside an always block.
+- integer: Used for loop counters or testbench code.
+`,
+      vectors:`reg [7:0] data;   // 8-bit data register
+wire [3:0] addr;  // 4-bit address bus
+`,
+      operator:`Bitwise Operators: &, |, ^, ~
+Logical Operators: &&, ||, !
+Arithmetic Operators: +, -, *
+`,
+     exampleOperator:`assign y = (a & b) | (~c);`,
+     continuousAssignment:`Continuous assignments are used for combinational logic:
+assign sum   = a ^ b;
+assign carry = a & b;
+`,
+    proceduralBlocks:`Procedural blocks describe behavior using higher-level logic.`,
+    combinationalLogic:`always @(*) begin
+    y = a + b;
+end
+`,
+    sequentialLogic:`always @(posedge clk) begin
+    q <= d;
+end
+`, 
+    controlStatements:`If–Else and Case statements are used to describe decision logic.`,
+    ifElseExample:`always @(*) begin
+    if (sel == 0)
+        out = a;
+    else
+        out = b;
+end
+`,
+    caseExample:`always @(*) begin
+    case (sel)
+        2'b00: out = a;
+        2'b01: out = b;
+        2'b10: out = c;
+        default: out = 0;
+    endcase
+end
+`,
+    exampleCircuits:`Below are basic circuits implemented in Verilog.`,
+    multiplexer:`assign y = sel ? b : a;
+or procedural:
+always @(*) begin
+    if (sel == 1)
+        y = b;
+    else
+        y = a;
+end
+`,
+     DflipFlop:`module dff(input clk, input d, output reg q);
+    always @(posedge clk) begin
+        q <= d;
+    end
+endmodule
+`,
+     commonBeginnerMistakes:`- Assigning to a wire inside an always block.
+- Using = instead of <= in sequential blocks.
+- Forgetting @(*) in combinational always blocks.
+- Mixing blocking and non-blocking assignments incorrectly.
+- Incorrect vector declarations.
+`,
+},
     "verilog-02-combinational-logic": {
       id: "VF-02",
       title: "Verilog 02 – Combinational Logic",
@@ -850,19 +897,19 @@ endmodule`,
         {/* Concept Summary */}
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle className="text-2xl">Concept Summary</CardTitle>
+            <CardTitle className="text-2xl">1. Introduction</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
-              {module.concept}
+              {module.Introduction}
             </p>
           </CardContent>
         </Card>
 
         {/* Key Ideas */}
-        <Card className="mb-6">
+       {/* <Card className="mb-6">
           <CardHeader>
-            <CardTitle className="text-2xl">Key Ideas</CardTitle>
+            <CardTitle className="text-2xl">Module Structure</CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="space-y-3">
@@ -874,32 +921,179 @@ endmodule`,
               ))}
             </ul>
           </CardContent>
-        </Card>
-
-        {/* Example Code */}
+        </Card> */}
+        
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle className="text-2xl">Example Code</CardTitle>
+            <CardTitle className="text-2xl">2.Verilog Module Structure</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.ModuleStructure}
+            </p>
+          </CardContent>
+          <CardHeader>
+            <CardTitle className="text-2xl">Syntax</CardTitle>
+            </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.Syntax}
+            </p>
+          </CardContent>
+
+        {/* Example Code */}
+       {/*} <Card className="mb-6">*/}
+          <CardHeader>
+            <CardTitle className="text-2xl">Example: AND Gate</CardTitle>
           </CardHeader>
           <CardContent>
             <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto">
-              <code className="text-sm font-mono">{module.exampleCode}</code>
+              <code className="text-sm font-mono">{module.Example}</code>
             </pre>
           </CardContent>
         </Card>
 
-        {/* Explanation */}
+        {/* Data types */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle className="text-2xl">Code Explanation</CardTitle>
+            <CardTitle className="text-2xl">3. Data Types in Verilog</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
-              {module.explanation}
+              {module.datatypes}
+            </div>
+          </CardContent>
+           <CardHeader>
+            <CardTitle className="text-2xl">Vectors</CardTitle>
+            </CardHeader>
+          <CardContent>
+            <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto">
+              <code className="text-sm font-mono">{module.vectors}</code>
+            </pre>
+          </CardContent>
+        </Card>
+      {/* Operators */}
+       <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="text-2xl">4. Operators</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.operator}
+            </div>
+          </CardContent>
+           <CardHeader>
+            <CardTitle className="text-2xl">Example Operator Use</CardTitle>
+            </CardHeader>
+          <CardContent>
+            <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto">
+              <code className="text-sm font-mono">{module.exampleOperator}</code>
+            </pre>
+          </CardContent>
+        </Card>
+        {/* Continuous Assignment */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="text-2xl">5. Continuous Assignment</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.continuousAssignment}
             </div>
           </CardContent>
         </Card>
-
+        {/* Operators */}
+       <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="text-2xl">6. Procedural Blocks in Verilog</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.proceduralBlocks}
+            </div>
+          </CardContent>
+           <CardHeader>
+            <CardTitle className="text-2xl">6.1 Combinational Logic (`always @(*)`)</CardTitle>
+            </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.combinationalLogic}
+            </p>
+          </CardContent>
+          <CardHeader>
+            <CardTitle className="text-2xl">6.2 Sequential Logic (`always @(posedge clk)`)</CardTitle>
+            </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.sequentialLogic}
+            </p>
+          </CardContent>
+        </Card>
+          {/* Control Statements */}
+       <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="text-2xl">7. Control Statements</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.controlStatements}
+            </div>
+          </CardContent>
+           <CardHeader>
+            <CardTitle className="text-2xl">If–Else Example</CardTitle>
+            </CardHeader>
+          <CardContent>
+             <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto">
+              <code className="text-sm font-mono">{module.ifElseExample}</code>
+            </pre>
+          </CardContent>
+          <CardHeader>
+            <CardTitle className="text-2xl">Case Example</CardTitle>
+            </CardHeader>
+          <CardContent>
+             <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto">
+              <code className="text-sm font-mono">{module.caseExample}</code>
+            </pre>
+          </CardContent>
+        </Card>
+        {/* Example Circuits */}
+       <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="text-2xl">8. Example Circuits</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.exampleCircuits}
+            </div>
+          </CardContent>
+           <CardHeader>
+            <CardTitle className="text-2xl">2:1 Multiplexer</CardTitle>
+            </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.multiplexer}
+            </p>
+          </CardContent>
+          <CardHeader>
+            <CardTitle className="text-2xl">D Flip-Flop</CardTitle>
+            </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.DflipFlop}
+            </p>
+          </CardContent>
+        </Card>
+        {/* Common Beginner Mistakes */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="text-2xl">9. Common Beginner Mistakes</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
+              {module.commonBeginnerMistakes}
+            </div>
+          </CardContent>
+        </Card>
         {/* Navigation */}
         <div className="flex justify-between">
           <Button 
