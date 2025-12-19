@@ -1,0 +1,214 @@
+{
+  "verilog-01-basics-syntax": {
+    "id": "VF-01",
+    "title": "Verilog 01 – Basics & Syntax",
+    "difficulty": "Beginner",
+    "description": "Learn fundamental Verilog syntax and module structure",
+    "sections": [
+      {
+        "title": "1. Introduction",
+        "content": "Verilog is a Hardware Description Language used to model digital circuits."
+      },
+      {
+        "title": "2. Verilog Module Structure",
+        "content": "A Verilog design begins with a module.",
+        "syntax": "module module_name (port_list);",
+        "example": "module and_gate(input a, input b, output y);\nassign y = a & b;\nendmodule"
+      },
+      {
+        "title": "3. Data Types in Verilog",
+        "content": "wire, reg, and integer are commonly used data types.",
+        "vectors": "reg [7:0] data;\nwire [3:0] addr;"
+      },
+      {
+        "title": "4. Operators",
+        "content": "Bitwise, logical, and arithmetic operators are supported.",
+        "example": "assign y = (a & b) | (~c);"
+      },
+      {
+        "title": "5. Continuous Assignment",
+        "content": "Used for combinational logic.",
+        "example": "assign sum = a ^ b;\nassign carry = a & b;"
+      },
+      {
+        "title": "6. Procedural Blocks",
+        "content": "Procedural blocks describe behavior.",
+        "subSections": [
+          {
+            "title": "6.1 Combinational Logic",
+            "code": "always @(*) begin\n  y = a + b;\nend"
+          },
+          {
+            "title": "6.2 Sequential Logic",
+            "code": "always @(posedge clk) begin\n  q <= d;\nend"
+          }
+        ]
+      },
+      {
+        "title": "7. Control Statements",
+        "content": "Decision-making using if–else and case.",
+        "subSections": [
+          {
+            "title": "If–Else Example",
+            "code": "if (sel == 0)\n  out = a;\nelse\n  out = b;"
+          },
+          {
+            "title": "Case Example",
+            "code": "case (sel)\n  2'b00: out = a;\n  default: out = 0;\nendcase"
+          }
+        ]
+      },
+      {
+        "title": "8. Example Circuits",
+        "content": "Basic circuits implemented in Verilog.",
+        "subSections": [
+          {
+            "title": "2:1 Multiplexer",
+            "code": "assign y = sel ? b : a;"
+          },
+          {
+            "title": "D Flip-Flop",
+            "code": "always @(posedge clk)\n  q <= d;"
+          }
+        ]
+      },
+      {
+        "title": "9. Common Beginner Mistakes",
+        "content": "- Using = instead of <=\n- Missing sensitivity lists"
+      }
+    ]
+  },
+
+
+  "verilog-02-combinational-logic": {
+    "id": "VF-02",
+    "title": "Verilog 02 – Combinational Logic",
+    "difficulty": "Beginner",
+    "description": "Model combinational circuits using Verilog constructs",
+    "sections": [
+      {
+        "title": "1. Introduction",
+        "content": "Combinational logic is a type of digital logic where the output depends only on the current inputs.\nThis module focuses on modeling combinational circuits using Verilog."
+      },
+      {
+        "title": "2. Logic Gates in Verilog",
+        "content": "Common logic gates and their operators:\nAND (&)\nOR (|)\nNOT (~)\nXOR (^)",
+        "example": "assign y = (a & b) | (~c);"
+      },
+      {
+        "title": "3. Continuous Assign Statements",
+        "content": "The assign keyword is used to model combinational logic.",
+        "example": "assign sum = a ^ b;\nassign carry = a & b;"
+      },
+      {
+        "title": "4. always @(*) for Combinational Logic",
+        "content": "Procedural modeling of combinational logic:",
+        "example": "always @(*) begin\n    y = a & b;\nend"
+      },
+      {
+        "title": "5. Multiplexers",
+        "content": "2:1 Multiplexer example:",
+        "example": "assign y = sel ? b : a;"
+      },
+      {
+        "title": "6. Decoders",
+        "content": "2:4 Decoder using case statement:",
+        "example": "case (a)\n  2'b00: y = 4'b0001;\n  2'b01: y = 4'b0010;\n  2'b10: y = 4'b0100;\n  default: y = 4'b1000;\nendcase"
+      },
+      {
+        "title": "7. Common Mistakes",
+        "content": "- Missing default cases\n- Latch inference\n- Incorrect assignment operators"
+      }
+    ]
+  }
+,
+
+  "verilog-03-sequential-logic": {
+    "id": "VF-03",
+    "title": "Verilog 03 – Sequential Logic",
+    "difficulty": "Beginner",
+    "description": "Understand clocked logic, flip-flops, and state-based design",
+    "sections": [
+      {
+        "title": "1. Introduction",
+        "content": "Sequential logic depends on current inputs and past values.\nThis module introduces clocked logic."
+      },
+      {
+        "title": "2. Clocking",
+        "content": "Sequential logic uses clock edges.",
+        "example": "always @(posedge clk)"
+      },
+      {
+        "title": "3. Flip-Flops",
+        "content": "D Flip-Flop example:",
+        "example": "always @(posedge clk) begin\n    q <= d;\nend"
+      },
+      {
+        "title": "4. Registers",
+        "content": "Registers store multiple bits.",
+        "example": "reg [7:0] data_reg;"
+      },
+      {
+        "title": "5. Reset Logic",
+        "content": "Synchronous reset example:",
+        "example": "if (rst) q <= 0;"
+      },
+      {
+        "title": "6. Counters",
+        "content": "4-bit counter:",
+        "example": "count <= count + 1;"
+      },
+      {
+        "title": "7. Blocking vs Non-Blocking",
+        "content": "Use <= for sequential logic.\nUse = for combinational logic."
+      },
+      {
+        "title": "8. Common Mistakes",
+        "content": "- Using blocking assignments in clocked logic\n- Missing reset handling"
+      }
+    ]
+  },
+"verilog-04-testbenches": {
+    "id": "VF-04",
+    "title": "Verilog 04 – Testbenches",
+    "difficulty": "Beginner",
+    "description": "Verify Verilog designs using simulation testbenches",
+    "sections": [
+      {
+        "title": "1. Introduction",
+        "content": "Testbenches verify Verilog designs and are not synthesized."
+      },
+      {
+        "title": "2. Testbench Structure",
+        "content": "Basic testbench layout:",
+        "example": "module tb;\n// signals\n// DUT\nendmodule"
+      },
+      {
+        "title": "3. DUT Instantiation",
+        "content": "Connecting the design under test:",
+        "example": "dff dut (.clk(clk), .d(d), .q(q));"
+      },
+      {
+        "title": "4. Initial Blocks",
+        "content": "Used to apply stimulus once at simulation start."
+      },
+      {
+        "title": "5. Clock Generation",
+        "content": "Clock generation example:",
+        "example": "always #5 clk = ~clk;"
+      },
+      {
+        "title": "6. Stimulus",
+        "content": "Applying input changes over time."
+      },
+      {
+        "title": "7. Display Statements",
+        "content": "Using $display and $monitor."
+      },
+      {
+        "title": "8. Common Mistakes",
+        "content": "- No clock generation\n- Expecting synthesis of testbench code"
+      }
+    ]
+}
+}

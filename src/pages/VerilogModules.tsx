@@ -20,21 +20,21 @@ const VerilogModules = () => {
       slug: "verilog-02-combinational-logic",
       title: "Verilog 02 – Combinational Logic",
       description: "Master combinational circuits including gates, multiplexers, and decoders",
-      topics: ["Logic Gates", "assign Statements", "Multiplexers", "Decoders"]
+      topics: ["Introduction", "Logic Gates in Verilog", "Continuous Assign Statements", "always @(*) for Combinational Logic", "Multiplexers", "Decoders","Common Mistakes"]
     },
     {
       id: "VF-03",
       slug: "verilog-03-sequential-logic",
       title: "Verilog 03 – Sequential Logic",
       description: "Understand sequential circuits, flip-flops, and always blocks",
-      topics: ["always Blocks", "Flip-Flops", "Registers", "Clocking"]
+      topics: ["Introduction", "Clocking","Flip-Flops", "Registers", "Reset Logic","Counters","Blocking vs Non-Blocking","Common Mistakes"]
     },
     {
       id: "VF-04",
       slug: "verilog-04-testbenches",
       title: "Verilog 04 – Verilog Testbenches",
       description: "Write testbenches to verify your Verilog designs",
-      topics: ["Testbench Structure", "initial Blocks", "Stimulus", "$display"]
+      topics: ["Introduction","Testbench Structure"," DUT Instantiation", "initial Blocks","Clock Generation", "Stimulus", "Display Statements","Common Mistakes"]
     }
   ];
 
