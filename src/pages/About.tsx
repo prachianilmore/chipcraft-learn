@@ -113,10 +113,14 @@ const About = () => {
         </div>
         {/* Content & Curriculum */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-3">Content & Curriculum</h2>
-          <p className="text-muted-foreground">
-            The learning content and curriculum for ChipLearn have been authored and maintained by Prachi Anil More.
-          </p>
+          <h2 className="text-2xl font-bold mb-6">Content & Curriculum</h2>
+          <Card className="border-border">
+            <CardContent className="pt-6">
+              <p className="text-lg text-muted-foreground">
+                ChipLearn's learning content and curriculum are authored and maintained by Prachi Anil More.
+              </p>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Get Involved */}
