@@ -111,6 +111,13 @@ const About = () => {
             </CardContent>
           </Card>
         </div>
+        {/* Content & Curriculum */}
+        <div className="mb-16">
+          <h2 className="text-2xl font-bold mb-3">Content & Curriculum</h2>
+          <p className="text-muted-foreground">
+            The learning content and curriculum for ChipLearn have been authored and maintained by Prachi Anil More.
+          </p>
+        </div>
 
         {/* Get Involved */}
         <div className="bg-secondary rounded-lg p-8 text-center">
