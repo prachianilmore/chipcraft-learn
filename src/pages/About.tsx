@@ -117,7 +117,7 @@ const About = () => {
           <Card className="border-border">
             <CardContent className="pt-6">
               <p className="text-lg text-muted-foreground">
-                ChipLearn's learning content and curriculum are authored and maintained by Prachi Anil More.
+                ChipLearn's learning content and curriculum are authored and maintained by <span className="font-medium text-foreground">Prachi Anil More</span>.
               </p>
             </CardContent>
           </Card>
