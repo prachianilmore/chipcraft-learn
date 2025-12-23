@@ -11,6 +11,7 @@ import SystemVerilogModules from "./pages/SystemVerilogModules";
 import UVMModules from "./pages/UVMModules";
 import ModuleDetail from "./pages/ModuleDetail";
 import Visualizer from "./pages/Visualizer";
+import Quiz from "./pages/Quiz";
 import Community from "./pages/Community";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/uvm-modules" element={<UVMModules />} />
             <Route path="/modules/:slug" element={<ModuleDetail />} />
             <Route path="/visualizer" element={<Visualizer />} />
+            <Route path="/quiz" element={<Quiz />} />
             <Route path="/community" element={<Community />} />
             <Route path="/about" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
