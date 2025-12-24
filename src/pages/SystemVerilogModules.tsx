@@ -13,14 +13,14 @@ const SystemVerilogModules = () => {
       slug: "systemverilog-01-from-verilog",
       title: "SystemVerilog 01 – From Verilog to SystemVerilog",
       description: "Understand the key improvements SystemVerilog brings over traditional Verilog",
-      topics: ["New Features", "Enhanced Syntax", "Data Types", "Logic Type"]
+      topics: ["Introduction", "Why SystemVerilog was Introduced", "Key Improvements Over Verilog", "Enhanced Procedural Blocks","logic Data Type","Example: Sequential Logic","Common Beginner Mistakes"]
     },
     {
       id: "SV-02",
       slug: "systemverilog-02-data-types",
       title: "SystemVerilog 02 – Data Types, Arrays, typedef",
       description: "Master SystemVerilog's rich type system including packed/unpacked arrays and user-defined types",
-      topics: ["logic vs reg/wire", "Arrays", "typedef", "struct/union"]
+      topics: ["Introduction", "SystemVerilog Data Types", "logic vs reg vs wire", "Packed Arrays","Unpacked Arrays","Packed and Unpacked Together","typedef","struct","union","Common Mistakes"]
     },
     {
       id: "SV-03",
