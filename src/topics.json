@@ -210,5 +210,113 @@
         "content": "- No clock generation\n- Expecting synthesis of testbench code"
       }
     ]
-}
+},
+  "systemverilog-01-from-verilog": {
+    "id": "SV-01",
+    "title": "SystemVerilog 01 – From Verilog to SystemVerilog",
+    "description": "Understand why SystemVerilog was introduced and how it improves RTL design and verification.",
+    "difficulty": "Intermediate",
+    "sections": [
+      {
+        "title": "1. Introduction",
+        "content": "SystemVerilog is an extension of Verilog designed to support modern hardware design and verification.\n\nIt improves readability, safety, and scalability while remaining backward compatible with Verilog."
+      },
+      {
+        "title": "2. Why SystemVerilog was Introduced",
+        "content": "Verilog had limitations in large-scale designs.\n\n• Confusing reg and wire usage\n• Manual sensitivity lists caused bugs\n• Limited verification capabilities"
+      },
+      {
+        "title": "3. Key Improvements Over Verilog",
+        "content": "SystemVerilog introduces:\n\n• Unified design and verification language\n• Richer data types like logic, bit, and int\n• Specialized always blocks for clearer intent"
+      },
+      {
+        "title": "4. Enhanced Procedural Blocks",
+        "content": "SystemVerilog introduces intent-specific always blocks.",
+        "subSections": [
+          {
+            "title": "always_comb (Combinational Logic)",
+            "code": "always_comb begin\n  y = a & b;\nend"
+          },
+          {
+            "title": "always_ff (Sequential Logic)",
+            "code": "always_ff @(posedge clk) begin\n  q <= d;\nend"
+          },
+          {
+            "title": "always_latch (Latch Logic)",
+            "code": "always_latch begin\n  if (en)\n    q <= d;\nend"
+          }
+        ]
+      },
+      {
+        "title": "5. logic Data Type",
+        "content": "The logic data type replaces reg in most RTL designs.\n\n• Can be assigned in procedural blocks\n• Prevents accidental multiple drivers\n• Cleaner and safer than reg"
+      },
+      {
+        "title": "6. Example: Sequential Logic",
+        "example": "logic q;\n\nalways_ff @(posedge clk) begin\n  q <= d;\nend"
+      },
+      {
+        "title": "7. Common Beginner Mistakes",
+        "content": "• Using always instead of always_ff\n• Mixing blocking and non-blocking assignments\n• Using wire unnecessarily instead of logic"
+      }
+    ]
+  },
+  "systemverilog-02-data-types": {
+    "id": "SV-02",
+    "title": "SystemVerilog 02 – Data Types, Arrays, and typedef",
+    "description": "Learn SystemVerilog’s rich data type system including logic, arrays, typedef, struct, and union.",
+    "difficulty": "Intermediate",
+    "sections": [
+      {
+        "title": "1. Introduction",
+        "content": "SystemVerilog provides a rich and expressive type system.\n\nThese types help write cleaner, safer, and more maintainable RTL and testbench code."
+      },
+      {
+        "title": "2. SystemVerilog Data Types",
+        "content": "Commonly used SystemVerilog data types:\n\n• logic – general-purpose 4-state signal\n• bit – 2-state signal, commonly used in testbenches\n• int, byte, shortint, longint for numeric data",
+        "example": "logic a;\nbit b;\nint count;\nbyte data_byte;"
+      },
+      {
+        "title": "3. logic vs reg vs wire",
+        "content": "wire is used for continuous assignments.\n\nreg is deprecated in SystemVerilog.\n\nlogic is the preferred replacement and should be used for most signals.",
+        "example": "logic data;\n\nassign data = a & b;"
+      },
+      {
+        "title": "4. Packed Arrays",
+        "content": "Packed arrays represent bit vectors and are stored as a single contiguous set of bits.",
+        "syntax": "logic [7:0] data;",
+        "example": "logic [15:0] instruction;"
+      },
+      {
+        "title": "5. Unpacked Arrays",
+        "content": "Unpacked arrays represent collections of elements stored separately.",
+        "syntax": "logic mem [0:255];",
+        "example": "logic buffer [0:31];"
+      },
+      {
+        "title": "6. Packed and Unpacked Together",
+        "content": "Packed and unpacked arrays are commonly used together to model memories.",
+        "example": "logic [7:0] mem [0:255];"
+      },
+      {
+        "title": "7. typedef",
+        "content": "typedef is used to create reusable data types.\n\nIt improves readability and reduces duplication.",
+        "example": "typedef logic [7:0] byte_t;\n\nbyte_t data;"
+      },
+      {
+        "title": "8. struct",
+        "content": "struct is used to group related signals together.\n\nCommonly used in interfaces and testbenches.",
+        "example": "typedef struct packed {\n  logic valid;\n  logic [7:0] data;\n} packet_t;"
+      },
+      {
+        "title": "9. union",
+        "content": "union allows multiple interpretations of the same data.\n\nUseful for protocol decoding and debugging.",
+        "example": "typedef union packed {\n  logic [31:0] word;\n  logic [3:0][7:0] bytes;\n} data_u;"
+      },
+      {
+        "title": "10. Common Mistakes",
+        "content": "• Confusing packed and unpacked array order\n• Overusing wire instead of logic\n• Not using typedef for repeated declarations"
+      }
+    ]
+  }
 }
