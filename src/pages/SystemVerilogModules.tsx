@@ -77,25 +77,25 @@ const SystemVerilogModules = () => {
           {modules.map((module) => (
             <Card 
               key={module.id}
-              className="border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col"
+              className="group border-border hover:bg-[#0B3C8A] hover:shadow-glow transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col"
               onClick={() => navigate(`/modules/${module.slug}`)}
             >
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-sm text-muted-foreground font-mono">{module.id}</div>
+                  <div className="text-sm text-muted-foreground group-hover:text-white/80 font-mono transition-colors duration-300">{module.id}</div>
                 </div>
-                <CardTitle className="text-xl">{module.title}</CardTitle>
-                <CardDescription>{module.description}</CardDescription>
+                <CardTitle className="text-xl group-hover:text-white transition-colors duration-300">{module.title}</CardTitle>
+                <CardDescription className="group-hover:text-white/90 transition-colors duration-300">{module.description}</CardDescription>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col justify-between">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {module.topics.map((topic, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs">
+                    <Badge key={index} variant="secondary" className="text-xs group-hover:bg-white/15 group-hover:text-white transition-colors duration-300">
                       {topic}
                     </Badge>
                   ))}
                 </div>
-                <Button variant="ghost" className="w-full">
+                <Button variant="ghost" className="w-full group-hover:text-white group-hover:hover:bg-white/10 transition-colors duration-300">
                   View Module <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </CardContent>
