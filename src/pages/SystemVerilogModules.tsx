@@ -73,30 +73,41 @@ const SystemVerilogModules = () => {
         </div>
 
         {/* Module Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {modules.map((module) => (
             <Card 
               key={module.id}
-              className="group bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:border-blue-600 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col"
-              onClick={() => navigate(`/modules/${module.slug}`)}
+              className="border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 flex flex-col"
             >
               <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <div className="text-sm text-slate-500 dark:text-slate-400 font-mono">{module.id}</div>
+                <div className="flex items-start justify-between mb-2">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Code className="w-5 h-5 text-primary" />
+                  </div>
+                  <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20">
+                    Intermediate
+                  </Badge>
                 </div>
-                <CardTitle className="text-xl text-slate-900 dark:text-slate-100">{module.title}</CardTitle>
-                <CardDescription className="text-slate-600 dark:text-slate-400">{module.description}</CardDescription>
+                <div className="space-y-1">
+                  <div className="text-sm text-muted-foreground font-mono">Module {module.id}</div>
+                  <CardTitle className="text-xl">{module.title}</CardTitle>
+                </div>
+                <CardDescription>{module.description}</CardDescription>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col justify-between">
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {module.topics.map((topic, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                    <Badge key={index} variant="secondary" className="text-xs">
                       {topic}
                     </Badge>
                   ))}
                 </div>
-                <Button className="w-full bg-blue-700 text-white rounded-xl px-6 py-3 hover:bg-blue-800 transition-colors">
-                  View Module <ArrowRight className="ml-2 w-4 h-4" />
+                <Button 
+                  variant="default" 
+                  className="w-full"
+                  onClick={() => navigate(`/modules/${module.slug}`)}
+                >
+                  Start Module <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </CardContent>
             </Card>
