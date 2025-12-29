@@ -77,25 +77,25 @@ const SystemVerilogModules = () => {
           {modules.map((module) => (
             <Card 
               key={module.id}
-              className="group border-border hover:bg-[#0B3C8A] hover:shadow-glow transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col"
+              className="group bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm hover:border-blue-600 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col"
               onClick={() => navigate(`/modules/${module.slug}`)}
             >
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
-                  <div className="text-sm text-muted-foreground group-hover:text-white/80 font-mono transition-colors duration-300">{module.id}</div>
+                  <div className="text-sm text-slate-500 dark:text-slate-400 font-mono">{module.id}</div>
                 </div>
-                <CardTitle className="text-xl group-hover:text-white transition-colors duration-300">{module.title}</CardTitle>
-                <CardDescription className="group-hover:text-white/90 transition-colors duration-300">{module.description}</CardDescription>
+                <CardTitle className="text-xl text-slate-900 dark:text-slate-100">{module.title}</CardTitle>
+                <CardDescription className="text-slate-600 dark:text-slate-400">{module.description}</CardDescription>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col justify-between">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {module.topics.map((topic, index) => (
-                    <Badge key={index} variant="secondary" className="text-xs group-hover:bg-white/15 group-hover:text-white transition-colors duration-300">
+                    <Badge key={index} variant="secondary" className="text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                       {topic}
                     </Badge>
                   ))}
                 </div>
-                <Button variant="ghost" className="w-full group-hover:text-white group-hover:hover:bg-white/10 transition-colors duration-300">
+                <Button className="w-full bg-blue-700 text-white rounded-xl px-6 py-3 hover:bg-blue-800 transition-colors">
                   View Module <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </CardContent>
