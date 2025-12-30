@@ -152,8 +152,8 @@ const Quiz = () => {
     return (
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-4">ChipLearn Quiz (20 Questions)</h1>
-          <p className="text-xl text-muted-foreground">Mix of coding + DV interview questions with explanations</p>
+          <h1 className="text-4xl font-bold text-foreground mb-4">ChipLearn Quiz</h1>
+          <p className="text-xl text-muted-foreground">Dynamic quiz with coding and design verification interview questions</p>
         </div>
 
         <Card className="mb-6">
