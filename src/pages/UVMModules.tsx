@@ -73,30 +73,41 @@ const UVMModules = () => {
         </div>
 
         {/* Module Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {modules.map((module) => (
             <Card 
               key={module.id}
-              className="border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 cursor-pointer flex flex-col"
-              onClick={() => navigate(`/modules/${module.slug}`)}
+              className="border-border hover:shadow-glow transition-all duration-300 hover:-translate-y-1 flex flex-col"
             >
               <CardHeader>
-                <div className="flex items-center justify-between mb-2">
-                  <div className="text-sm text-muted-foreground font-mono">{module.id}</div>
+                <div className="flex items-start justify-between mb-2">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    <Code className="w-5 h-5 text-primary" />
+                  </div>
+                  <Badge variant="outline" className="bg-purple-500/10 text-purple-600 border-purple-500/20">
+                    Advanced
+                  </Badge>
                 </div>
-                <CardTitle className="text-xl">{module.title}</CardTitle>
+                <div className="space-y-1">
+                  <div className="text-sm text-muted-foreground font-mono">Module {module.id}</div>
+                  <CardTitle className="text-xl">{module.title}</CardTitle>
+                </div>
                 <CardDescription>{module.description}</CardDescription>
               </CardHeader>
               <CardContent className="flex-1 flex flex-col justify-between">
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {module.topics.map((topic, index) => (
                     <Badge key={index} variant="secondary" className="text-xs">
                       {topic}
                     </Badge>
                   ))}
                 </div>
-                <Button variant="ghost" className="w-full">
-                  View Module <ArrowRight className="ml-2 w-4 h-4" />
+                <Button 
+                  variant="default" 
+                  className="w-full"
+                  onClick={() => navigate(`/modules/${module.slug}`)}
+                >
+                  Start Module <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </CardContent>
             </Card>
