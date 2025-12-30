@@ -944,5 +944,130 @@ This pattern is synthesis-friendly and widely used.`
 between sequential elements evaluated in the same clock edge.
 Nonblocking assignments schedule updates simultaneously, modeling real hardware.
 This is why <= is recommended for clocked logic.`
+  },
+  {
+    id: 27,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Easy",
+    question: "What does an 'initial' block do in Verilog RTL?",
+    options: [
+      "Runs repeatedly on every clock edge",
+      "Executes once at time 0 (simulation start)",
+      "Synthesizes into flip-flops",
+      "Replaces always blocks"
+    ],
+    correctAnswer: "B",
+    explanation: `"initial" blocks begin execution at simulation time 0 and run once.
+They are commonly used in testbenches for stimulus and initialization.
+In synthesizable RTL, initial usage is limited or tool-dependent.
+For hardware modeling, sequential logic is normally written using always @(posedge clk).`
+  },
+  {
+    id: 28,
+    type: "mcq",
+    topic: "SystemVerilog",
+    difficulty: "Medium",
+    question: "Which is the best SystemVerilog construct for combinational logic with automatic sensitivity?",
+    options: [
+      "always @(posedge clk)",
+      "always @(*)",
+      "always_comb",
+      "initial"
+    ],
+    correctAnswer: "C",
+    explanation: `always_comb is designed specifically for combinational logic.
+It automatically includes all RHS signals in the sensitivity list and adds extra checks.
+It helps prevent missing sensitivity list bugs and improves clarity.
+always @(*) is similar, but always_comb provides stronger semantic enforcement.`
+  },
+  {
+    id: 29,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Medium",
+    question: "Which UVM component typically converts pin-level activity into transactions?",
+    options: [
+      "Sequencer",
+      "Driver",
+      "Monitor",
+      "Test"
+    ],
+    correctAnswer: "C",
+    explanation: `A monitor passively observes interface signals and reconstructs meaningful transactions.
+It does not drive the DUT; it samples activity and publishes transactions via analysis ports.
+Drivers actively drive signals, sequencers provide items to drivers, and tests control the environment.
+Monitors are essential for scoreboards and coverage collection.`
+  },
+  {
+    id: 30,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Medium",
+    question: "What does 'disable iff (reset)' do in an SVA property?",
+    options: [
+      "Forces reset to be synchronous",
+      "Turns off the assertion checking while reset is true",
+      "Makes the assertion check only during reset",
+      "Converts assertion into coverage"
+    ],
+    correctAnswer: "B",
+    explanation: `disable iff(reset) prevents the assertion from evaluating when reset is asserted.
+This avoids false failures during reset behavior and initialization.
+It is commonly used for protocol checks that are only valid outside reset.
+It does not change reset type; it only gates assertion evaluation.`
+  },
+  {
+    id: 31,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Medium",
+    question: "Why do we use bins in functional coverage?",
+    options: [
+      "To speed up synthesis",
+      "To group values/scenarios we want to track as hits",
+      "To reduce clock frequency",
+      "To replace assertions"
+    ],
+    correctAnswer: "B",
+    explanation: `Bins allow you to define which values or ranges should be tracked in a coverpoint.
+They map verification intent (important scenarios) into measurable coverage goals.
+You can also use bins to ignore or focus on certain value sets.
+This helps ensure your test plan is actually exercised.`
+  },
+  {
+    id: 32,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Easy",
+    question: "When debugging an intermittent failure, what is the BEST first action?",
+    options: [
+      "Immediately rewrite the DUT",
+      "Re-run with the same seed and capture a waveform/log",
+      "Disable all assertions",
+      "Increase randomization only"
+    ],
+    correctAnswer: "B",
+    explanation: `First make the issue reproducible by re-running with the same seed.
+Then capture waveforms and logs to identify where behavior diverges.
+Without reproducibility, debug becomes guesswork.
+Assertions and logging help narrow the failure point quickly.`
+  },
+  {
+    id: 33,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Medium",
+    question: "Self-check: Write pseudocode (or any language) to find if an array contains any duplicate number.",
+    rubric: [
+      "Use a set/hashmap OR sorting approach",
+      "Explain time complexity",
+      "Handle empty/1-element arrays"
+    ],
+    correctAnswer: "Use a set. For each element x: if x in set return true; else add x. Return false at end.",
+    explanation: `A set-based approach detects duplicates in O(n) expected time.
+Sorting also works in O(n log n) then checking neighbors.
+In DV interviews, explaining complexity + edge cases matters as much as code.
+This is a common warm-up logic question.`
   }
 ];
