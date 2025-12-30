@@ -836,5 +836,113 @@ Common mistakes:
 - Using \`uvm_do macro without understanding what it does
 
 The pattern: create → start_item → randomize → finish_item → repeat`
+  },
+  {
+    id: 21,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Easy",
+    question: "Which data type is used to model combinational connections between modules in Verilog?",
+    options: [
+      "reg",
+      "integer",
+      "wire",
+      "logic"
+    ],
+    correctAnswer: "C",
+    explanation: `In Verilog, a wire represents a physical connection and is driven continuously.
+It is commonly used for module interconnections and combinational logic.
+A reg is used inside procedural blocks and does not represent a physical wire.
+Using the wrong type can cause synthesis or simulation mismatches.`
+  },
+  {
+    id: 22,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Easy",
+    question: "Where can a reg data type be assigned in Verilog?",
+    options: [
+      "Continuous assign statements",
+      "always or initial blocks",
+      "Module port connections only",
+      "Only inside functions"
+    ],
+    correctAnswer: "B",
+    explanation: `A reg can be assigned only inside procedural blocks such as always or initial.
+It cannot be driven by continuous assign statements.
+This makes reg suitable for modeling storage or procedural behavior.
+Despite the name, reg does not always imply hardware registers.`
+  },
+  {
+    id: 23,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Medium",
+    question: "What happens if multiple always blocks drive the same reg?",
+    options: [
+      "Last assignment wins",
+      "Synthesis automatically resolves it",
+      "Causes a multiple driver conflict",
+      "It becomes a wire"
+    ],
+    correctAnswer: "C",
+    explanation: `A reg must have exactly one procedural driver.
+Multiple always blocks driving the same reg cause conflicts and undefined behavior.
+Most simulators will flag this as an error.
+This is a common beginner mistake in RTL design.`
+  },
+  {
+    id: 24,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Medium",
+    question: "Which sensitivity list is correct for modeling combinational logic?",
+    options: [
+      "@(posedge clk)",
+      "@(a or b or c)",
+      "@(negedge clk)",
+      "@(posedge reset)"
+    ],
+    correctAnswer: "B",
+    explanation: `Combinational logic must react to changes in all its inputs.
+Using @(a or b or c) ensures the block re-evaluates whenever inputs change.
+Clock edges are used only for sequential logic.
+Missing signals in sensitivity lists can cause simulation mismatches.`
+  },
+  {
+    id: 25,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Medium",
+    question: "What does the following code infer?\nalways @(posedge clk)\n  q <= d;",
+    options: [
+      "Latch",
+      "Combinational logic",
+      "Flip-flop",
+      "Tri-state buffer"
+    ],
+    correctAnswer: "C",
+    explanation: `Using posedge clk with nonblocking assignment infers a flip-flop.
+This is the standard way to model sequential storage in Verilog.
+Latches occur when incomplete assignments are used in combinational blocks.
+This pattern is synthesis-friendly and widely used.`
+  },
+  {
+    id: 26,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Hard",
+    question: "Why are blocking assignments (=) discouraged in clocked always blocks?",
+    options: [
+      "They cause syntax errors",
+      "They prevent synthesis",
+      "They can create race conditions",
+      "They use more hardware"
+    ],
+    correctAnswer: "C",
+    explanation: `Blocking assignments execute immediately and can create race conditions
+between sequential elements evaluated in the same clock edge.
+Nonblocking assignments schedule updates simultaneously, modeling real hardware.
+This is why <= is recommended for clocked logic.`
   }
 ];
