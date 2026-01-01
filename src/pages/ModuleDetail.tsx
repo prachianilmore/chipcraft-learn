@@ -21,6 +21,8 @@ const SYSTEMVERILOG_MODULE_ORDER = [
   "systemverilog-01-from-verilog",
   "systemverilog-02-data-types",
   "systemverilog-03-always-blocks",
+  "systemverilog-04-interfaces",
+  "systemverilog-05-assertions",
 ];
 
 /* ---------------------------------------------

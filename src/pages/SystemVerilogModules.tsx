@@ -27,21 +27,21 @@ const SystemVerilogModules = () => {
       slug: "systemverilog-03-always-blocks",
       title: "SystemVerilog 03 – always_comb, always_ff, always_latch",
       description: "Learn the intent-specific always blocks that improve code clarity and catch errors",
-      topics: ["always_comb", "always_ff", "always_latch", "Blocking vs Non-blocking"]
+      topics: ["Introduction","always_comb", "always_ff", "always_latch","Comparison Summary","Verification Insight"]
     },
     {
       id: "SV-04",
       slug: "systemverilog-04-interfaces",
       title: "SystemVerilog 04 – Interfaces & Modports (Intro)",
       description: "Simplify module connections with interfaces and control signal direction with modports",
-      topics: ["Interface Declaration", "Modports", "Module Connection", "Reusability"]
+      topics: [" Introduction","Interface Basics","Using Interfaces in Modules", "Modports", "Verification Usage", "Best Practices","DV Insight"]
     },
     {
       id: "SV-05",
       slug: "systemverilog-05-assertions",
       title: "SystemVerilog 05 – Intro to SystemVerilog Assertions (SVA)",
       description: "Introduction to property-based verification using SystemVerilog Assertions",
-      topics: ["Immediate Assertions", "Concurrent Assertions", "assert property", "Temporal Logic"]
+      topics: ["Introduction","Why Assertions?","Immediate Assertions", "Concurrent Assertions", "Temporal Operators", "Assertions in DV","Best Practices","DV Insight"]
     }
   ];
 
