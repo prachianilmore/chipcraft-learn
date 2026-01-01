@@ -318,5 +318,136 @@
         "content": "• Confusing packed and unpacked array order\n• Overusing wire instead of logic\n• Not using typedef for repeated declarations"
       }
     ]
-  }
+  },
+  "systemverilog-03-always-blocks": {
+  "id": "SV-03",
+  "title": "SystemVerilog 03 – always_comb, always_ff, always_latch",
+  "difficulty": "Intermediate",
+  "description": "Intent-specific procedural blocks for improved correctness and readability",
+  "sections": [
+    {
+      "title": "1. Introduction",
+      "content": "SystemVerilog introduces intent-specific procedural blocks that replace the traditional always block. These constructs help tools detect coding errors early and improve readability and correctness."
+    },
+    {
+      "title": "2. always_comb",
+      "content": "Purpose:\nUsed to model purely combinational logic.\n\nKey Rules:\n- Automatically sensitive to all RHS signals\n- No event control allowed (@)\n- Tool checks for incomplete assignments",
+      "example": "always_comb begin\n  y = a & b;\nend"
+    },
+    {
+      "title": "Common Errors Caught",
+      "content": "- Missing assignment (unintentional latch)\n- Use of non-blocking assignment"
+    },
+    {
+      "title": "Best Practice",
+      "content": "Use blocking assignments (=) only."
+    },
+    {
+      "title": "3. always_ff",
+      "content": "Purpose:\nUsed to model sequential logic (flip-flops).\n\nKey Rules:\n- Must contain exactly one clock (and optional reset)\n- Only non-blocking assignments (<=) allowed\n- Variable written in one always_ff block only",
+      "example": "always_ff @(posedge clk or negedge rst_n) begin\n  if (!rst_n)\n    q <= 0;\n  else\n    q <= d;\nend"
+    },
+    {
+      "title": "Best Practice",
+      "content": "One always_ff per register."
+    },
+    {
+      "title": "4. always_latch",
+      "content": "Purpose:\nUsed to explicitly model level-sensitive latches.\n\nKey Rules:\n- Incomplete assignment is intentional\n- No clock edge allowed",
+      "example": "always_latch begin\n  if (en)\n    q <= d;\nend"
+    },
+    {
+      "title": "5. Comparison Summary",
+      "content": "- always_comb → combinational logic\n- always_ff → edge-triggered storage\n- always_latch → level-sensitive storage"
+    },
+    {
+      "title": "6. Verification Insight",
+      "content": "These constructs help DV engineers quickly identify unintended latches, multiple drivers, and clocking issues."
+    }
+  ]
+},
+"systemverilog-04-interfaces": {
+  "id": "SV-04",
+  "title": "SystemVerilog 04 – Interfaces & Modports",
+  "difficulty": "Intermediate",
+  "description": "Simplify complex module connections using interfaces and modports",
+  "sections": [
+    {
+      "title": "1. Introduction",
+      "content": "Interfaces bundle signals and simplify complex module connections. Modports define signal direction and access rules."
+    },
+    {
+      "title": "2. Interface Basics",
+      "content": "Purpose:\nGroup related signals together to reduce port clutter.",
+      "example": "interface bus_if;\n  logic clk;\n  logic [31:0] addr, data;\nendinterface"
+    },
+    {
+      "title": "3. Using Interfaces in Modules",
+      "example": "module master(bus_if bus);\n  always_ff @(posedge bus.clk)\n    bus.addr <= 32'hA5;\nendmodule"
+    },
+    {
+      "title": "Benefits",
+      "content": "- Cleaner module ports\n- Easy scalability\n- Reusable signal definitions"
+    },
+    {
+      "title": "4. Modports",
+      "content": "Purpose:\nControl direction and access of interface signals.",
+      "example": "interface bus_if;\n  logic clk;\n  logic [31:0] addr, data;\n\n  modport master (output addr, input data, clk);\n  modport slave  (input addr, output data, clk);\nendinterface"
+    },
+    {
+      "title": "5. Verification Usage",
+      "content": "- Common in UVM environments\n- Used to connect DUT and BFMs\n- Improves readability of testbenches"
+    },
+    {
+      "title": "6. Best Practices",
+      "content": "- Always use modports\n- Avoid driving signals without modport definition"
+    },
+    {
+      "title": "7. DV Insight",
+      "content": "Interfaces reduce connection bugs and make protocol modeling clearer."
+    }
+  ]
+},
+"systemverilog-05-assertions": {
+  "id": "SV-05",
+  "title": "SystemVerilog 05 – Introduction to SystemVerilog Assertions (SVA)",
+  "difficulty": "Intermediate",
+  "description": "Verify design behavior using SystemVerilog Assertions during simulation and formal verification",
+  "sections": [
+    {
+      "title": "1. Introduction",
+      "content": "Assertions verify design behavior by checking properties during simulation and formal verification."
+    },
+    {
+      "title": "2. Why Assertions?",
+      "content": "- Catch bugs early\n- Improve observability\n- Enable formal verification"
+    },
+    {
+      "title": "3. Immediate Assertions",
+      "content": "Checked instantly when executed.\n\nUsed in:\n- Initial blocks\n- always blocks",
+      "example": "assert (req !== 1'bx)\n  else $error(\"REQ is X\");"
+    },
+    {
+      "title": "4. Concurrent Assertions",
+      "content": "Checked over time using clocks.\n\nBasic Structure:\nassert property (property_name);",
+      "example": "property p_req_ack;\n  @(posedge clk) req |-> ##1 ack;\nendproperty\nassert property (p_req_ack);"
+    },
+    {
+      "title": "5. Temporal Operators",
+      "content": "|->  Implication\n##   Cycle delay\n[*]  Repetition"
+    },
+    {
+      "title": "6. Assertions in DV",
+      "content": "- Embedded in RTL\n- Placed in monitors\n- Used with coverage"
+    },
+    {
+      "title": "7. Best Practices",
+      "content": "- Keep assertions simple\n- Use meaningful names\n- Add descriptive error messages"
+    },
+    {
+      "title": "8. DV Insight",
+      "content": "Assertions are critical for protocol checking and corner-case validation."
+    }
+  ]
+}
 }
