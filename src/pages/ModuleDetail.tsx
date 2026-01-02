@@ -103,25 +103,20 @@ const ModuleDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
 
-  // Always a string (fixes TS error)
   const currentSlug: string = slug ?? "";
 
-  // Scroll to top on module change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [slug]);
 
-  // Load module
   const module = topics[currentSlug as keyof typeof topics];
 
-  // Detect track
   const isSystemVerilog = currentSlug.startsWith("systemverilog");
 
   const moduleOrder = isSystemVerilog
     ? SYSTEMVERILOG_MODULE_ORDER
     : VERILOG_MODULE_ORDER;
 
-  // SAFE index calculation (fixes indexOf error)
   const currentIndex = moduleOrder.includes(currentSlug)
     ? moduleOrder.indexOf(currentSlug)
     : -1;
@@ -131,19 +126,11 @@ const ModuleDetail = () => {
       ? moduleOrder[currentIndex + 1]
       : null;
 
-  // Back always goes to FIRST module in same track
-  const backSlug = isSystemVerilog
-    ? "systemverilog-01-from-verilog"
-    : "verilog-01-basics-syntax";
-
-  // Hard safety fallback
   if (!module) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
         <h2 className="text-xl font-semibold">Module not found</h2>
-        <Button onClick={() => navigate(`/modules/${backSlug}`)}>
-          Go Back
-        </Button>
+        <Button onClick={() => navigate(-1)}>Go Back</Button>
       </div>
     );
   }
@@ -151,14 +138,42 @@ const ModuleDetail = () => {
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4 max-w-4xl">
+<Button
+  variant="ghost"
+  onClick={() => {
+    const isFirstVerilog =
+      currentSlug === VERILOG_MODULE_ORDER[0];
 
-        {/* Back */}
-        <Button
-          variant="ghost"
-          onClick={() => navigate(`/modules/${backSlug}`)}
-        >
-          <ArrowLeft className="mr-2" /> Back
-        </Button>
+    const isFirstSystemVerilog =
+      currentSlug === SYSTEMVERILOG_MODULE_ORDER[0];
+
+    if (isFirstVerilog) {
+      navigate("/verilog-modules");
+    } else if (isFirstSystemVerilog) {
+      navigate("/systemverilog-modules");
+    } else {
+      // Go to previous module in SAME track
+      const order = isSystemVerilog
+        ? SYSTEMVERILOG_MODULE_ORDER
+        : VERILOG_MODULE_ORDER;
+
+      const index = order.indexOf(currentSlug);
+
+      if (index > 0) {
+        navigate(`/modules/${order[index - 1]}`);
+      } else {
+        navigate("/modules");
+      }
+    }
+
+    // Always reset scroll
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 0);
+  }}
+>
+  <ArrowLeft className="mr-2" /> Back
+</Button>
 
         {/* Header */}
         <div className="my-8">
@@ -176,15 +191,13 @@ const ModuleDetail = () => {
           <h1 className="text-4xl font-bold mb-4">{module.title}</h1>
           <p className="text-muted-foreground">{module.description}</p>
 
-          {/* Section Pills */}
           <div className="flex flex-wrap gap-3 mt-6">
             {module.sections.map((section: any, index: number) => (
               <a
                 key={index}
                 href={`#section-${index}`}
                 className="px-4 py-1.5 rounded-full text-sm font-medium
-                           bg-blue-50 text-blue-700
-                           hover:bg-blue-100 transition"
+                           bg-blue-50 text-blue-700 hover:bg-blue-100 transition"
               >
                 {section.title.replace(/^\d+\.\s*/, "")}
               </a>
@@ -210,13 +223,12 @@ const ModuleDetail = () => {
 
         {/* Bottom Navigation */}
         <div className="mt-12 flex justify-between items-center">
-         <Button
-  variant="outline"
-  onClick={() => navigate("/modules")}
->
-  <ArrowLeft className="mr-2" /> All Modules
-</Button>
-
+          <Button
+            variant="outline"
+            onClick={() => navigate("/modules")}
+          >
+            <ArrowLeft className="mr-2" /> All Modules
+          </Button>
 
           {nextSlug && (
             <Button
