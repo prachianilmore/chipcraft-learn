@@ -59,12 +59,13 @@ const SectionCard = ({
     </CardHeader>
 
     {content && (
-      <CardContent>
-        <p className="text-muted-foreground whitespace-pre-line">
-          {content}
-        </p>
-      </CardContent>
-    )}
+  <CardContent>
+    <p
+      className="text-muted-foreground leading-relaxed"
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
+  </CardContent>
+)}
 
     {syntax && (
       <CardContent>

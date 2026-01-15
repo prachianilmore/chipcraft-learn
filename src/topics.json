@@ -13,12 +13,12 @@
         "title": "2. Verilog Module Structure",
         "content": "A Verilog design begins with a module.",
         "syntax": "module module_name (port_list);",
-        "example": "module and_gate(input a, input b, output y);\nassign y = a & b;\nendmodule"
+        "example": "module and_gate(input a, input b, output y);<br/>assign y = a & b;<br/>endmodule"
       },
       {
         "title": "3. Data Types in Verilog",
         "content": "wire, reg, and integer are commonly used data types.",
-        "vectors": "reg [7:0] data;\nwire [3:0] addr;"
+        "vectors": "reg [7:0] data;<br/>wire [3:0] addr;"
       },
       {
         "title": "4. Operators",
@@ -28,7 +28,7 @@
       {
         "title": "5. Continuous Assignment",
         "content": "Used for combinational logic.",
-        "example": "assign sum = a ^ b;\nassign carry = a & b;"
+        "example": "assign sum = a ^ b;<br/>assign carry = a & b;"
       },
       {
         "title": "6. Procedural Blocks",
@@ -36,11 +36,11 @@
         "subSections": [
           {
             "title": "6.1 Combinational Logic",
-            "code": "always @(*) begin\n  y = a + b;\nend"
+            "code": "always @(*) begin<br/>  y = a + b;<br/>end"
           },
           {
             "title": "6.2 Sequential Logic",
-            "code": "always @(posedge clk) begin\n  q <= d;\nend"
+            "code": "always @(posedge clk) begin<br/>  q <= d;<br/>end"
           }
         ]
       },
@@ -50,11 +50,11 @@
         "subSections": [
           {
             "title": "If–Else Example",
-            "code": "if (sel == 0)\n  out = a;\nelse\n  out = b;"
+            "code": "if (sel == 0)<br/>  out = a;<br/>else<br/>  out = b;"
           },
           {
             "title": "Case Example",
-            "code": "case (sel)\n  2'b00: out = a;\n  default: out = 0;\nendcase"
+            "code": "case (sel)<br/>  2'b00: out = a;<br/>  default: out = 0;<br/>endcase"
           }
         ]
       },
@@ -68,13 +68,13 @@
           },
           {
             "title": "D Flip-Flop",
-            "code": "always @(posedge clk)\n  q <= d;"
+            "code": "always @(posedge clk)<br/>  q <= d;"
           }
         ]
       },
       {
         "title": "9. Common Beginner Mistakes",
-        "content": "- Using = instead of <=\n- Missing sensitivity lists"
+        "content": "- Using = instead of <=<br/>- Missing sensitivity lists"
       }
     ]
   },
@@ -88,22 +88,22 @@
     "sections": [
       {
         "title": "1. Introduction",
-        "content": "Combinational logic is a type of digital logic where the output depends only on the current inputs.\nThis module focuses on modeling combinational circuits using Verilog."
+        "content": "Combinational logic is a type of digital logic where the output depends only on the current inputs.<br/>This module focuses on modeling combinational circuits using Verilog."
       },
       {
         "title": "2. Logic Gates in Verilog",
-        "content": "Common logic gates and their operators:\nAND (&)\nOR (|)\nNOT (~)\nXOR (^)",
+        "content": "Common logic gates and their operators:<br/>AND (&)<br/>OR (|)<br/>NOT (~)<br/>XOR (^)",
         "example": "assign y = (a & b) | (~c);"
       },
       {
         "title": "3. Continuous Assign Statements",
         "content": "The assign keyword is used to model combinational logic.",
-        "example": "assign sum = a ^ b;\nassign carry = a & b;"
+        "example": "assign sum = a ^ b;<br/>assign carry = a & b;"
       },
       {
         "title": "4. always @(*) for Combinational Logic",
         "content": "Procedural modeling of combinational logic:",
-        "example": "always @(*) begin\n    y = a & b;\nend"
+        "example": "always @(*) begin<br/>    y = a & b;<br/>end"
       },
       {
         "title": "5. Multiplexers",
@@ -113,11 +113,11 @@
       {
         "title": "6. Decoders",
         "content": "2:4 Decoder using case statement:",
-        "example": "case (a)\n  2'b00: y = 4'b0001;\n  2'b01: y = 4'b0010;\n  2'b10: y = 4'b0100;\n  default: y = 4'b1000;\nendcase"
+        "example": "case (a)<br/>  2'b00: y = 4'b0001;<br/>  2'b01: y = 4'b0010;<br/>  2'b10: y = 4'b0100;<br/>  default: y = 4'b1000;<br/>endcase"
       },
       {
         "title": "7. Common Mistakes",
-        "content": "- Missing default cases\n- Latch inference\n- Incorrect assignment operators"
+        "content": "- Missing default cases<br/>- Latch inference<br/>- Incorrect assignment operators"
       }
     ]
   }
@@ -131,7 +131,7 @@
     "sections": [
       {
         "title": "1. Introduction",
-        "content": "Sequential logic depends on current inputs and past values.\nThis module introduces clocked logic."
+        "content": "Sequential logic depends on current inputs and past values.<br/>This module introduces clocked logic."
       },
       {
         "title": "2. Clocking",
@@ -141,7 +141,7 @@
       {
         "title": "3. Flip-Flops",
         "content": "D Flip-Flop example:",
-        "example": "always @(posedge clk) begin\n    q <= d;\nend"
+        "example": "always @(posedge clk) begin<br/>    q <= d;<br/>end"
       },
       {
         "title": "4. Registers",
@@ -160,11 +160,11 @@
       },
       {
         "title": "7. Blocking vs Non-Blocking",
-        "content": "Use <= for sequential logic.\nUse = for combinational logic."
+        "content": "Use <= for sequential logic.<br/>Use = for combinational logic."
       },
       {
         "title": "8. Common Mistakes",
-        "content": "- Using blocking assignments in clocked logic\n- Missing reset handling"
+        "content": "- Using blocking assignments in clocked logic<br/>- Missing reset handling"
       }
     ]
   },
@@ -181,7 +181,7 @@
       {
         "title": "2. Testbench Structure",
         "content": "Basic testbench layout:",
-        "example": "module tb;\n// signals\n// DUT\nendmodule"
+        "example": "module tb;<br/>// signals<br/>// DUT<br/>endmodule"
       },
       {
         "title": "3. DUT Instantiation",
@@ -207,7 +207,7 @@
       },
       {
         "title": "8. Common Mistakes",
-        "content": "- No clock generation\n- Expecting synthesis of testbench code"
+        "content": "- No clock generation<br/>- Expecting synthesis of testbench code"
       }
     ]
 },
@@ -219,15 +219,15 @@
     "sections": [
       {
         "title": "1. Introduction",
-        "content": "SystemVerilog is an extension of Verilog designed to support modern hardware design and verification.\n\nIt improves readability, safety, and scalability while remaining backward compatible with Verilog."
+        "content": "SystemVerilog is an extension of Verilog designed to support modern hardware design and verification.<br/><br/>It improves readability, safety, and scalability while remaining backward compatible with Verilog."
       },
       {
         "title": "2. Why SystemVerilog was Introduced",
-        "content": "Verilog had limitations in large-scale designs.\n\n• Confusing reg and wire usage\n• Manual sensitivity lists caused bugs\n• Limited verification capabilities"
+        "content": "Verilog had limitations in large-scale designs.<br/><br/>• Confusing reg and wire usage<br/>• Manual sensitivity lists caused bugs<br/>• Limited verification capabilities"
       },
       {
         "title": "3. Key Improvements Over Verilog",
-        "content": "SystemVerilog introduces:\n\n• Unified design and verification language\n• Richer data types like logic, bit, and int\n• Specialized always blocks for clearer intent"
+        "content": "SystemVerilog introduces:<br/><br/>• Unified design and verification language<br/>• Richer data types like logic, bit, and int<br/>• Specialized always blocks for clearer intent"
       },
       {
         "title": "4. Enhanced Procedural Blocks",
@@ -235,29 +235,29 @@
         "subSections": [
           {
             "title": "always_comb (Combinational Logic)",
-            "code": "always_comb begin\n  y = a & b;\nend"
+            "code": "always_comb begin<br/>  y = a & b;<br/>end"
           },
           {
             "title": "always_ff (Sequential Logic)",
-            "code": "always_ff @(posedge clk) begin\n  q <= d;\nend"
+            "code": "always_ff @(posedge clk) begin<br/>  q <= d;<br/>end"
           },
           {
             "title": "always_latch (Latch Logic)",
-            "code": "always_latch begin\n  if (en)\n    q <= d;\nend"
+            "code": "always_latch begin<br/>  if (en)<br/>    q <= d;<br/>end"
           }
         ]
       },
       {
         "title": "5. logic Data Type",
-        "content": "The logic data type replaces reg in most RTL designs.\n\n• Can be assigned in procedural blocks\n• Prevents accidental multiple drivers\n• Cleaner and safer than reg"
+        "content": "The logic data type replaces reg in most RTL designs.<br/><br/>• Can be assigned in procedural blocks<br/>• Prevents accidental multiple drivers<br/>• Cleaner and safer than reg"
       },
       {
         "title": "6. Example: Sequential Logic",
-        "example": "logic q;\n\nalways_ff @(posedge clk) begin\n  q <= d;\nend"
+        "example": "logic q;<br/><br/>always_ff @(posedge clk) begin<br/>  q <= d;<br/>end"
       },
       {
         "title": "7. Common Beginner Mistakes",
-        "content": "• Using always instead of always_ff\n• Mixing blocking and non-blocking assignments\n• Using wire unnecessarily instead of logic"
+        "content": "• Using always instead of always_ff<br/>• Mixing blocking and non-blocking assignments<br/>• Using wire unnecessarily instead of logic"
       }
     ]
   },
@@ -269,17 +269,17 @@
     "sections": [
       {
         "title": "1. Introduction",
-        "content": "SystemVerilog provides a rich and expressive type system.\n\nThese types help write cleaner, safer, and more maintainable RTL and testbench code."
+        "content": "SystemVerilog provides a rich and expressive type system.<br/><br/>These types help write cleaner, safer, and more maintainable RTL and testbench code."
       },
       {
         "title": "2. SystemVerilog Data Types",
-        "content": "Commonly used SystemVerilog data types:\n\n• logic – general-purpose 4-state signal\n• bit – 2-state signal, commonly used in testbenches\n• int, byte, shortint, longint for numeric data",
-        "example": "logic a;\nbit b;\nint count;\nbyte data_byte;"
+        "content": "Commonly used SystemVerilog data types:<br/><br/>• logic – general-purpose 4-state signal<br/>• bit – 2-state signal, commonly used in testbenches<br/>• int, byte, shortint, longint for numeric data",
+        "example": "logic a;<br/>bit b;<br/>int count;<br/>byte data_byte;"
       },
       {
         "title": "3. logic vs reg vs wire",
-        "content": "wire is used for continuous assignments.\n\nreg is deprecated in SystemVerilog.\n\nlogic is the preferred replacement and should be used for most signals.",
-        "example": "logic data;\n\nassign data = a & b;"
+        "content": "wire is used for continuous assignments.<br/><br/>reg is deprecated in SystemVerilog.<br/><br/>logic is the preferred replacement and should be used for most signals.",
+        "example": "logic data;<br/><br/>assign data = a & b;"
       },
       {
         "title": "4. Packed Arrays",
@@ -300,22 +300,22 @@
       },
       {
         "title": "7. typedef",
-        "content": "typedef is used to create reusable data types.\n\nIt improves readability and reduces duplication.",
-        "example": "typedef logic [7:0] byte_t;\n\nbyte_t data;"
+        "content": "typedef is used to create reusable data types.<br/><br/>It improves readability and reduces duplication.",
+        "example": "typedef logic [7:0] byte_t;<br/><br/>byte_t data;"
       },
       {
         "title": "8. struct",
-        "content": "struct is used to group related signals together.\n\nCommonly used in interfaces and testbenches.",
-        "example": "typedef struct packed {\n  logic valid;\n  logic [7:0] data;\n} packet_t;"
+        "content": "struct is used to group related signals together.<br/><br/>Commonly used in interfaces and testbenches.",
+        "example": "typedef struct packed {<br/>  logic valid;<br/>  logic [7:0] data;<br/>} packet_t;"
       },
       {
         "title": "9. union",
-        "content": "union allows multiple interpretations of the same data.\n\nUseful for protocol decoding and debugging.",
-        "example": "typedef union packed {\n  logic [31:0] word;\n  logic [3:0][7:0] bytes;\n} data_u;"
+        "content": "union allows multiple interpretations of the same data.<br/><br/>Useful for protocol decoding and debugging.",
+        "example": "typedef union packed {<br/>  logic [31:0] word;<br/>  logic [3:0][7:0] bytes;<br/>} data_u;"
       },
       {
         "title": "10. Common Mistakes",
-        "content": "• Confusing packed and unpacked array order\n• Overusing wire instead of logic\n• Not using typedef for repeated declarations"
+        "content": "• Confusing packed and unpacked array order<br/>• Overusing wire instead of logic<br/>• Not using typedef for repeated declarations"
       }
     ]
   },
@@ -331,12 +331,12 @@
     },
     {
       "title": "2. always_comb",
-      "content": "Purpose:\nUsed to model purely combinational logic.\n\nKey Rules:\n- Automatically sensitive to all RHS signals\n- No event control allowed (@)\n- Tool checks for incomplete assignments",
-      "example": "always_comb begin\n  y = a & b;\nend"
+      "content": "Purpose:<br/>Used to model purely combinational logic.<br/><br/>Key Rules:<br/>- Automatically sensitive to all RHS signals<br/>- No event control allowed (@)<br/>- Tool checks for incomplete assignments",
+      "example": "always_comb begin<br/>  y = a & b;<br/>end"
     },
     {
       "title": "Common Errors Caught",
-      "content": "- Missing assignment (unintentional latch)\n- Use of non-blocking assignment"
+      "content": "- Missing assignment (unintentional latch)<br/>- Use of non-blocking assignment"
     },
     {
       "title": "Best Practice",
@@ -344,8 +344,8 @@
     },
     {
       "title": "3. always_ff",
-      "content": "Purpose:\nUsed to model sequential logic (flip-flops).\n\nKey Rules:\n- Must contain exactly one clock (and optional reset)\n- Only non-blocking assignments (<=) allowed\n- Variable written in one always_ff block only",
-      "example": "always_ff @(posedge clk or negedge rst_n) begin\n  if (!rst_n)\n    q <= 0;\n  else\n    q <= d;\nend"
+      "content": "Purpose:<br/>Used to model sequential logic (flip-flops).<br/><br/>Key Rules:<br/>- Must contain exactly one clock (and optional reset)<br/>- Only non-blocking assignments (<=) allowed<br/>- Variable written in one always_ff block only",
+      "example": "always_ff @(posedge clk or negedge rst_n) begin<br/>  if (!rst_n)<br/>    q <= 0;<br/>  else<br/>    q <= d;<br/>end"
     },
     {
       "title": "Best Practice",
@@ -353,12 +353,12 @@
     },
     {
       "title": "4. always_latch",
-      "content": "Purpose:\nUsed to explicitly model level-sensitive latches.\n\nKey Rules:\n- Incomplete assignment is intentional\n- No clock edge allowed",
-      "example": "always_latch begin\n  if (en)\n    q <= d;\nend"
+      "content": "Purpose:<br/>Used to explicitly model level-sensitive latches.<br/><br/>Key Rules:<br/>- Incomplete assignment is intentional<br/>- No clock edge allowed",
+      "example": "always_latch begin<br/>  if (en)<br/>    q <= d;<br/>end"
     },
     {
       "title": "5. Comparison Summary",
-      "content": "- always_comb → combinational logic\n- always_ff → edge-triggered storage\n- always_latch → level-sensitive storage"
+      "content": "- always_comb → combinational logic<br/>- always_ff → edge-triggered storage<br/>- always_latch → level-sensitive storage"
     },
     {
       "title": "6. Verification Insight",
@@ -378,29 +378,29 @@
     },
     {
       "title": "2. Interface Basics",
-      "content": "Purpose:\nGroup related signals together to reduce port clutter.",
-      "example": "interface bus_if;\n  logic clk;\n  logic [31:0] addr, data;\nendinterface"
+      "content": "Purpose:<br/>Group related signals together to reduce port clutter.",
+      "example": "interface bus_if;<br/>  logic clk;<br/>  logic [31:0] addr, data;<br/>endinterface"
     },
     {
       "title": "3. Using Interfaces in Modules",
-      "example": "module master(bus_if bus);\n  always_ff @(posedge bus.clk)\n    bus.addr <= 32'hA5;\nendmodule"
+      "example": "module master(bus_if bus);<br/>  always_ff @(posedge bus.clk)<br/>    bus.addr <= 32'hA5;<br/>endmodule"
     },
     {
       "title": "Benefits",
-      "content": "- Cleaner module ports\n- Easy scalability\n- Reusable signal definitions"
+      "content": "- Cleaner module ports<br/>- Easy scalability<br/>- Reusable signal definitions"
     },
     {
       "title": "4. Modports",
-      "content": "Purpose:\nControl direction and access of interface signals.",
-      "example": "interface bus_if;\n  logic clk;\n  logic [31:0] addr, data;\n\n  modport master (output addr, input data, clk);\n  modport slave  (input addr, output data, clk);\nendinterface"
+      "content": "Purpose:<br/>Control direction and access of interface signals.",
+      "example": "interface bus_if;<br/>  logic clk;<br/>  logic [31:0] addr, data;<br/><br/>  modport master (output addr, input data, clk);<br/>  modport slave  (input addr, output data, clk);<br/>endinterface"
     },
     {
       "title": "5. Verification Usage",
-      "content": "- Common in UVM environments\n- Used to connect DUT and BFMs\n- Improves readability of testbenches"
+      "content": "- Common in UVM environments<br/>- Used to connect DUT and BFMs<br/>- Improves readability of testbenches"
     },
     {
       "title": "6. Best Practices",
-      "content": "- Always use modports\n- Avoid driving signals without modport definition"
+      "content": "- Always use modports<br/>- Avoid driving signals without modport definition"
     },
     {
       "title": "7. DV Insight",
@@ -420,29 +420,29 @@
     },
     {
       "title": "2. Why Assertions?",
-      "content": "- Catch bugs early\n- Improve observability\n- Enable formal verification"
+      "content": "- Catch bugs early<br/>- Improve observability<br/>- Enable formal verification"
     },
     {
       "title": "3. Immediate Assertions",
-      "content": "Checked instantly when executed.\n\nUsed in:\n- Initial blocks\n- always blocks",
-      "example": "assert (req !== 1'bx)\n  else $error(\"REQ is X\");"
+      "content": "Checked instantly when executed.<br/><br/>Used in:<br/>- Initial blocks<br/>- always blocks",
+      "example": "assert (req !== 1'bx)<br/>  else $error(\"REQ is X\");"
     },
     {
       "title": "4. Concurrent Assertions",
-      "content": "Checked over time using clocks.\n\nBasic Structure:\nassert property (property_name);",
-      "example": "property p_req_ack;\n  @(posedge clk) req |-> ##1 ack;\nendproperty\nassert property (p_req_ack);"
+      "content": "Checked over time using clocks.<br/><br/>Basic Structure:<br/>assert property (property_name);",
+      "example": "property p_req_ack;<br/>  @(posedge clk) req |-> ##1 ack;<br/>endproperty<br/>assert property (p_req_ack);"
     },
     {
       "title": "5. Temporal Operators",
-      "content": "|->  Implication\n##   Cycle delay\n[*]  Repetition"
+      "content": "|->  Implication<br/>##   Cycle delay<br/>[*]  Repetition"
     },
     {
       "title": "6. Assertions in DV",
-      "content": "- Embedded in RTL\n- Placed in monitors\n- Used with coverage"
+      "content": "- Embedded in RTL<br/>- Placed in monitors<br/>- Used with coverage"
     },
     {
       "title": "7. Best Practices",
-      "content": "- Keep assertions simple\n- Use meaningful names\n- Add descriptive error messages"
+      "content": "- Keep assertions simple<br/>- Use meaningful names<br/>- Add descriptive error messages"
     },
     {
       "title": "8. DV Insight",
@@ -462,15 +462,15 @@
     },
     {
       "title": "2. Verification Challenges Before UVM",
-      "content": "- Directed tests were hard to scale\n- Low reuse between projects\n- Manual checking and debugging\n- Difficult coverage closure"
+      "content": "- Directed tests were hard to scale<br/>- Low reuse between projects<br/>- Manual checking and debugging<br/>- Difficult coverage closure"
     },
     {
       "title": "3. Why UVM Was Introduced",
-      "content": "- To standardize verification practices\n- To promote reusable verification components\n- To support constrained-random testing\n- To enable coverage-driven verification"
+      "content": "- To standardize verification practices<br/>- To promote reusable verification components<br/>- To support constrained-random testing<br/>- To enable coverage-driven verification"
     },
     {
       "title": "4. Key Benefits of UVM",
-      "content": "- Reusability across blocks and projects\n- Better separation of concerns\n- Faster bug discovery\n- Improved long-term maintainability"
+      "content": "- Reusability across blocks and projects<br/>- Better separation of concerns<br/>- Faster bug discovery<br/>- Improved long-term maintainability"
     },
     {
       "title": "5. DV Insight",
@@ -490,11 +490,11 @@
     },
     {
       "title": "2. Top-Level Components",
-      "content": "- Test: Controls configuration and sequences\n- Environment: Groups agents and scoreboards"
+      "content": "- Test: Controls configuration and sequences<br/>- Environment: Groups agents and scoreboards"
     },
     {
       "title": "3. Agent Structure",
-      "content": "- Active Agent: Sequencer, Driver, Monitor\n- Passive Agent: Monitor only"
+      "content": "- Active Agent: Sequencer, Driver, Monitor<br/>- Passive Agent: Monitor only"
     },
     {
       "title": "4. Data Flow",
@@ -518,7 +518,7 @@
     },
     {
       "title": "2. Transactions (Sequence Items)",
-      "content": "- Represent high-level data packets\n- Timing independent\n- Easily randomized"
+      "content": "- Represent high-level data packets<br/>- Timing independent<br/>- Easily randomized"
     },
     {
       "title": "3. Sequences",
@@ -546,15 +546,15 @@
     },
     {
       "title": "2. Monitor Responsibilities",
-      "content": "- Observe DUT signals passively\n- Convert signals to transactions\n- Send data using analysis ports"
+      "content": "- Observe DUT signals passively<br/>- Convert signals to transactions<br/>- Send data using analysis ports"
     },
     {
       "title": "3. Scoreboard Responsibilities",
-      "content": "- Compare expected vs actual behavior\n- Detect mismatches\n- Report errors clearly"
+      "content": "- Compare expected vs actual behavior<br/>- Detect mismatches<br/>- Report errors clearly"
     },
     {
       "title": "4. Benefits of Self-Checking",
-      "content": "- Reduced manual debugging\n- Faster validation\n- Reliable regression testing"
+      "content": "- Reduced manual debugging<br/>- Faster validation<br/>- Reliable regression testing"
     },
     {
       "title": "5. DV Insight",
@@ -566,31 +566,39 @@
   "id": "UVM-05",
   "title": "UVM 05 – Mini UVM Environment",
   "difficulty": "Advanced",
-  "description": "Understand a complete UVM flow using a minimal environment",
+  "description": "Understand a complete but minimal UVM testbench and how core UVM components work together",
   "sections": [
     {
       "title": "1. What is a Mini UVM Environment?",
-      "content": "A Mini UVM Environment is a small but complete UVM testbench that demonstrates core component interaction."
+      "content": "A Mini UVM Environment is a simplified but complete UVM testbench used to demonstrate the interaction between core UVM components without unnecessary complexity."
     },
     {
       "title": "2. Components Used",
-      "content": "- Test\n- Environment\n- Agent\n- Sequencer\n- Driver\n- Monitor\n- Scoreboard"
+      "content": "<strong>Test</strong>: Controls configuration and starts sequences<br/><strong>Environment</strong>: Container that holds agents and scoreboards<br/><strong>Agent</strong>: Represents one DUT interface<br/><strong>Sequencer</strong>: Controls transaction flow<br/><strong>Driver</strong>: Drives transactions to DUT signals<br/><strong>Monitor</strong>: Observes DUT signals<br/><strong>Scoreboard</strong>: Checks correctness of DUT behavior"
     },
     {
       "title": "3. Component Connection Structure",
-      "content": "Test → Environment → Agent → (Sequencer → Driver → DUT)\nMonitor → Scoreboard"
+      "content": "Test → Environment → Agent → (Sequencer → Driver → DUT)<br/>Monitor → Scoreboard"
     },
     {
       "title": "4. Basic Execution Flow",
-      "content": "Test creates environment, starts sequences, driver drives DUT, monitor observes, scoreboard checks results."
-    },
+      "content": "1. Test creates the environment<br/>2. Test starts a sequence<br/>3. Sequence generates transactions<br/>4. Driver drives signals to the DUT<br/>5. Monitor observes DUT activity<br/>6. Scoreboard compares expected and actual results"
+    }, 
     {
       "title": "5. UVM Phases Used",
-      "content": "- Build phase\n- Connect phase\n- Run phase\n- Report phase"
+      "content": "- build_phase: create components<br/>- connect_phase: connect TLM ports<br/>- run_phase: execute stimulus and checking<br/>- report_phase: summarize results"
     },
     {
-      "title": "6. DV Insight",
-      "content": "A Mini UVM Environment forms the foundation for all real-world UVM testbenches."
+      "title": "6. What This Mini Environment Does Not Include",
+      "content": "- Coverage collection<br/>- Advanced configuration database usage<br/>- Virtual sequences<br/>- Multiple agents or interfaces"
+    },
+    {
+      "title": "7. Why This Matters in Design Verification",
+      "content": "This mini environment forms the foundation of all real-world UVM testbenches and helps verification engineers understand stimulus flow, checking, and component interaction."
+    },
+    {
+      "title": "8. Summary",
+      "content": "A Mini UVM Environment demonstrates the complete UVM flow in its simplest form, making it ideal for learning, debugging, and interview preparation."
     }
   ]
 }
