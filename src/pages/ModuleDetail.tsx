@@ -25,6 +25,14 @@ const SYSTEMVERILOG_MODULE_ORDER = [
   "systemverilog-05-assertions",
 ];
 
+const UVM_MODULE_ORDER = [
+  "uvm-01-why-uvm",
+  "uvm-02-testbench-architecture",
+  "uvm-03-transactions-sequences",
+  "uvm-04-monitors-scoreboards",
+  "uvm-05-mini-environment",
+];
+
 /* ---------------------------------------------
    SectionCard
 --------------------------------------------- */
@@ -112,14 +120,15 @@ const ModuleDetail = () => {
   const module = topics[currentSlug as keyof typeof topics];
 
   const isSystemVerilog = currentSlug.startsWith("systemverilog");
+  const isUVM = currentSlug.startsWith("uvm");
 
-  const moduleOrder = isSystemVerilog
+  const moduleOrder = isUVM
+    ? UVM_MODULE_ORDER
+    : isSystemVerilog
     ? SYSTEMVERILOG_MODULE_ORDER
     : VERILOG_MODULE_ORDER;
 
-  const currentIndex = moduleOrder.includes(currentSlug)
-    ? moduleOrder.indexOf(currentSlug)
-    : -1;
+  const currentIndex = moduleOrder.indexOf(currentSlug);
 
   const nextSlug =
     currentIndex !== -1 && currentIndex < moduleOrder.length - 1
@@ -130,7 +139,7 @@ const ModuleDetail = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
         <h2 className="text-xl font-semibold">Module not found</h2>
-        <Button onClick={() => navigate(-1)}>Go Back</Button>
+        <Button onClick={() => navigate("/modules")}>Go Back</Button>
       </div>
     );
   }
@@ -138,42 +147,28 @@ const ModuleDetail = () => {
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4 max-w-4xl">
-<Button
-  variant="ghost"
-  onClick={() => {
-    const isFirstVerilog =
-      currentSlug === VERILOG_MODULE_ORDER[0];
 
-    const isFirstSystemVerilog =
-      currentSlug === SYSTEMVERILOG_MODULE_ORDER[0];
+        {/* Back Button */}
+        <Button
+          variant="ghost"
+          onClick={() => {
+            if (
+              currentSlug === VERILOG_MODULE_ORDER[0] ||
+              currentSlug === SYSTEMVERILOG_MODULE_ORDER[0] ||
+              currentSlug === UVM_MODULE_ORDER[0]
+            ) {
+              navigate("/modules");
+            } else {
+              navigate(`/modules/${moduleOrder[currentIndex - 1]}`);
+            }
 
-    if (isFirstVerilog) {
-      navigate("/verilog-modules");
-    } else if (isFirstSystemVerilog) {
-      navigate("/systemverilog-modules");
-    } else {
-      // Go to previous module in SAME track
-      const order = isSystemVerilog
-        ? SYSTEMVERILOG_MODULE_ORDER
-        : VERILOG_MODULE_ORDER;
-
-      const index = order.indexOf(currentSlug);
-
-      if (index > 0) {
-        navigate(`/modules/${order[index - 1]}`);
-      } else {
-        navigate("/modules");
-      }
-    }
-
-    // Always reset scroll
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, 0);
-  }}
->
-  <ArrowLeft className="mr-2" /> Back
-</Button>
+            setTimeout(() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }, 0);
+          }}
+        >
+          <ArrowLeft className="mr-2" /> Back
+        </Button>
 
         {/* Header */}
         <div className="my-8">
@@ -223,20 +218,14 @@ const ModuleDetail = () => {
 
         {/* Bottom Navigation */}
         <div className="mt-12 flex justify-between items-center">
-          <Button
-            variant="outline"
-            onClick={() => navigate("/modules")}
-          >
+          <Button variant="outline" onClick={() => navigate("/modules")}>
             <ArrowLeft className="mr-2" /> All Modules
           </Button>
 
           {nextSlug && (
-            <Button
-              onClick={() => navigate(`/modules/${nextSlug}`)}
-              className="flex items-center gap-2"
-            >
+            <Button onClick={() => navigate(`/modules/${nextSlug}`)}>
               Next Module
-              <ArrowLeft className="rotate-180" />
+              <ArrowLeft className="rotate-180 ml-2" />
             </Button>
           )}
         </div>

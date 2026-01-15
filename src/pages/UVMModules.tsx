@@ -13,35 +13,35 @@ const UVMModules = () => {
       slug: "uvm-01-why-uvm",
       title: "UVM 01 – Why UVM?",
       description: "Understand the motivation behind UVM and how it solves verification challenges",
-      topics: ["Verification Crisis", "Reusability", "Standardization", "Methodology"]
+      topics: ["Overview ", "Verification Challenges Before UVM", "Why UVM Was Introduced", "Key Benefits of UVM","DV Insight"]
     },
     {
       id: "UVM-02",
       slug: "uvm-02-architecture",
       title: "UVM 02 – UVM Testbench Architecture",
       description: "Learn the layered structure of a UVM testbench and how components work together",
-      topics: ["Test", "Environment", "Agent", "Component Hierarchy"]
+      topics: ["Overview","UVM Testbench Structure","UVM Component Hierarchy","Phases in UVM","DV Insight"]
     },
     {
       id: "UVM-03",
       slug: "uvm-03-transactions-sequences",
       title: "UVM 03 – Transactions, Sequences, Drivers",
       description: "Master the data flow from sequence items through sequences to drivers",
-      topics: ["Sequence Item", "Sequence", "Sequencer", "Driver"]
+      topics: [ "Overview", "Transactions & Sequence Items","Sequences & Sequencers","Drivers and TLM Communication","DV Insight"]
     },
     {
       id: "UVM-04",
       slug: "uvm-04-monitors-scoreboards",
       title: "UVM 04 – Monitors, Scoreboards, Analysis Ports",
       description: "Learn how to observe DUT signals and verify correct behavior automatically",
-      topics: ["Monitor", "Scoreboard", "Analysis Port", "TLM"]
+      topics: [ "Overview","Monitors", "Analysis Ports & FIFOs","Scoreboards","DV Insight"]
     },
     {
       id: "UVM-05",
       slug: "uvm-05-mini-example",
       title: "UVM 05 – Putting It All Together (Mini UVM Environment)",
       description: "See how all UVM components connect in a simple but complete testbench",
-      topics: ["Full Example", "Component Connection", "Test Execution", "Best Practices"]
+      topics: ["Overview","Environment Setup","Connecting Components","Running the Test","DV Insight"]
     }
   ];
 

@@ -449,5 +449,149 @@
       "content": "Assertions are critical for protocol checking and corner-case validation."
     }
   ]
+},
+"uvm-01-why-uvm": {
+  "id": "UVM-01",
+  "title": "UVM 01 – Why UVM?",
+  "difficulty": "Advanced",
+  "description": "Understand why Universal Verification Methodology (UVM) was introduced and its importance in modern verification",
+  "sections": [
+    {
+      "title": "1. Overview",
+      "content": "Universal Verification Methodology (UVM) is a standardized verification methodology designed to handle the increasing complexity of modern digital and SoC designs."
+    },
+    {
+      "title": "2. Verification Challenges Before UVM",
+      "content": "- Directed tests were hard to scale\n- Low reuse between projects\n- Manual checking and debugging\n- Difficult coverage closure"
+    },
+    {
+      "title": "3. Why UVM Was Introduced",
+      "content": "- To standardize verification practices\n- To promote reusable verification components\n- To support constrained-random testing\n- To enable coverage-driven verification"
+    },
+    {
+      "title": "4. Key Benefits of UVM",
+      "content": "- Reusability across blocks and projects\n- Better separation of concerns\n- Faster bug discovery\n- Improved long-term maintainability"
+    },
+    {
+      "title": "5. DV Insight",
+      "content": "UVM is widely used in the semiconductor industry and is a core requirement for most Design Verification roles."
+    }
+  ]
+},
+"uvm-02-testbench-architecture": {
+  "id": "UVM-02",
+  "title": "UVM 02 – Testbench Architecture",
+  "difficulty": "Advanced",
+  "description": "Understand the layered and hierarchical structure of a UVM testbench",
+  "sections": [
+    {
+      "title": "1. Overview",
+      "content": "UVM testbenches use a layered and hierarchical architecture to improve scalability, reuse, and readability."
+    },
+    {
+      "title": "2. Top-Level Components",
+      "content": "- Test: Controls configuration and sequences\n- Environment: Groups agents and scoreboards"
+    },
+    {
+      "title": "3. Agent Structure",
+      "content": "- Active Agent: Sequencer, Driver, Monitor\n- Passive Agent: Monitor only"
+    },
+    {
+      "title": "4. Data Flow",
+      "content": "Sequences generate transactions, drivers drive DUT signals, monitors observe behavior, and scoreboards verify correctness."
+    },
+    {
+      "title": "5. DV Insight",
+      "content": "Understanding the architecture is critical for debugging and extending UVM environments."
+    }
+  ]
+},
+"uvm-03-transactions-sequences": {
+  "id": "UVM-03",
+  "title": "UVM 03 – Transactions, Sequences, Drivers",
+  "difficulty": "Advanced",
+  "description": "Learn how stimulus is generated and driven in UVM",
+  "sections": [
+    {
+      "title": "1. Overview",
+      "content": "UVM abstracts stimulus generation from signal-level activity using transactions and sequences."
+    },
+    {
+      "title": "2. Transactions (Sequence Items)",
+      "content": "- Represent high-level data packets\n- Timing independent\n- Easily randomized"
+    },
+    {
+      "title": "3. Sequences",
+      "content": "Sequences generate ordered streams of transactions that model realistic traffic scenarios."
+    },
+    {
+      "title": "4. Sequencer and Driver Interaction",
+      "content": "The sequencer arbitrates sequences while the driver converts transactions into pin-level signals."
+    },
+    {
+      "title": "5. DV Insight",
+      "content": "This abstraction improves stimulus reuse and simplifies verification."
+    }
+  ]
+},
+"uvm-04-monitors-scoreboards": {
+  "id": "UVM-04",
+  "title": "UVM 04 – Monitors and Scoreboards",
+  "difficulty": "Advanced",
+  "description": "Learn how checking and self-verification is done in UVM",
+  "sections": [
+    {
+      "title": "1. Overview",
+      "content": "Monitors and scoreboards enable automated and self-checking verification."
+    },
+    {
+      "title": "2. Monitor Responsibilities",
+      "content": "- Observe DUT signals passively\n- Convert signals to transactions\n- Send data using analysis ports"
+    },
+    {
+      "title": "3. Scoreboard Responsibilities",
+      "content": "- Compare expected vs actual behavior\n- Detect mismatches\n- Report errors clearly"
+    },
+    {
+      "title": "4. Benefits of Self-Checking",
+      "content": "- Reduced manual debugging\n- Faster validation\n- Reliable regression testing"
+    },
+    {
+      "title": "5. DV Insight",
+      "content": "Self-checking environments are mandatory in production-quality verification."
+    }
+  ]
+},
+"uvm-05-mini-environment": {
+  "id": "UVM-05",
+  "title": "UVM 05 – Mini UVM Environment",
+  "difficulty": "Advanced",
+  "description": "Understand a complete UVM flow using a minimal environment",
+  "sections": [
+    {
+      "title": "1. What is a Mini UVM Environment?",
+      "content": "A Mini UVM Environment is a small but complete UVM testbench that demonstrates core component interaction."
+    },
+    {
+      "title": "2. Components Used",
+      "content": "- Test\n- Environment\n- Agent\n- Sequencer\n- Driver\n- Monitor\n- Scoreboard"
+    },
+    {
+      "title": "3. Component Connection Structure",
+      "content": "Test → Environment → Agent → (Sequencer → Driver → DUT)\nMonitor → Scoreboard"
+    },
+    {
+      "title": "4. Basic Execution Flow",
+      "content": "Test creates environment, starts sequences, driver drives DUT, monitor observes, scoreboard checks results."
+    },
+    {
+      "title": "5. UVM Phases Used",
+      "content": "- Build phase\n- Connect phase\n- Run phase\n- Report phase"
+    },
+    {
+      "title": "6. DV Insight",
+      "content": "A Mini UVM Environment forms the foundation for all real-world UVM testbenches."
+    }
+  ]
 }
 }
