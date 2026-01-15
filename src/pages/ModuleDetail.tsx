@@ -8,7 +8,7 @@ import { ArrowLeft, Code } from "lucide-react";
 import topics from "@/topics.json";
 
 /* ---------------------------------------------
-   MODULE ORDER (SEPARATE TRACKS)
+   MODULE ORDER (TRACKS)
 --------------------------------------------- */
 const VERILOG_MODULE_ORDER = [
   "verilog-01-basics-syntax",
@@ -27,7 +27,7 @@ const SYSTEMVERILOG_MODULE_ORDER = [
 
 const UVM_MODULE_ORDER = [
   "uvm-01-why-uvm",
-  "uvm-02-testbench-architecture",
+  "uvm-02-architecture",
   "uvm-03-transactions-sequences",
   "uvm-04-monitors-scoreboards",
   "uvm-05-mini-environment",
@@ -42,16 +42,12 @@ const SectionCard = ({
   content,
   syntax,
   example,
-  vectors,
-  subSections,
 }: {
   id: string;
   title: string;
   content?: string;
   syntax?: string;
   example?: string;
-  vectors?: string;
-  subSections?: { title: string; code: string }[];
 }) => (
   <Card id={id} className="mb-8 scroll-mt-28">
     <CardHeader>
@@ -59,17 +55,16 @@ const SectionCard = ({
     </CardHeader>
 
     {content && (
-  <CardContent>
-    <p
-      className="text-muted-foreground leading-relaxed"
-      dangerouslySetInnerHTML={{ __html: content }}
-    />
-  </CardContent>
-)}
+      <CardContent>
+        <div
+          className="text-muted-foreground leading-relaxed space-y-2"
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      </CardContent>
+    )}
 
     {syntax && (
       <CardContent>
-        <h4 className="font-semibold mb-2">Syntax</h4>
         <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto">
           <code className="font-mono whitespace-pre">{syntax}</code>
         </pre>
@@ -78,30 +73,11 @@ const SectionCard = ({
 
     {example && (
       <CardContent>
-        <h4 className="font-semibold mb-2">Example</h4>
         <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto">
           <code className="font-mono whitespace-pre">{example}</code>
         </pre>
       </CardContent>
     )}
-
-    {vectors && (
-      <CardContent>
-        <h4 className="font-semibold mb-2">Vectors</h4>
-        <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto">
-          <code className="font-mono whitespace-pre">{vectors}</code>
-        </pre>
-      </CardContent>
-    )}
-
-    {subSections?.map((s, i) => (
-      <CardContent key={i}>
-        <h4 className="font-semibold mb-2">{s.title}</h4>
-        <pre className="bg-muted/50 p-4 rounded-lg overflow-x-auto">
-          <code className="font-mono whitespace-pre">{s.code}</code>
-        </pre>
-      </CardContent>
-    ))}
   </Card>
 );
 
@@ -111,30 +87,13 @@ const SectionCard = ({
 const ModuleDetail = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
-
-  const currentSlug: string = slug ?? "";
+  const currentSlug = slug ?? "";
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [slug]);
+    window.scrollTo({ top: 0 });
+  }, [currentSlug]);
 
   const module = topics[currentSlug as keyof typeof topics];
-
-  const isSystemVerilog = currentSlug.startsWith("systemverilog");
-  const isUVM = currentSlug.startsWith("uvm");
-
-  const moduleOrder = isUVM
-    ? UVM_MODULE_ORDER
-    : isSystemVerilog
-    ? SYSTEMVERILOG_MODULE_ORDER
-    : VERILOG_MODULE_ORDER;
-
-  const currentIndex = moduleOrder.indexOf(currentSlug);
-
-  const nextSlug =
-    currentIndex !== -1 && currentIndex < moduleOrder.length - 1
-      ? moduleOrder[currentIndex + 1]
-      : null;
 
   if (!module) {
     return (
@@ -145,29 +104,54 @@ const ModuleDetail = () => {
     );
   }
 
+  /* ---------------------------------------------
+     Track detection
+  --------------------------------------------- */
+  let moduleOrder: string[] = [];
+  let trackRoot = "/modules";
+
+  if (currentSlug.startsWith("verilog")) {
+    moduleOrder = VERILOG_MODULE_ORDER;
+    trackRoot = "/verilog-modules";
+  } else if (currentSlug.startsWith("systemverilog")) {
+    moduleOrder = SYSTEMVERILOG_MODULE_ORDER;
+    trackRoot = "/systemverilog-modules";
+  } else if (currentSlug.startsWith("uvm")) {
+    moduleOrder = UVM_MODULE_ORDER;
+    trackRoot = "/uvm-modules";
+  }
+
+  const currentIndex = moduleOrder.indexOf(currentSlug);
+
+  /* ---------------------------------------------
+     Back button logic
+  --------------------------------------------- */
+  const handleBack = () => {
+    if (currentIndex <= 0) {
+      navigate(trackRoot);
+    } else {
+      navigate(`/modules/${moduleOrder[currentIndex - 1]}`);
+    }
+
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  };
+
+  /* ---------------------------------------------
+     Next module logic
+  --------------------------------------------- */
+  const nextSlug =
+    currentIndex !== -1 && currentIndex < moduleOrder.length - 1
+      ? moduleOrder[currentIndex + 1]
+      : null;
+
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4 max-w-4xl">
 
         {/* Back Button */}
-        <Button
-          variant="ghost"
-          onClick={() => {
-            if (
-              currentSlug === VERILOG_MODULE_ORDER[0] ||
-              currentSlug === SYSTEMVERILOG_MODULE_ORDER[0] ||
-              currentSlug === UVM_MODULE_ORDER[0]
-            ) {
-              navigate("/modules");
-            } else {
-              navigate(`/modules/${moduleOrder[currentIndex - 1]}`);
-            }
-
-            setTimeout(() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }, 0);
-          }}
-        >
+        <Button variant="ghost" onClick={handleBack}>
           <ArrowLeft className="mr-2" /> Back
         </Button>
 
@@ -212,8 +196,6 @@ const ModuleDetail = () => {
             content={s.content}
             syntax={s.syntax}
             example={s.example}
-            vectors={s.vectors}
-            subSections={s.subSections}
           />
         ))}
 
@@ -224,9 +206,17 @@ const ModuleDetail = () => {
           </Button>
 
           {nextSlug && (
-            <Button onClick={() => navigate(`/modules/${nextSlug}`)}>
+            <Button
+              onClick={() => {
+                navigate(`/modules/${nextSlug}`);
+                requestAnimationFrame(() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+              }}
+              className="flex items-center gap-2"
+            >
               Next Module
-              <ArrowLeft className="rotate-180 ml-2" />
+              <ArrowLeft className="rotate-180" />
             </Button>
           )}
         </div>

@@ -38,7 +38,7 @@ const UVMModules = () => {
     },
     {
       id: "UVM-05",
-      slug: "uvm-05-mini-example",
+      slug: "uvm-05-mini-environment",
       title: "UVM 05 – Putting It All Together (Mini UVM Environment)",
       description: "See how all UVM components connect in a simple but complete testbench",
       topics: ["Overview","Environment Setup","Connecting Components","Running the Test","DV Insight"]
