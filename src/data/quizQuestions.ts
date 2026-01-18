@@ -1521,5 +1521,252 @@ This ensures configuration is available when children call get() in their build_
 The test sets configuration first, then env, then agents - following the build order.
 If set() happens after get(), the child won't receive the value.
 Common uses: virtual interfaces, configuration objects, enable flags, timeout values.`
+  },
+  // Assertions Questions (12 new questions to reach 15 total)
+  {
+    id: 58,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Easy",
+    question: "What is the difference between immediate and concurrent assertions in SVA?",
+    options: [
+      "Immediate assertions are checked over multiple clock cycles, concurrent are checked instantly",
+      "Immediate assertions are checked instantly like procedural statements, concurrent are clock-based and span time",
+      "There is no difference, they are interchangeable",
+      "Concurrent assertions cannot have implications"
+    ],
+    correctAnswer: "B",
+    explanation: `Immediate assertions (assert) are checked at the exact moment the statement executes.
+They behave like procedural if-statements and are used inside always blocks or initial blocks.
+Concurrent assertions (assert property) are evaluated over time based on clock edges.
+They can span multiple cycles and use temporal operators like ##, |-> and |=>.
+Immediate: assert(a == b); Concurrent: assert property(@(posedge clk) a |-> b);
+Concurrent assertions are the core of SVA for protocol and timing checks.`
+  },
+  {
+    id: 59,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Easy",
+    question: "What does the ## operator represent in SVA?",
+    options: [
+      "Logical AND between signals",
+      "A clock cycle delay between sequence elements",
+      "A comment marker",
+      "Signal inversion"
+    ],
+    correctAnswer: "B",
+    explanation: `The ## operator specifies clock cycle delays between sequence elements.
+##1 means one clock cycle delay, ##3 means three cycles delay.
+##[1:4] specifies a range - the next event can occur 1 to 4 cycles later.
+##[0:$] means zero to infinite cycles (eventually, unbounded).
+Example: req ##[1:3] gnt means gnt follows req within 1 to 3 cycles.
+This is fundamental for expressing timing relationships in protocols.`
+  },
+  {
+    id: 60,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Easy",
+    question: "What does $rose(signal) check in SVA?",
+    options: [
+      "That the signal is always high",
+      "That the signal transitioned from 0 to 1 on this clock edge",
+      "That the signal is at a high voltage level",
+      "That the signal has been high for multiple cycles"
+    ],
+    correctAnswer: "B",
+    explanation: `$rose(signal) returns true when the signal transitions from 0 to 1.
+It compares the sampled value at the current clock to the previous clock.
+$fell(signal) is the opposite - detects 1-to-0 transitions.
+$stable(signal) returns true when the signal hasn't changed.
+These are sampled value functions - they work on the sampled (preponed) values.
+Common use: assert property(@(posedge clk) $rose(valid) |-> data_ready);`
+  },
+  {
+    id: 61,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Easy",
+    question: "What is the purpose of 'cover property' in SVA?",
+    options: [
+      "To fail simulation when a property is true",
+      "To track whether a property scenario was observed during simulation",
+      "To hide properties from waveform viewers",
+      "To replace assertions with print statements"
+    ],
+    correctAnswer: "B",
+    explanation: `cover property tracks whether a scenario occurred during simulation.
+Unlike assert (which fails on violation), cover simply records hits.
+This is used for functional coverage - did we exercise this scenario?
+Coverage results show if your tests actually triggered important behaviors.
+Example: cover property(@(posedge clk) req ##[1:3] gnt); tracks req-to-gnt handshakes.
+High assertion coverage but low cover property hits indicates incomplete testing.`
+  },
+  {
+    id: 62,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Easy",
+    question: "What does 'disable iff' do in an SVA property?",
+    options: [
+      "Permanently removes the assertion from simulation",
+      "Disables assertion checking while the specified condition is true",
+      "Enables the assertion only during reset",
+      "Converts the assertion into a cover property"
+    ],
+    correctAnswer: "B",
+    explanation: `disable iff(condition) suspends assertion evaluation when condition is true.
+Most commonly used with reset: disable iff(reset) to avoid false failures during reset.
+When disabled, the assertion doesn't fail or pass - it's simply not evaluated.
+This prevents spurious failures during initialization or special modes.
+Syntax: assert property(@(posedge clk) disable iff(rst) a |-> b);
+The condition is evaluated asynchronously, not sampled with the clock.`
+  },
+  {
+    id: 63,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Medium",
+    question: "What is the difference between |-> and |=> in SVA?",
+    options: [
+      "|-> is for properties, |=> is for sequences",
+      "|-> is overlapping implication (same cycle), |=> is non-overlapping (next cycle)",
+      "|-> is blocking, |=> is non-blocking",
+      "They are identical in behavior"
+    ],
+    correctAnswer: "B",
+    explanation: `|-> (overlapping implication) evaluates the consequent starting the same cycle the antecedent matches.
+|=> (non-overlapping implication) evaluates the consequent starting one cycle after the antecedent matches.
+|=> is equivalent to |-> ##1 (implication plus one cycle delay).
+Example: req |-> gnt checks gnt on the same cycle req is true.
+Example: req |=> gnt checks gnt one cycle after req is true.
+This distinction is critical for specifying correct protocol timing in assertions.`
+  },
+  {
+    id: 64,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Medium",
+    question: "What is a 'vacuous pass' in SVA?",
+    options: [
+      "When an assertion passes because the antecedent was never true",
+      "When an assertion passes after being disabled",
+      "When an assertion has a syntax error but doesn't fail",
+      "When coverage reaches 100%"
+    ],
+    correctAnswer: "A",
+    explanation: `A vacuous pass occurs when the implication's antecedent (left side) is never true.
+In logic: if the condition is false, the implication is trivially true.
+Example: req |-> gnt - if req is never asserted, the assertion always passes vacuously.
+This can hide bugs: your check "passes" but was never actually tested.
+Tools can report vacuous passes to flag untested assertions.
+Mitigation: use cover property to verify the antecedent scenario occurs.
+Interviewers often ask this to test understanding of implication semantics.`
+  },
+  {
+    id: 65,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Medium",
+    question: "What is the difference between a sequence and a property in SVA?",
+    options: [
+      "Sequences can only contain one signal, properties can contain multiple",
+      "Sequences describe temporal patterns, properties add checking semantics like implication",
+      "Properties are faster to simulate than sequences",
+      "Sequences are for coverage, properties are for debugging"
+    ],
+    correctAnswer: "B",
+    explanation: `Sequences describe temporal patterns of signals over time using ##, |, and other operators.
+Properties wrap sequences and add checking semantics like implication (|->), disable iff, etc.
+Sequences alone cannot be asserted - they must be wrapped in a property.
+sequence s1: a ##1 b ##1 c;  // just a pattern
+property p1: @(posedge clk) req |-> s1;  // adds checking
+assert property(p1);  // now we can assert it
+This separation allows reusing sequences in multiple properties with different checks.`
+  },
+  {
+    id: 66,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Medium",
+    question: "In SVA, what does ##[0:$] represent?",
+    options: [
+      "Exactly zero clock cycles",
+      "Zero to infinite clock cycles (eventually)",
+      "Invalid syntax that causes compilation error",
+      "Dollar amount of simulation time"
+    ],
+    correctAnswer: "B",
+    explanation: `##[0:$] means zero to unbounded (infinite) clock cycle delay.
+The $ symbol represents an unbounded upper limit in SVA range expressions.
+This is used to express "eventually" semantics without a fixed deadline.
+Example: req |-> ##[0:$] ack means "if req, then ack eventually happens."
+Caution: unbounded assertions can cause performance issues and may never complete.
+In practice, bounded ranges (##[0:100]) are preferred for predictable simulation.
+##[1:$] means "at least one cycle, eventually" (not same cycle).`
+  },
+  {
+    id: 67,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Medium",
+    question: "Which SVA construct should be used to check that a signal remains stable for N cycles?",
+    options: [
+      "signal |-> ##N signal",
+      "$stable(signal)[*N]",
+      "signal throughout ##[1:N] 1'b1",
+      "$stable(signal) ##[0:N-1] 1'b1 is invalid"
+    ],
+    correctAnswer: "B",
+    explanation: `$stable(signal)[*N] checks that the signal doesn't change for N consecutive cycles.
+[*N] is the repetition operator - it repeats the preceding expression N times.
+$stable returns true when a signal's value equals its previous cycle value.
+Combining them: $stable(data)[*5] means data is unchanged for 5 consecutive cycles.
+Alternative: you could use 'throughout' operator for more complex stability checks.
+Example property: @(posedge clk) start |-> $stable(config)[*10];
+This is commonly asked in interviews for protocol checks like bus hold times.`
+  },
+  {
+    id: 68,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Hard",
+    question: "What is the common pitfall when using $rose or $fell in concurrent assertions?",
+    options: [
+      "They only work in Verilog, not SystemVerilog",
+      "They use sampled values, so glitches between clock edges are invisible",
+      "They cannot be used with disable iff",
+      "They always cause simulation performance issues"
+    ],
+    correctAnswer: "B",
+    explanation: `$rose, $fell, and $stable operate on sampled (preponed) values at clock edges.
+Glitches or transitions that occur between clock edges are not detected.
+If a signal goes 0->1->0 between clocks, $rose might not see the pulse.
+This is usually correct behavior for synchronous design checks.
+But if checking for pulses or async events, immediate assertions may be needed.
+Also beware: the "previous" value is from the previous clock edge, not time step.
+Interviewers ask this to check understanding of SVA sampling semantics.`
+  },
+  {
+    id: 69,
+    type: "mcq",
+    topic: "Assertions",
+    difficulty: "Hard",
+    question: "Why might an assertion pass during simulation but fail in formal verification?",
+    options: [
+      "Formal tools don't support SVA",
+      "Simulation tests limited scenarios, formal explores all possible input combinations including corner cases",
+      "Formal verification ignores timing constraints",
+      "Assertions are disabled in formal tools"
+    ],
+    correctAnswer: "B",
+    explanation: `Simulation only tests the specific scenarios your testbench generates.
+Formal verification exhaustively explores all possible input combinations and states.
+An assertion may pass in simulation because your tests never hit the failing corner case.
+Formal can find bugs in unreachable states or rare race conditions.
+Example: simulation never triggers a specific error injection, but formal finds the path.
+This is why combining simulation and formal is best practice in DV.
+Formal is especially strong for control logic, protocols, and safety properties.`
   }
 ];
