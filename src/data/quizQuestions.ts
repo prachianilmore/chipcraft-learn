@@ -1069,5 +1069,457 @@ Assertions and logging help narrow the failure point quickly.`
 Sorting also works in O(n log n) then checking neighbors.
 In DV interviews, explaining complexity + edge cases matters as much as code.
 This is a common warm-up logic question.`
+  },
+  // ========== NEW VERILOG QUESTIONS (8 more to reach 15) ==========
+  {
+    id: 34,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Easy",
+    question: "What is the default value of an uninitialized reg in Verilog simulation?",
+    options: [
+      "0",
+      "1",
+      "X (unknown)",
+      "Z (high-impedance)"
+    ],
+    correctAnswer: "C",
+    explanation: `In Verilog simulation, uninitialized reg variables default to X (unknown state).
+This helps designers identify missing initialization during simulation.
+In synthesis, FPGAs may initialize to 0, but ASICs have undefined power-on states.
+Always use explicit reset logic to ensure deterministic behavior in hardware.`
+  },
+  {
+    id: 35,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Medium",
+    question: "What causes an unintentional latch to be inferred in combinational logic?",
+    options: [
+      "Using wire instead of reg",
+      "Missing assignments for some conditions in always @(*)",
+      "Using posedge clk sensitivity",
+      "Using nonblocking assignments"
+    ],
+    correctAnswer: "B",
+    explanation: `Latches are inferred when a combinational always block doesn't assign a value in all paths.
+For example, an if statement without an else clause creates a latch for the missing condition.
+The synthesizer must preserve the previous value when no new value is specified.
+Always assign default values at the start of combinational blocks to avoid latches.`
+  },
+  {
+    id: 36,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Medium",
+    question: "What problem can occur if you forget a signal in a combinational always block's sensitivity list?",
+    options: [
+      "The code won't compile",
+      "Synthesis fails completely",
+      "Simulation and synthesis behavior may differ",
+      "The signal becomes a latch"
+    ],
+    correctAnswer: "C",
+    explanation: `Missing signals in sensitivity lists cause simulation/synthesis mismatch.
+In simulation, the block won't trigger when the missing signal changes.
+Synthesis tools infer combinational logic from the code structure, ignoring the sensitivity list.
+Use @(*) or always_comb to automatically include all signals and avoid this issue.`
+  },
+  {
+    id: 37,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Hard",
+    question: "What is a race condition in Verilog and when does it typically occur?",
+    options: [
+      "When two modules have the same name",
+      "When blocking assignments in different always blocks access the same variable at the same time",
+      "When the clock frequency is too high",
+      "When wire and reg are mixed"
+    ],
+    correctAnswer: "B",
+    explanation: `Race conditions occur when the order of execution affects the result, but that order is undefined.
+Using blocking assignments (=) in multiple clocked always blocks accessing the same signals causes races.
+The simulator may execute blocks in different orders, producing inconsistent results.
+Use nonblocking assignments (<=) in clocked logic to ensure all reads happen before writes.`
+  },
+  {
+    id: 38,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Hard",
+    question: "Which reset coding style is recommended for ASIC designs?",
+    options: [
+      "Only initial blocks for reset",
+      "Asynchronous reset with synchronous de-assertion",
+      "No reset, rely on power-on state",
+      "Random reset values for security"
+    ],
+    correctAnswer: "B",
+    explanation: `Asynchronous reset with synchronous de-assertion is the industry standard for ASICs.
+Async reset ensures immediate reset regardless of clock, which is critical for power-on.
+Synchronous de-assertion prevents metastability when coming out of reset.
+This is implemented with a reset synchronizer that releases reset aligned to the clock.`
+  },
+  {
+    id: 39,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Medium",
+    question: "What is the key difference between 'initial' and 'always' blocks for synthesis?",
+    options: [
+      "No difference, both synthesize identically",
+      "initial is for testbenches only; always describes synthesizable hardware",
+      "always is deprecated in modern tools",
+      "initial runs faster in simulation"
+    ],
+    correctAnswer: "B",
+    explanation: `The 'always' block describes hardware behavior and is the primary synthesizable construct.
+The 'initial' block is intended for simulation/testbench code and generally not synthesizable.
+Some FPGA tools support initial for setting power-on values, but this is not portable to ASICs.
+For synthesizable RTL, always use 'always' with proper reset logic for initialization.`
+  },
+  {
+    id: 40,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Hard",
+    question: "When might simulation show correct behavior but synthesis produce wrong hardware?",
+    options: [
+      "When using standard Verilog operators",
+      "When sensitivity list is incomplete or blocking/nonblocking assignments are misused",
+      "When using too many modules",
+      "When wire widths are specified"
+    ],
+    correctAnswer: "B",
+    explanation: `Simulation/synthesis mismatches commonly occur due to sensitivity list issues and assignment misuse.
+Incomplete sensitivity lists make simulation miss events but synthesis infers all combinational inputs.
+Using blocking in sequential or nonblocking in combinational logic creates different behaviors.
+Always follow coding guidelines: @(*) or always_comb for combinational, <= for sequential.`
+  },
+  {
+    id: 41,
+    type: "mcq",
+    topic: "Verilog",
+    difficulty: "Easy",
+    question: "What keyword is used for continuous assignment to a wire in Verilog?",
+    options: [
+      "always",
+      "initial",
+      "assign",
+      "drive"
+    ],
+    correctAnswer: "C",
+    explanation: `The 'assign' keyword creates a continuous assignment that drives a wire.
+The wire value is continuously updated whenever the right-hand side expression changes.
+This is different from procedural assignments which only update in always/initial blocks.
+Continuous assignments model combinational connections between modules and logic.`
+  },
+  // ========== NEW SYSTEMVERILOG QUESTIONS (7 more to reach 15) ==========
+  {
+    id: 42,
+    type: "mcq",
+    topic: "SystemVerilog",
+    difficulty: "Easy",
+    question: "What is the main advantage of 'logic' over 'reg' and 'wire' in SystemVerilog?",
+    options: [
+      "logic is faster in simulation",
+      "logic can be driven by either procedural or continuous assignments (but not both)",
+      "logic only supports 2-state values",
+      "logic is required for synthesis"
+    ],
+    correctAnswer: "B",
+    explanation: `The 'logic' type unifies reg and wire, reducing confusion about which to use.
+It can be driven by assign statements or procedural blocks, but only one driver is allowed.
+This single-driver rule helps catch multiple-driver bugs at compile time.
+'logic' is a 4-state type (0, 1, X, Z), making it compatible with verification and synthesis.`
+  },
+  {
+    id: 43,
+    type: "mcq",
+    topic: "SystemVerilog",
+    difficulty: "Medium",
+    question: "What is the difference between packed and unpacked arrays in SystemVerilog?",
+    options: [
+      "Packed arrays are stored as contiguous bits; unpacked arrays are separate elements",
+      "Unpacked arrays are faster",
+      "Packed arrays cannot be synthesized",
+      "There is no difference"
+    ],
+    correctAnswer: "A",
+    explanation: `Packed arrays store all bits contiguously and can be treated as a single vector.
+Example: logic [3:0][7:0] packed_data; // 32 bits stored together
+Unpacked arrays store elements separately, like an array of objects.
+Example: logic [7:0] unpacked_data[4]; // 4 separate 8-bit elements
+Packed arrays are useful for bit manipulation; unpacked for memory modeling.`
+  },
+  {
+    id: 44,
+    type: "mcq",
+    topic: "SystemVerilog",
+    difficulty: "Medium",
+    question: "What does 'typedef enum' provide in SystemVerilog?",
+    options: [
+      "Faster simulation speed",
+      "Named constants with type safety for state machines and configuration",
+      "Automatic reset generation",
+      "Waveform annotation only"
+    ],
+    correctAnswer: "B",
+    explanation: `typedef enum creates user-defined enumerated types with meaningful names.
+It improves code readability and provides type checking at compile time.
+Enumerated values are automatically assigned incrementing integers unless specified.
+Commonly used for FSM states: typedef enum {IDLE, RUN, DONE} state_t;
+Waveform viewers display enum names instead of raw numbers, aiding debug.`
+  },
+  {
+    id: 45,
+    type: "mcq",
+    topic: "SystemVerilog",
+    difficulty: "Hard",
+    question: "What does the 'automatic' keyword do for variables in SystemVerilog tasks/functions?",
+    options: [
+      "Makes variables persistent across calls",
+      "Allocates fresh storage for each call, enabling recursion and reentrancy",
+      "Increases simulation speed",
+      "Forces synthesis to use RAM"
+    ],
+    correctAnswer: "B",
+    explanation: `By default, task/function variables are static, shared across all calls.
+The 'automatic' keyword allocates new storage for each call (like stack variables in C).
+This is required for recursive functions and reentrant tasks in concurrent testbenches.
+Without automatic, calling a task while it's still running corrupts its local variables.
+Use 'automatic' for tasks called from multiple threads or with recursive algorithms.`
+  },
+  {
+    id: 46,
+    type: "mcq",
+    topic: "SystemVerilog",
+    difficulty: "Medium",
+    question: "What is the purpose of an 'interface' in SystemVerilog?",
+    options: [
+      "To replace modules entirely",
+      "To bundle related signals and simplify port connections between modules",
+      "To increase clock frequency",
+      "To disable assertions"
+    ],
+    correctAnswer: "B",
+    explanation: `Interfaces bundle related signals (like a bus protocol) into a single unit.
+They simplify module ports: instead of listing 20 signals, connect one interface.
+Interfaces can include modports to specify signal directions for different users.
+They can also contain tasks, functions, and assertions related to the protocol.
+Example: An AXI interface bundles address, data, and handshake signals together.`
+  },
+  {
+    id: 47,
+    type: "mcq",
+    topic: "SystemVerilog",
+    difficulty: "Hard",
+    question: "What constraint does always_ff enforce that plain 'always' does not?",
+    options: [
+      "Must use blocking assignments",
+      "Must have edge-sensitive trigger and should use nonblocking assignments",
+      "Cannot include if statements",
+      "Must have a reset signal"
+    ],
+    correctAnswer: "B",
+    explanation: `always_ff requires a sensitivity list with edge events (posedge/negedge).
+Tools check that only nonblocking assignments (<=) are used, flagging blocking as a warning.
+This enforces the correct coding style for flip-flop inference.
+Unlike plain 'always', which allows any style, always_ff makes design intent explicit.
+This helps catch common mistakes and improves code quality and tool optimization.`
+  },
+  {
+    id: 48,
+    type: "mcq",
+    topic: "SystemVerilog",
+    difficulty: "Easy",
+    question: "How does 'always_comb' differ from 'always @(*)'?",
+    options: [
+      "always_comb is slower",
+      "always_comb executes at time 0 and checks for latches; always @(*) does not",
+      "always @(*) is not synthesizable",
+      "They are completely identical"
+    ],
+    correctAnswer: "B",
+    explanation: `always_comb has stronger semantics than always @(*).
+It automatically executes once at time 0 to initialize outputs.
+It checks that the block doesn't infer latches (warns if assignments are incomplete).
+It verifies no other process writes to the same variables.
+always @(*) only provides automatic sensitivity but lacks these extra checks.`
+  },
+  // ========== NEW UVM QUESTIONS (9 more to reach 15) ==========
+  {
+    id: 49,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Easy",
+    question: "What is the main difference between uvm_component and uvm_object?",
+    options: [
+      "uvm_component is for testbenches only",
+      "uvm_object has phases; uvm_component does not",
+      "uvm_component has phases and hierarchy; uvm_object is for data/transactions",
+      "They are identical"
+    ],
+    correctAnswer: "C",
+    explanation: `uvm_component forms the testbench hierarchy and participates in UVM phases.
+It has a parent-child relationship, build_phase, run_phase, etc.
+uvm_object is lightweight, used for transactions, sequences, and configuration objects.
+uvm_object has no hierarchy or phases - it's created and destroyed dynamically.
+Rule: Use uvm_component for structural elements, uvm_object for data items.`
+  },
+  {
+    id: 50,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Medium",
+    question: "What is the purpose of the build_phase in UVM?",
+    options: [
+      "To run stimulus on the DUT",
+      "To create and configure child components in the hierarchy",
+      "To compare expected vs actual results",
+      "To generate waveforms"
+    ],
+    correctAnswer: "B",
+    explanation: `build_phase is for constructing and configuring the testbench component hierarchy.
+Parent components create their children using type_id::create() in this phase.
+Configuration is retrieved via uvm_config_db::get() during build.
+build_phase executes top-down: parent builds before children.
+No stimulus runs here - that happens in run_phase after all components are built.`
+  },
+  {
+    id: 51,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Medium",
+    question: "How does the sequencer-driver handshake work in UVM?",
+    options: [
+      "Driver pushes items to sequencer",
+      "Driver calls get_next_item, processes it, then calls item_done",
+      "Sequencer directly drives DUT pins",
+      "No handshake is needed"
+    ],
+    correctAnswer: "B",
+    explanation: `The driver requests transactions by calling seq_item_port.get_next_item(req).
+This blocks until the sequencer provides an item from an active sequence.
+The driver then converts the transaction to pin-level activity on the DUT interface.
+After driving completes, the driver calls seq_item_port.item_done() to signal completion.
+This handshake ensures proper flow control between sequences and drivers.`
+  },
+  {
+    id: 52,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Easy",
+    question: "What is the primary role of a UVM monitor?",
+    options: [
+      "Drive stimulus to DUT",
+      "Observe DUT signals and convert to transactions for analysis",
+      "Generate random test cases",
+      "Control test execution"
+    ],
+    correctAnswer: "B",
+    explanation: `Monitors passively observe DUT interface signals without driving them.
+They reconstruct pin-level activity into transaction-level objects.
+These transactions are broadcast via analysis ports to subscribers.
+Scoreboards and coverage collectors connect to monitor analysis ports.
+Monitors must be passive - driving is the driver's responsibility.`
+  },
+  {
+    id: 53,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Medium",
+    question: "What is the purpose of a UVM scoreboard?",
+    options: [
+      "To sequence transactions",
+      "To compare expected vs actual transactions and report mismatches",
+      "To configure the DUT",
+      "To generate clock signals"
+    ],
+    correctAnswer: "B",
+    explanation: `The scoreboard is the central checking component in a UVM environment.
+It receives actual transactions from monitors via analysis ports.
+Expected results come from a reference model, predictor, or pre-computed values.
+When expected and actual don't match, the scoreboard reports errors.
+This separation of monitoring and checking improves reusability and clarity.`
+  },
+  {
+    id: 54,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Medium",
+    question: "What is uvm_analysis_port used for?",
+    options: [
+      "Driving DUT inputs",
+      "Broadcasting transactions to multiple subscribers without blocking",
+      "Storing configuration data",
+      "Replacing the driver"
+    ],
+    correctAnswer: "B",
+    explanation: `uvm_analysis_port is a broadcast mechanism for one-to-many communication.
+Monitors use it to publish observed transactions to any number of subscribers.
+Subscribers (scoreboards, coverage) connect via analysis_export or analysis_imp.
+The write() method broadcasts to all connected components simultaneously.
+It's non-blocking - the monitor doesn't wait for subscribers to process.`
+  },
+  {
+    id: 55,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Hard",
+    question: "What is the purpose of objections in UVM?",
+    options: [
+      "To reject bad transactions",
+      "To control when phases end by indicating pending work",
+      "To override components",
+      "To raise assertion failures"
+    ],
+    correctAnswer: "B",
+    explanation: `Objections coordinate phase completion in UVM's phased execution.
+A component raises an objection to indicate it has work pending.
+The phase doesn't end until all objections are dropped.
+Sequences typically raise objection at start and drop when done sending items.
+Without objections, the run_phase would end immediately with no stimulus.
+Example: phase.raise_objection(this); ... phase.drop_objection(this);`
+  },
+  {
+    id: 56,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Hard",
+    question: "What does the UVM factory allow you to do?",
+    options: [
+      "Create faster simulations",
+      "Substitute component types at runtime without changing code",
+      "Generate waveforms automatically",
+      "Replace the simulator"
+    ],
+    correctAnswer: "B",
+    explanation: `The factory enables type and instance overrides for components and objects.
+Type override: Replace all instances of ClassA with ClassB globally.
+Instance override: Replace a specific instance by hierarchical path.
+This allows tests to inject specialized behavior without modifying the testbench.
+All components must use type_id::create() instead of new() to enable overrides.
+Example: factory.set_type_override_by_type(base_drv::get_type(), custom_drv::get_type());`
+  },
+  {
+    id: 57,
+    type: "mcq",
+    topic: "UVM",
+    difficulty: "Hard",
+    question: "When is uvm_config_db::set() typically called?",
+    options: [
+      "In the run_phase after stimulus completes",
+      "In the test's build_phase before children are built",
+      "In the final_phase",
+      "Only in the driver"
+    ],
+    correctAnswer: "B",
+    explanation: `uvm_config_db::set() is typically called in build_phase before child components build.
+This ensures configuration is available when children call get() in their build_phase.
+The test sets configuration first, then env, then agents - following the build order.
+If set() happens after get(), the child won't receive the value.
+Common uses: virtual interfaces, configuration objects, enable flags, timeout values.`
   }
 ];
