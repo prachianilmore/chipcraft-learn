@@ -2022,5 +2022,259 @@ This gives false confidence - you think IDLE was tested, but only reset was seen
 Solution: guard sampling with valid signals or use iff(!reset) in covergroups.
 Example: coverpoint state iff (!reset); - only sample when not in reset.
 Interview point: explain how sampling guards ensure coverage reflects real test activity.`
+  },
+
+  // ==================== DEBUG QUESTIONS (12 new, IDs 82-93) ====================
+  {
+    id: 82,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Easy",
+    question: "A test fails in regression but passes when run standalone. What is the most likely cause?",
+    options: [
+      "The simulator has a bug",
+      "State pollution from a previous test in the regression",
+      "The test is flaky and should be deleted",
+      "The DUT has a race condition"
+    ],
+    correctAnswer: "B",
+    explanation: `Regression failures that pass standalone are classic symptoms of state pollution.
+In regression, tests run sequentially and may share environment state (memory, global variables, static state).
+A previous test may leave residual state that affects the failing test's behavior.
+Debug approach: check what test runs before the failing one and isolate the sequence.
+Solution: ensure proper reset/cleanup between tests, or run with fresh environment per test.
+Static variables, persistent memory content, and global UVM resources are common culprits.
+Interview tip: describe your systematic approach to bisecting regression-only failures.`
+  },
+  {
+    id: 83,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Easy",
+    question: "What is the purpose of saving the random seed when a test fails?",
+    options: [
+      "To make the simulation run faster next time",
+      "To reproduce the exact same random sequence and failure scenario",
+      "Seeds are not important in verification",
+      "To change the test behavior on each run"
+    ],
+    correctAnswer: "B",
+    explanation: `Random seeds control the pseudo-random number generator sequence in constrained-random tests.
+Saving the seed allows you to reproduce the exact same stimulus that caused the failure.
+Without the seed, the failure might not reproduce, making debugging extremely difficult.
+Best practice: always log the seed at test start, and provide a way to re-run with a specific seed.
+Command line example: +ntb_random_seed=12345 to replay a specific scenario.
+This is fundamental to constrained-random verification methodology.
+Interview key point: explain how seed reproducibility enables systematic debug of random failures.`
+  },
+  {
+    id: 84,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Easy",
+    question: "When debugging, what is the advantage of waveform viewing over log/print messages?",
+    options: [
+      "Waveforms are always faster to generate",
+      "Waveforms show temporal relationships and timing between multiple signals simultaneously",
+      "Print statements are never useful",
+      "Waveforms don't require any disk space"
+    ],
+    correctAnswer: "B",
+    explanation: `Waveforms excel at showing how multiple signals change relative to each other over time.
+You can see signal transitions, timing relationships, and correlate events across the design.
+This is critical for debugging timing issues, protocol handshakes, and race conditions.
+Print/log debugging shows sequential events but makes temporal correlation difficult.
+However, both have their place: logs are great for high-level flow, waveforms for signal-level detail.
+Waveforms also let you measure delays, zoom into specific cycles, and trace signal sources.
+Interview tip: explain when you'd use each approach and how they complement each other.`
+  },
+  {
+    id: 85,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Easy",
+    question: "A signal shows 'X' (unknown) in the waveform after reset. What should you check first?",
+    options: [
+      "The simulator version",
+      "Whether all flops and state elements are properly reset",
+      "The testbench clock frequency",
+      "Delete the signal from the design"
+    ],
+    correctAnswer: "B",
+    explanation: `X-propagation after reset indicates uninitialized state elements.
+Check that all flip-flops and memories in the affected path have proper reset connections.
+Common causes: missing reset in always_ff, incorrect reset polarity, or reset not reaching all flops.
+Trace the X backward in the design to find the source - the first flop outputting X.
+Also check for unconnected inputs, tri-state buses without drivers, or uninitialized memories.
+X-propagation is a feature, not a bug - it helps catch real hardware initialization issues.
+Interview point: explain your systematic X-debug methodology and reset verification approach.`
+  },
+  {
+    id: 86,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Medium",
+    question: "Your scoreboard reports a mismatch, but the monitor is capturing correct data. Where is the bug most likely?",
+    options: [
+      "The DUT has a bug",
+      "The scoreboard's expected value calculation or comparison logic",
+      "The clock is wrong",
+      "The testbench should be rewritten from scratch"
+    ],
+    correctAnswer: "B",
+    explanation: `If the monitor captures correct DUT output but scoreboard reports mismatch, the bug is in the scoreboard.
+The scoreboard maintains a reference model and compares expected vs actual values.
+Common scoreboard bugs: wrong expected value calculation, incorrect ordering assumptions, timing issues.
+Debug approach: print both expected and actual values at comparison point, trace expected value origin.
+Check if the reference model handles all DUT features (pipelining, reordering, etc.).
+Also verify the scoreboard receives transactions in the correct order from multiple monitors.
+Interview tip: explain your approach to isolating whether bugs are in DUT, monitor, or scoreboard.`
+  },
+  {
+    id: 87,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Medium",
+    question: "A test intermittently fails with different seeds. What type of issue does this suggest?",
+    options: [
+      "A deterministic RTL bug",
+      "A race condition or timing-sensitive issue",
+      "The test is too short",
+      "The coverage model is wrong"
+    ],
+    correctAnswer: "B",
+    explanation: `Intermittent failures with different seeds suggest non-deterministic behavior in the design or testbench.
+Race conditions occur when the outcome depends on timing of competing operations.
+Different seeds generate different stimulus timing, exposing the race differently each run.
+Common causes: clock domain crossings without proper synchronization, shared resource conflicts.
+In testbench: race between driver and monitor, or assumption about operation ordering.
+Debug approach: look for parallel processes accessing shared state, or missing handshake logic.
+Interview key: explain how you isolate intermittent issues and differentiate race from other causes.`
+  },
+  {
+    id: 88,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Medium",
+    question: "You're debugging a protocol violation. What's the most efficient first step?",
+    options: [
+      "Rewrite the entire testbench",
+      "Check the assertion or checker that fired to understand the exact violation",
+      "Increase simulation time",
+      "Add more random constraints"
+    ],
+    correctAnswer: "B",
+    explanation: `Assertions and protocol checkers are designed to pinpoint exactly what went wrong and when.
+Start by examining the fired assertion: what property was violated, at what time, with what signal values.
+This tells you the symptom precisely - much more efficient than hunting blindly.
+Next, trace backward in the waveform from the violation time to find the root cause.
+The assertion failure time is your anchor point for focused debug.
+Well-written assertions include helpful messages indicating expected vs actual behavior.
+Interview tip: describe how you leverage assertion failures as starting points for systematic debug.`
+  },
+  {
+    id: 89,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Medium",
+    question: "A test fails only when run with other tests but the seed is different each run. How do you isolate the issue?",
+    options: [
+      "Run all tests with the same seed",
+      "Bisect the test list to find which preceding test causes the failure",
+      "Ignore the failure since seeds differ",
+      "Only run standalone tests"
+    ],
+    correctAnswer: "B",
+    explanation: `Bisecting narrows down which preceding test leaves problematic state.
+Start by running the failing test after half the regression, then quarter, etc.
+This binary search approach quickly identifies the interacting test.
+Once found, examine what state that test leaves behind (memories, globals, config).
+Common culprits: persistent UVM resource settings, unreset memories, static variables.
+Fix: add proper cleanup, or reset more thoroughly between tests.
+Interview key: explain your systematic bisection methodology and state isolation techniques.`
+  },
+  {
+    id: 90,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Medium",
+    question: "The DUT output arrives one cycle later than your scoreboard expects. What type of bug is this?",
+    options: [
+      "A functional logic error",
+      "A latency or pipeline modeling mismatch between DUT and reference model",
+      "A syntax error in the testbench",
+      "An assertion coverage issue"
+    ],
+    correctAnswer: "B",
+    explanation: `One-cycle-off errors typically indicate latency mismatch between DUT and reference model.
+The reference model must accurately reflect the DUT's pipeline depth and timing.
+Common causes: reference model missing a pipeline stage, or DUT adding unexpected buffering.
+Also check for off-by-one in address calculations or FIFO depth assumptions.
+Debug approach: compare DUT and reference model architectures, verify each pipeline stage.
+Solution: adjust reference model latency or add synchronization logic in scoreboard.
+Interview tip: explain how you maintain reference model accuracy as DUT evolves.`
+  },
+  {
+    id: 91,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Medium",
+    question: "When debugging reset-related bugs, what's the most important thing to verify?",
+    options: [
+      "The clock frequency",
+      "That all state elements reach known values before normal operation begins",
+      "The number of test iterations",
+      "The random seed value"
+    ],
+    correctAnswer: "B",
+    explanation: `Reset bugs occur when design doesn't reach a clean, known state before operation.
+Verify: all flops reset to defined values, reset propagates to all clock domains, reset timing is correct.
+Check reset duration - some designs need multiple cycles for reset to propagate.
+For async resets, verify proper synchronization to avoid metastability.
+Watch for: flops without reset, incorrect reset polarity, reset release race conditions.
+In multi-clock designs, ensure each domain's reset is properly synchronized.
+Interview key: describe your reset verification checklist and common reset bug patterns.`
+  },
+  {
+    id: 92,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Hard",
+    question: "A bug only reproduces in gate-level simulation, not RTL. What should you investigate?",
+    options: [
+      "The RTL has a hidden bug",
+      "Timing issues, X-propagation differences, or RTL/gate mismatch",
+      "Gate-level simulation is unreliable",
+      "Run RTL simulation longer"
+    ],
+    correctAnswer: "B",
+    explanation: `Gate-level only bugs indicate issues that RTL simulation abstracts away.
+Timing issues: gates have delays; paths that worked in zero-delay RTL may fail with real timing.
+X-propagation: gate-level is often more pessimistic about X's than RTL simulation.
+RTL/gate mismatch: synthesis may have interpreted RTL differently than intended (latch inference, etc.).
+Check for: clock domain crossing issues, setup/hold violations, reset timing, uninitialized flops.
+Debug approach: compare waveforms at key points between RTL and gate-level runs.
+Interview point: explain gate-level debug methodology and common synthesis-vs-RTL surprises.`
+  },
+  {
+    id: 93,
+    type: "mcq",
+    topic: "Debug",
+    difficulty: "Hard",
+    question: "An assertion fires at cycle 100, but the root cause occurred 50 cycles earlier. What debug strategy helps?",
+    options: [
+      "Delete the assertion",
+      "Add checkpoints or trace signals backward from the failure to find the originating event",
+      "Run simulation for fewer cycles",
+      "Change the assertion timing"
+    ],
+    correctAnswer: "B",
+    explanation: `Many bugs manifest long after their root cause due to pipeline depth and state propagation.
+Start at the assertion failure (cycle 100) and work backward through the data/control path.
+Use waveform analysis to trace which earlier event led to the failing condition.
+Add intermediate checkpoints or assertions to narrow down where the problem started.
+Hierarchical debug: first identify which major block, then which sub-block, then exact signal.
+Consider transaction-level tracing to see which operation at cycle 50 eventually caused the failure.
+Interview key: describe your backward-tracing methodology and how you correlate cause to effect.`
   }
 ];
