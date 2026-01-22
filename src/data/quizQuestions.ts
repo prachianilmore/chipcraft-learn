@@ -1768,5 +1768,259 @@ Formal can find bugs in unreachable states or rare race conditions.
 Example: simulation never triggers a specific error injection, but formal finds the path.
 This is why combining simulation and formal is best practice in DV.
 Formal is especially strong for control logic, protocols, and safety properties.`
+  },
+
+  // ==================== COVERAGE QUESTIONS (12 new, IDs 70-81) ====================
+
+  {
+    id: 70,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Easy",
+    question: "What is the main difference between code coverage and functional coverage?",
+    options: [
+      "Code coverage is manual, functional coverage is automatic",
+      "Code coverage measures lines/branches executed, functional coverage measures verification intent",
+      "Functional coverage is only for UVM, code coverage is for Verilog",
+      "They are the same thing with different names"
+    ],
+    correctAnswer: "B",
+    explanation: `Code coverage is automatically computed by the simulator and tracks which lines, branches, conditions, and expressions were exercised during simulation.
+Functional coverage is user-defined and measures whether specific scenarios, transactions, or corner cases from your verification plan were actually tested.
+100% code coverage doesn't mean your design is bug-free - it only means all code ran, not that all behaviors were tested.
+Functional coverage answers "did we test what we intended to test?" while code coverage answers "what code got executed?"
+In interviews, emphasize that both are needed: code coverage finds dead code, functional coverage ensures completeness.`
+  },
+  {
+    id: 71,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Easy",
+    question: "What is a covergroup in SystemVerilog?",
+    options: [
+      "A group of assertions bundled together",
+      "A container for coverpoints and cross coverage definitions",
+      "A module that contains only coverage code",
+      "A type of testbench component in UVM"
+    ],
+    correctAnswer: "B",
+    explanation: `A covergroup is a user-defined coverage model that encapsulates coverpoints and cross coverage.
+It defines WHAT values/scenarios to track and WHEN to sample them (sampling event).
+Covergroups can be instantiated multiple times with different sampling conditions.
+Example: covergroup cg @(posedge clk); coverpoint opcode; endgroup
+Inside a covergroup you define coverpoints (variables to track) and crosses (combinations).
+Covergroups are fundamental to functional coverage in SystemVerilog.
+They provide the mechanism to translate verification intent into measurable coverage goals.`
+  },
+  {
+    id: 72,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Easy",
+    question: "What does a 'bin' represent in functional coverage?",
+    options: [
+      "A storage location in memory",
+      "A bucket that counts how many times a specific value or range was hit",
+      "A type of assertion that checks timing",
+      "A debug container for waveforms"
+    ],
+    correctAnswer: "B",
+    explanation: `A bin is a counter that tracks how many times a specific value, range, or transition occurred.
+Each bin represents a scenario you want to verify was exercised during simulation.
+Example: bins low_vals = {[0:15]}; counts hits when value is between 0 and 15.
+Bins can be auto-generated or explicitly defined to match your verification intent.
+When a bin is "hit" (count > 0), that scenario is considered covered.
+Coverage percentage is calculated as (bins hit / total bins) × 100.
+Defining meaningful bins is key to writing effective functional coverage.`
+  },
+  {
+    id: 73,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Easy",
+    question: "What is the purpose of 'cross coverage'?",
+    options: [
+      "To check that signals cross zero at the right time",
+      "To verify all combinations of two or more coverpoints were exercised",
+      "To combine code coverage from multiple simulations",
+      "To measure coverage across multiple testbenches"
+    ],
+    correctAnswer: "B",
+    explanation: `Cross coverage tracks combinations of values from multiple coverpoints.
+If coverpoint A has 4 bins and coverpoint B has 3 bins, cross creates 4×3=12 combination bins.
+Example: cross opcode, data_size; verifies all opcode+size combinations were tested.
+This catches cases where each value was tested individually but certain combinations were missed.
+Cross coverage is powerful for finding corner cases in protocol testing.
+Be careful: crosses can explode combinatorially, so use binsof() to filter relevant combinations.
+Interview tip: explain how crosses help find "gaps" in test scenarios.`
+  },
+  {
+    id: 74,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Easy",
+    question: "When is a covergroup sampled by default if no sampling event is specified?",
+    options: [
+      "Every clock cycle automatically",
+      "Only when explicitly called with .sample() method",
+      "At the end of simulation",
+      "Never - it causes a compilation error"
+    ],
+    correctAnswer: "B",
+    explanation: `If no sampling event (@event) is specified in the covergroup definition, sampling is manual.
+You must call the .sample() method explicitly to trigger coverage collection.
+Example: cg_inst.sample(); - this captures the current values into the covergroup bins.
+This gives precise control over when coverage is collected (e.g., only on valid transactions).
+Alternatively, specify a sampling event: covergroup cg @(posedge clk); for automatic sampling.
+Explicit sampling is often preferred to avoid counting invalid or reset states.
+In UVM, coverage is typically sampled in monitors when valid transactions are observed.`
+  },
+  {
+    id: 75,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Medium",
+    question: "What is the difference between 'illegal_bins' and 'ignore_bins'?",
+    options: [
+      "illegal_bins cause errors, ignore_bins are just not counted",
+      "They are the same - both exclude values from coverage",
+      "ignore_bins cause warnings, illegal_bins cause errors",
+      "illegal_bins are for assertions, ignore_bins are for coverage"
+    ],
+    correctAnswer: "A",
+    explanation: `illegal_bins define values that should NEVER occur - hitting them is a verification error.
+If an illegal_bin is sampled, the simulator reports an error (design or test bug found).
+ignore_bins define values that are valid but not interesting for coverage calculation.
+They are excluded from the coverage percentage but don't cause errors when hit.
+Example: illegal_bins bad = {4'hF}; - error if value equals 0xF.
+Example: ignore_bins skip = {0}; - don't count zero in coverage, but no error if seen.
+Use illegal_bins for protocol violations; use ignore_bins for don't-care or reserved values.`
+  },
+  {
+    id: 76,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Medium",
+    question: "Why might 100% functional coverage still leave bugs undiscovered?",
+    options: [
+      "Functional coverage is always incomplete",
+      "The coverage model may not capture all important scenarios or corner cases",
+      "Simulators have bugs that miss coverage",
+      "100% coverage is impossible to achieve"
+    ],
+    correctAnswer: "B",
+    explanation: `Functional coverage only measures what you explicitly defined in your coverage model.
+If your model doesn't include certain scenarios, hitting 100% won't guarantee they were tested.
+Example: you might cover all opcodes but miss testing back-to-back transactions or error injection.
+Coverage is only as good as your verification plan and coverage model design.
+This is why coverage closure also involves reviewing the model for completeness.
+Combine functional coverage with code coverage, assertions, and formal to increase confidence.
+Interview key point: 100% coverage means "we tested everything we planned" not "no bugs remain."`
+  },
+  {
+    id: 77,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Medium",
+    question: "What is a 'coverage hole'?",
+    options: [
+      "A bug in the coverage tool",
+      "A bin or scenario that was never hit during simulation",
+      "Missing code in the DUT",
+      "An assertion that never triggered"
+    ],
+    correctAnswer: "B",
+    explanation: `A coverage hole is a bin that has zero hits - a scenario that was never exercised.
+Finding and closing coverage holes is a key part of verification closure.
+Holes indicate either: (1) tests don't exercise that scenario, or (2) the scenario is unreachable.
+For reachable holes, you need to add directed tests or adjust constraints.
+For unreachable holes (impossible scenarios), use ignore_bins to exclude them.
+Coverage analysis tools highlight holes to guide test development priorities.
+Interview tip: explain your process for analyzing and closing coverage holes systematically.`
+  },
+  {
+    id: 78,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Medium",
+    question: "What is 'coverage-driven verification' (CDV)?",
+    options: [
+      "Writing tests before RTL design",
+      "Using coverage metrics to guide test development and determine when verification is complete",
+      "Running only directed tests without randomization",
+      "Replacing assertions with coverage"
+    ],
+    correctAnswer: "B",
+    explanation: `CDV uses coverage metrics to steer the verification process from start to finish.
+First, define coverage goals based on the verification plan (functional coverage model).
+Then run tests (often constrained random) and measure coverage progress.
+Analyze holes to develop new tests or adjust constraints targeting uncovered scenarios.
+Continue until coverage goals are met and all holes are closed or waived.
+CDV ensures systematic verification rather than ad-hoc "run tests and hope" approaches.
+It provides measurable evidence of verification completeness for signoff.
+Key interview point: CDV connects verification plan → coverage model → tests → metrics.`
+  },
+  {
+    id: 79,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Medium",
+    question: "What is the advantage of user-defined bins over auto-generated bins?",
+    options: [
+      "Auto bins are always better because they are automatic",
+      "User bins let you focus on important values and ranges matching your verification intent",
+      "User bins run faster in simulation",
+      "Auto bins don't work with cross coverage"
+    ],
+    correctAnswer: "B",
+    explanation: `Auto bins divide the value range evenly, which may not match what's important to verify.
+User-defined bins let you focus on critical values, boundaries, and corner cases.
+Example: for a 32-bit address, auto bins create millions of buckets - not useful.
+User bins: bins low = {[0:255]}; bins high = {[32'hFFFFFF00:32'hFFFFFFFF]}; - meaningful ranges.
+User bins also allow transition coverage: bins seq = (0 => 1 => 2); for sequences.
+Auto bins are okay for small enums or when you truly want exhaustive value coverage.
+Best practice: define bins that reflect your verification plan's important scenarios.`
+  },
+  {
+    id: 80,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Hard",
+    question: "In coverage closure, what should you do with a coverage hole for an unreachable scenario?",
+    options: [
+      "Keep running more random tests until it's hit",
+      "Delete the entire coverpoint",
+      "Document it and exclude with ignore_bins or a waiver",
+      "Change the RTL to make it reachable"
+    ],
+    correctAnswer: "C",
+    explanation: `Unreachable scenarios are coverage holes that cannot be hit due to design constraints.
+Example: certain opcode+mode combinations that are architecturally forbidden.
+Running more tests won't help - the scenario is impossible by design.
+The correct approach: document why it's unreachable and exclude it from coverage calculation.
+Use ignore_bins to exclude, or create a formal waiver with technical justification.
+Never modify RTL just to hit coverage - that defeats the purpose of verification.
+Interview key: explain your waiver process and how you distinguish unreachable from untested.`
+  },
+  {
+    id: 81,
+    type: "mcq",
+    topic: "Coverage",
+    difficulty: "Hard",
+    question: "How can coverage be misleadingly high if sampling occurs during reset?",
+    options: [
+      "Reset values don't affect coverage",
+      "Reset state values may hit bins without testing actual functional scenarios",
+      "Coverage tools ignore reset periods automatically",
+      "Reset makes all bins illegal"
+    ],
+    correctAnswer: "B",
+    explanation: `If coverage samples during reset, the reset-state values (often 0) may hit bins.
+These hits don't represent actual functional testing - they're just initialization values.
+Example: sampling 'state' during reset may hit the IDLE bin, inflating coverage.
+This gives false confidence - you think IDLE was tested, but only reset was seen.
+Solution: guard sampling with valid signals or use iff(!reset) in covergroups.
+Example: coverpoint state iff (!reset); - only sample when not in reset.
+Interview point: explain how sampling guards ensure coverage reflects real test activity.`
   }
 ];
