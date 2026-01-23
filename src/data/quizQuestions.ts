@@ -2276,5 +2276,666 @@ Add intermediate checkpoints or assertions to narrow down where the problem star
 Hierarchical debug: first identify which major block, then which sub-block, then exact signal.
 Consider transaction-level tracing to see which operation at cycle 50 eventually caused the failure.
 Interview key: describe your backward-tracing methodology and how you correlate cause to effect.`
+  },
+
+  // ========== CODING QUESTIONS (Self-Check) ==========
+  {
+    id: 94,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Easy",
+    question: "Write a function to find the maximum element in an array of integers. Handle the case of an empty array.",
+    codePrompt: `// Example:
+// Input: [3, 1, 4, 1, 5, 9, 2, 6]
+// Output: 9
+
+// Input: []
+// Output: Error or special value indicating empty array`,
+    correctAnswer: `function findMax(arr) {
+  if (arr.length === 0) {
+    return null; // or throw error
+  }
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}`,
+    rubric: [
+      "Handles empty array case explicitly (returns null, -Infinity, or throws error)",
+      "Initializes max to first element (not 0 or arbitrary value)",
+      "Iterates through all elements comparing each to current max",
+      "Returns the correct maximum value",
+      "Time complexity is O(n)"
+    ],
+    explanation: `This classic interview warm-up tests basic array traversal and edge case handling.
+
+Key insights:
+• Initializing max to arr[0] is better than 0 (handles negative numbers correctly)
+• Empty array must be handled - returning null or throwing is acceptable
+• Single-pass O(n) solution is optimal - you must see every element
+
+Common mistakes:
+• Forgetting empty array check (crashes on arr[0])
+• Initializing max to 0 (fails for arrays of all negative numbers)
+• Using nested loops (unnecessary O(n²))
+
+This pattern applies to finding min, sum, or any aggregate over an array.`
+  },
+  {
+    id: 95,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Easy",
+    question: "Write a function to count how many times a specific value appears in an array.",
+    codePrompt: `// Example:
+// Input: arr = [1, 2, 3, 2, 4, 2, 5], target = 2
+// Output: 3
+
+// Input: arr = [1, 1, 1, 1], target = 5
+// Output: 0`,
+    correctAnswer: `function countOccurrences(arr, target) {
+  let count = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      count++;
+    }
+  }
+  return count;
+}`,
+    rubric: [
+      "Initializes counter to 0",
+      "Iterates through entire array",
+      "Uses correct equality check (=== or ==)",
+      "Returns 0 for no matches (not null or error)",
+      "Time complexity is O(n)"
+    ],
+    explanation: `Counting occurrences is fundamental to frequency analysis and histogram building.
+
+Key insights:
+• Start counter at 0, increment on each match
+• Single pass is sufficient - O(n) time, O(1) space
+• Return 0 when target not found (not an error condition)
+
+Extensions interviewers might ask:
+• Count occurrences of each unique element (return a map/dictionary)
+• Find the most frequent element (mode)
+• Count occurrences in a sorted array using binary search (O(log n))
+
+This pattern is the foundation for building frequency tables and histograms.`
+  },
+  {
+    id: 96,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Easy",
+    question: "Write a function to reverse a string without using built-in reverse methods.",
+    codePrompt: `// Example:
+// Input: "hello"
+// Output: "olleh"
+
+// Input: "a"
+// Output: "a"
+
+// Input: ""
+// Output: ""`,
+    correctAnswer: `function reverseString(str) {
+  let result = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    result += str[i];
+  }
+  return result;
+}
+
+// Alternative using two pointers (for array of chars):
+function reverseInPlace(chars) {
+  let left = 0, right = chars.length - 1;
+  while (left < right) {
+    [chars[left], chars[right]] = [chars[right], chars[left]];
+    left++;
+    right--;
+  }
+  return chars;
+}`,
+    rubric: [
+      "Iterates from end to beginning of string",
+      "Builds new string or swaps in place correctly",
+      "Handles empty string and single character",
+      "Does not use built-in reverse()",
+      "Returns correctly reversed string"
+    ],
+    explanation: `String reversal tests loop control and string manipulation fundamentals.
+
+Two common approaches:
+1. Build new string: iterate backward, append each character - O(n) time, O(n) space
+2. Two-pointer swap: for mutable char arrays, swap from ends toward middle - O(n) time, O(1) space
+
+Key insights:
+• In languages with immutable strings, you must build a new string
+• Two-pointer technique is more space-efficient for mutable arrays
+• Empty and single-char strings work correctly without special cases
+
+This pattern extends to: palindrome checking, word reversal, and in-place transformations.`
+  },
+  {
+    id: 97,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Easy",
+    question: "Write a function to check if an array contains any duplicate elements.",
+    codePrompt: `// Example:
+// Input: [1, 2, 3, 4, 5]
+// Output: false
+
+// Input: [1, 2, 3, 2, 5]
+// Output: true
+
+// Input: []
+// Output: false`,
+    correctAnswer: `function containsDuplicate(arr) {
+  const seen = new Set();
+  for (let num of arr) {
+    if (seen.has(num)) {
+      return true;
+    }
+    seen.add(num);
+  }
+  return false;
+}`,
+    rubric: [
+      "Uses a Set or hash table for O(1) lookup",
+      "Returns true immediately upon finding first duplicate",
+      "Returns false if no duplicates found after full traversal",
+      "Handles empty array (returns false)",
+      "Time complexity is O(n), space complexity is O(n)"
+    ],
+    explanation: `Duplicate detection is a hash table fundamental frequently asked in interviews.
+
+Approaches compared:
+• Brute force O(n²): compare each pair - too slow for large inputs
+• Sort first O(n log n): duplicates become adjacent - better, but modifies array
+• Hash Set O(n): track seen elements, O(1) lookup - optimal time
+
+Key insights:
+• Early return on first duplicate is efficient
+• Set automatically handles the "have we seen this?" query
+• Space tradeoff: O(n) space for O(n) time
+
+Common follow-ups: find all duplicates, find first duplicate, count duplicates.`
+  },
+  {
+    id: 98,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Medium",
+    question: "Write a function that returns the two indices of numbers in an array that add up to a target sum. Assume exactly one solution exists.",
+    codePrompt: `// Example:
+// Input: nums = [2, 7, 11, 15], target = 9
+// Output: [0, 1] (because nums[0] + nums[1] = 2 + 7 = 9)
+
+// Input: nums = [3, 2, 4], target = 6
+// Output: [1, 2] (because nums[1] + nums[2] = 2 + 4 = 6)`,
+    correctAnswer: `function twoSum(nums, target) {
+  const map = new Map(); // value -> index
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+    if (map.has(complement)) {
+      return [map.get(complement), i];
+    }
+    map.set(nums[i], i);
+  }
+  return []; // No solution found
+}`,
+    rubric: [
+      "Uses hash map to store value-to-index mapping",
+      "Calculates complement (target - current) for each element",
+      "Checks if complement exists in map before adding current",
+      "Returns indices, not values",
+      "Single-pass O(n) solution"
+    ],
+    explanation: `Two Sum is the most famous interview problem - tests hash table application.
+
+Why hash map approach works:
+• For each number, we need to find if (target - number) exists
+• Hash map provides O(1) lookup for this check
+• Store number->index as we go, so complement check is always for previous elements
+
+Why this beats brute force:
+• Brute force: check all pairs O(n²)
+• Hash map: single pass O(n) time, O(n) space
+
+Key insight: the lookup happens BEFORE adding current element to map, 
+ensuring we don't use the same element twice (e.g., target=6, arr=[3,3]).`
+  },
+  {
+    id: 99,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Medium",
+    question: "Write a function to find the longest substring without repeating characters.",
+    codePrompt: `// Example:
+// Input: "abcabcbb"
+// Output: 3 (substring "abc")
+
+// Input: "bbbbb"
+// Output: 1 (substring "b")
+
+// Input: "pwwkew"
+// Output: 3 (substring "wke")`,
+    correctAnswer: `function lengthOfLongestSubstring(s) {
+  const charIndex = new Map();
+  let maxLength = 0;
+  let start = 0;
+  
+  for (let end = 0; end < s.length; end++) {
+    if (charIndex.has(s[end]) && charIndex.get(s[end]) >= start) {
+      start = charIndex.get(s[end]) + 1;
+    }
+    charIndex.set(s[end], end);
+    maxLength = Math.max(maxLength, end - start + 1);
+  }
+  return maxLength;
+}`,
+    rubric: [
+      "Uses sliding window with two pointers (start/end)",
+      "Uses hash map to track last seen index of each character",
+      "Correctly moves start pointer when duplicate found in current window",
+      "Tracks and returns maximum window size",
+      "O(n) time complexity"
+    ],
+    explanation: `This is a classic sliding window problem that tests dynamic window management.
+
+Sliding window insight:
+• Expand window by moving 'end' pointer right
+• When duplicate found IN CURRENT WINDOW, shrink by moving 'start' past the previous occurrence
+• Track maximum window size throughout
+
+Critical detail: check that the duplicate's last index >= start
+Otherwise, you might react to a character that's outside your current window.
+
+Time: O(n) - each character visited at most twice (once by end, once implicitly by start)
+Space: O(min(n, alphabet_size)) for the hash map.`
+  },
+  {
+    id: 100,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Medium",
+    question: "Write a function to merge two sorted arrays into one sorted array.",
+    codePrompt: `// Example:
+// Input: arr1 = [1, 3, 5], arr2 = [2, 4, 6]
+// Output: [1, 2, 3, 4, 5, 6]
+
+// Input: arr1 = [1, 2, 3], arr2 = []
+// Output: [1, 2, 3]`,
+    correctAnswer: `function mergeSortedArrays(arr1, arr2) {
+  const result = [];
+  let i = 0, j = 0;
+  
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] <= arr2[j]) {
+      result.push(arr1[i]);
+      i++;
+    } else {
+      result.push(arr2[j]);
+      j++;
+    }
+  }
+  
+  // Add remaining elements
+  while (i < arr1.length) result.push(arr1[i++]);
+  while (j < arr2.length) result.push(arr2[j++]);
+  
+  return result;
+}`,
+    rubric: [
+      "Uses two pointers, one for each array",
+      "Compares elements and takes smaller one each iteration",
+      "Handles remaining elements after one array exhausted",
+      "Maintains sorted order in result",
+      "O(n + m) time complexity"
+    ],
+    explanation: `Merging sorted arrays is fundamental - it's the core of merge sort.
+
+Two-pointer technique:
+• Compare elements at current positions in both arrays
+• Take the smaller one, advance that pointer
+• When one array exhausted, append all remaining from the other
+
+Why this is O(n + m):
+• Each element from both arrays is visited exactly once
+• No nested loops, no repeated comparisons
+
+Edge cases to consider:
+• One or both arrays empty
+• Arrays of different lengths
+• Duplicate values (use <= not < to maintain stability)
+
+This exact logic is used in merge sort's merge step and external sorting.`
+  },
+  {
+    id: 101,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Medium",
+    question: "Write a function to compute the running sum of an array (prefix sum).",
+    codePrompt: `// Example:
+// Input: [1, 2, 3, 4]
+// Output: [1, 3, 6, 10]
+// Explanation: [1, 1+2, 1+2+3, 1+2+3+4]
+
+// Input: [5]
+// Output: [5]`,
+    correctAnswer: `function runningSum(nums) {
+  const result = [];
+  let sum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    sum += nums[i];
+    result.push(sum);
+  }
+  return result;
+}
+
+// Or in-place modification:
+function runningSumInPlace(nums) {
+  for (let i = 1; i < nums.length; i++) {
+    nums[i] += nums[i - 1];
+  }
+  return nums;
+}`,
+    rubric: [
+      "Maintains running sum variable",
+      "Each output element is sum of all previous inputs plus current",
+      "Handles single-element array",
+      "O(n) time complexity",
+      "Correctly outputs prefix sum array"
+    ],
+    explanation: `Prefix sums enable O(1) range sum queries after O(n) preprocessing.
+
+Core idea:
+• prefixSum[i] = sum of elements from index 0 to i
+• To get sum from index L to R: prefixSum[R] - prefixSum[L-1]
+
+Building prefix sum:
+• Iterate once, accumulating sum
+• Each position stores "sum so far"
+
+Applications:
+• Range sum queries in O(1)
+• Subarray sum problems
+• 2D prefix sums for matrix range queries
+
+This technique transforms O(n) per query into O(1) per query after O(n) preprocessing.`
+  },
+  {
+    id: 102,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Medium",
+    question: "Write a function to find the first non-repeating character in a string and return its index. Return -1 if none exists.",
+    codePrompt: `// Example:
+// Input: "leetcode"
+// Output: 0 (character 'l')
+
+// Input: "loveleetcode"
+// Output: 2 (character 'v')
+
+// Input: "aabb"
+// Output: -1`,
+    correctAnswer: `function firstUniqChar(s) {
+  const freq = new Map();
+  
+  // Count frequencies
+  for (let char of s) {
+    freq.set(char, (freq.get(char) || 0) + 1);
+  }
+  
+  // Find first char with frequency 1
+  for (let i = 0; i < s.length; i++) {
+    if (freq.get(s[i]) === 1) {
+      return i;
+    }
+  }
+  return -1;
+}`,
+    rubric: [
+      "First pass: count frequency of each character",
+      "Second pass: find first character with count = 1",
+      "Uses hash map for O(1) frequency lookup",
+      "Returns index, not the character",
+      "Returns -1 when no unique character exists"
+    ],
+    explanation: `This two-pass approach efficiently finds the first unique character.
+
+Why two passes?
+• First pass: build frequency map - we need to know total counts before deciding
+• Second pass: scan in order, return first with count=1
+
+Why not single pass?
+• Single pass can't know if a character repeats later without seeing the whole string
+• LinkedHashMap approach works but is more complex
+
+Complexity:
+• Time: O(n) for counting + O(n) for scanning = O(n)
+• Space: O(1) if alphabet is fixed (e.g., 26 letters), O(k) for k unique chars
+
+Common variation: return the character instead of index.`
+  },
+  {
+    id: 103,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Medium",
+    question: "Write a function to determine if a string has all unique characters without using extra data structures.",
+    codePrompt: `// Example:
+// Input: "abcdef"
+// Output: true
+
+// Input: "hello"
+// Output: false (letter 'l' repeats)
+
+// Constraint: Do not use Set, Map, or additional arrays`,
+    correctAnswer: `// Approach 1: Bit manipulation (for lowercase a-z only)
+function hasAllUniqueChars(s) {
+  let checker = 0;
+  for (let char of s) {
+    const val = char.charCodeAt(0) - 'a'.charCodeAt(0);
+    if ((checker & (1 << val)) > 0) {
+      return false;
+    }
+    checker |= (1 << val);
+  }
+  return true;
+}
+
+// Approach 2: Compare each pair (no extra space, O(n²))
+function hasAllUniqueCharsBrute(s) {
+  for (let i = 0; i < s.length; i++) {
+    for (let j = i + 1; j < s.length; j++) {
+      if (s[i] === s[j]) return false;
+    }
+  }
+  return true;
+}`,
+    rubric: [
+      "No additional data structures used (or uses bit manipulation)",
+      "Correctly identifies duplicate characters",
+      "Handles empty string (returns true)",
+      "Explains tradeoff between O(n²) time vs. O(n) time with bits",
+      "Bit approach works for limited character set (26 letters)"
+    ],
+    explanation: `This tests problem-solving without typical tools and understanding of tradeoffs.
+
+Approach 1: Bit manipulation (O(n) time, O(1) space)
+• Use an integer as a 32-bit "set"
+• Each bit represents whether a character has been seen
+• Only works for limited alphabets (26 lowercase letters fit in 32 bits)
+
+Approach 2: Brute force (O(n²) time, O(1) space)
+• Compare every pair of characters
+• No extra space but slower
+
+Key insight for interviews:
+• Clarify constraints: what characters? ASCII? Unicode?
+• Bit manipulation is clever but limited
+• Mention tradeoffs explicitly - interviewers love this.`
+  },
+  {
+    id: 104,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Hard",
+    question: "Write a function to find the length of the longest increasing subsequence in an array.",
+    codePrompt: `// Example:
+// Input: [10, 9, 2, 5, 3, 7, 101, 18]
+// Output: 4 (subsequence: [2, 3, 7, 101] or [2, 5, 7, 101])
+
+// Input: [0, 1, 0, 3, 2, 3]
+// Output: 4
+
+// Note: Subsequence doesn't need to be contiguous`,
+    correctAnswer: `// O(n log n) solution using binary search
+function lengthOfLIS(nums) {
+  if (nums.length === 0) return 0;
+  
+  const tails = []; // tails[i] = smallest tail of LIS with length i+1
+  
+  for (let num of nums) {
+    let left = 0, right = tails.length;
+    while (left < right) {
+      const mid = Math.floor((left + right) / 2);
+      if (tails[mid] < num) {
+        left = mid + 1;
+      } else {
+        right = mid;
+      }
+    }
+    if (left === tails.length) {
+      tails.push(num);
+    } else {
+      tails[left] = num;
+    }
+  }
+  return tails.length;
+}
+
+// O(n²) DP solution for understanding
+function lengthOfLIS_DP(nums) {
+  const dp = new Array(nums.length).fill(1);
+  for (let i = 1; i < nums.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (nums[j] < nums[i]) {
+        dp[i] = Math.max(dp[i], dp[j] + 1);
+      }
+    }
+  }
+  return Math.max(...dp);
+}`,
+    rubric: [
+      "Understands subsequence vs. subarray (non-contiguous allowed)",
+      "O(n²) DP approach: dp[i] = length of LIS ending at i",
+      "O(n log n) approach: maintain sorted tails array with binary search",
+      "Correctly handles edge cases (empty array, all decreasing)",
+      "Can explain both approaches and their tradeoffs"
+    ],
+    explanation: `LIS is a classic DP problem with an elegant O(n log n) optimization.
+
+O(n²) DP approach:
+• dp[i] = length of longest increasing subsequence ending at index i
+• For each i, check all j < i: if nums[j] < nums[i], dp[i] = max(dp[i], dp[j]+1)
+• Answer is max of all dp values
+
+O(n log n) approach (Patience Sorting):
+• Maintain array 'tails' where tails[i] = smallest tail of all LIS of length i+1
+• For each number, binary search for its position in tails
+• Either extend tails or replace an element to keep tails optimal
+
+Why tails works:
+• Keeping tails as small as possible maximizes chance of extending the sequence
+• Binary search finds where current number fits in the "potential endings"
+
+This problem appears frequently in FAANG interviews for its DP + optimization nature.`
+  },
+  {
+    id: 105,
+    type: "coding",
+    topic: "Coding",
+    difficulty: "Hard",
+    question: "Write a function to find all starting indices of anagram substrings of a pattern in a string.",
+    codePrompt: `// Example:
+// Input: s = "cbaebabacd", p = "abc"
+// Output: [0, 6]
+// Explanation: 
+//   - Substring starting at 0: "cba" is anagram of "abc"
+//   - Substring starting at 6: "bac" is anagram of "abc"
+
+// Input: s = "abab", p = "ab"
+// Output: [0, 1, 2]`,
+    correctAnswer: `function findAnagrams(s, p) {
+  const result = [];
+  if (s.length < p.length) return result;
+  
+  const pCount = new Array(26).fill(0);
+  const sCount = new Array(26).fill(0);
+  
+  // Count pattern characters
+  for (let char of p) {
+    pCount[char.charCodeAt(0) - 97]++;
+  }
+  
+  // Sliding window
+  for (let i = 0; i < s.length; i++) {
+    // Add current character
+    sCount[s.charCodeAt(i) - 97]++;
+    
+    // Remove character leaving window
+    if (i >= p.length) {
+      sCount[s.charCodeAt(i - p.length) - 97]--;
+    }
+    
+    // Compare frequency arrays
+    if (i >= p.length - 1) {
+      if (arraysEqual(pCount, sCount)) {
+        result.push(i - p.length + 1);
+      }
+    }
+  }
+  return result;
+}
+
+function arraysEqual(a, b) {
+  for (let i = 0; i < 26; i++) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}`,
+    rubric: [
+      "Uses sliding window of size p.length",
+      "Maintains character frequency count for window",
+      "Compares window frequency with pattern frequency",
+      "Correctly slides window (add new char, remove old char)",
+      "O(n) time complexity with O(1) space for fixed alphabet"
+    ],
+    explanation: `This combines sliding window with frequency counting - a powerful pattern.
+
+Key insights:
+• Two strings are anagrams if they have identical character frequencies
+• Use fixed-size sliding window equal to pattern length
+• Maintain running frequency count, update incrementally as window slides
+
+Window management:
+• Add incoming character (right side of window)
+• Remove outgoing character when window exceeds pattern length
+• Compare frequencies only when window reaches full size
+
+Optimization:
+• Instead of comparing 26-element arrays each time, track "matches" count
+• Increment when a frequency matches, decrement when it differs
+• When matches == 26, we found an anagram
+
+Time: O(n) where n = length of s
+Space: O(1) - fixed 26-element arrays for lowercase letters.`
   }
 ];
