@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Modules from "./pages/Modules";
+import References from "./pages/References";
 import VerilogModules from "./pages/VerilogModules";
 import SystemVerilogModules from "./pages/SystemVerilogModules";
 import UVMModules from "./pages/UVMModules";
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/visualizer" element={<Visualizer />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/community" element={<Community />} />
+            <Route path="/references" element={<References />} />
             <Route path="/about" element={<About />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
