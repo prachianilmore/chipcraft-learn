@@ -10,6 +10,7 @@ const Navigation = () => {
     { to: "/", label: "Home" },
     { to: "/modules", label: "Modules" },
     { to: "/quiz", label: "Quiz" },
+    { to: "/references", label: "References" },
     { to: "/community", label: "Community" },
     { to: "/about", label: "About" },
   ];
