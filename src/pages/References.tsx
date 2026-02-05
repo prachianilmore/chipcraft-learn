@@ -41,10 +41,25 @@ const References = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-3 text-sm text-muted-foreground">
-                    <li className="p-3 bg-muted/50 rounded-md">Book title placeholder 1</li>
-                    <li className="p-3 bg-muted/50 rounded-md">Book title placeholder 2</li>
-                    <li className="p-3 bg-muted/50 rounded-md">Book title placeholder 3</li>
+                  <ul className="space-y-3 text-sm">
+                    <li className="p-3 bg-muted/50 rounded-md">
+                      <a href="https://www.amazon.com/dp/0130449113" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+                        Verilog HDL: A Guide to Digital Design and Synthesis – Samir Palnitkar
+                      </a>
+                      <p className="text-muted-foreground mt-1">Industry-standard introduction to Verilog HDL and synthesizable design concepts.</p>
+                    </li>
+                    <li className="p-3 bg-muted/50 rounded-md">
+                      <a href="https://www.amazon.com/dp/0123944244" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+                        Digital Design and Computer Architecture – Harris & Harris
+                      </a>
+                      <p className="text-muted-foreground mt-1">Builds strong intuition on how Verilog maps to real hardware systems.</p>
+                    </li>
+                    <li className="p-3 bg-muted/50 rounded-md">
+                      <a href="https://www.amazon.com/dp/0470185325" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+                        FPGA Prototyping by Verilog Examples – Pong P. Chu
+                      </a>
+                      <p className="text-muted-foreground mt-1">Hands-on Verilog examples focused on practical FPGA design.</p>
+                    </li>
                   </ul>
                 </CardContent>
               </Card>
@@ -63,10 +78,25 @@ const References = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-3 text-sm text-muted-foreground">
-                    <li className="p-3 bg-muted/50 rounded-md">Book title placeholder 1</li>
-                    <li className="p-3 bg-muted/50 rounded-md">Book title placeholder 2</li>
-                    <li className="p-3 bg-muted/50 rounded-md">Book title placeholder 3</li>
+                  <ul className="space-y-3 text-sm">
+                    <li className="p-3 bg-muted/50 rounded-md">
+                      <a href="https://www.amazon.com/dp/0387333991" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+                        SystemVerilog for Design – Stuart Sutherland
+                      </a>
+                      <p className="text-muted-foreground mt-1">Authoritative guide to SystemVerilog language features for RTL design.</p>
+                    </li>
+                    <li className="p-3 bg-muted/50 rounded-md">
+                      <a href="https://www.amazon.com/dp/038726731X" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+                        SystemVerilog for Verification – Chris Spear
+                      </a>
+                      <p className="text-muted-foreground mt-1">Core reference for verification concepts before moving to UVM.</p>
+                    </li>
+                    <li className="p-3 bg-muted/50 rounded-md">
+                      <a href="https://www.amazon.com/dp/1546776346" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+                        RTL Modeling with SystemVerilog – Stuart Sutherland
+                      </a>
+                      <p className="text-muted-foreground mt-1">Best practices for writing clean, synthesizable SystemVerilog RTL.</p>
+                    </li>
                   </ul>
                 </CardContent>
               </Card>
@@ -85,10 +115,25 @@ const References = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <ul className="space-y-3 text-sm text-muted-foreground">
-                    <li className="p-3 bg-muted/50 rounded-md">Book title placeholder 1</li>
-                    <li className="p-3 bg-muted/50 rounded-md">Book title placeholder 2</li>
-                    <li className="p-3 bg-muted/50 rounded-md">Book title placeholder 3</li>
+                  <ul className="space-y-3 text-sm">
+                    <li className="p-3 bg-muted/50 rounded-md">
+                      <a href="https://www.amazon.com/dp/0974164938" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+                        The UVM Primer – Ray Salemi
+                      </a>
+                      <p className="text-muted-foreground mt-1">Beginner-friendly introduction to the UVM methodology.</p>
+                    </li>
+                    <li className="p-3 bg-muted/50 rounded-md">
+                      <a href="https://verificationacademy.com/cookbook" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+                        UVM Cookbook – Accellera
+                      </a>
+                      <p className="text-muted-foreground mt-1">Official UVM best practices and reference examples.</p>
+                    </li>
+                    <li className="p-3 bg-muted/50 rounded-md">
+                      <a href="https://www.doulos.com/books/advanced-uvm/" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
+                        Advanced UVM – Doulos
+                      </a>
+                      <p className="text-muted-foreground mt-1">Advanced UVM patterns used in real production environments.</p>
+                    </li>
                   </ul>
                 </CardContent>
               </Card>
