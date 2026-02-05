@@ -1,6 +1,59 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, FileText, GraduationCap, Wrench, Users } from "lucide-react";
+import { BookOpen, FileText, GraduationCap, Wrench, Users, BookMarked } from "lucide-react";
+
+interface BookItemProps {
+  href: string;
+  title: string;
+  description: string;
+  accentColor: "green" | "blue" | "purple";
+}
+
+const BookItem = ({ href, title, description, accentColor }: BookItemProps) => {
+  const colorClasses = {
+    green: {
+      border: "border-l-emerald-500",
+      bg: "bg-emerald-50/50 dark:bg-emerald-950/20",
+      hoverBg: "hover:bg-emerald-50 dark:hover:bg-emerald-950/40",
+      icon: "text-emerald-600 dark:text-emerald-400",
+    },
+    blue: {
+      border: "border-l-blue-500",
+      bg: "bg-blue-50/50 dark:bg-blue-950/20",
+      hoverBg: "hover:bg-blue-50 dark:hover:bg-blue-950/40",
+      icon: "text-blue-600 dark:text-blue-400",
+    },
+    purple: {
+      border: "border-l-purple-500",
+      bg: "bg-purple-50/50 dark:bg-purple-950/20",
+      hoverBg: "hover:bg-purple-50 dark:hover:bg-purple-950/40",
+      icon: "text-purple-600 dark:text-purple-400",
+    },
+  };
+
+  const colors = colorClasses[accentColor];
+
+  return (
+    <li>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`group flex items-start gap-3 p-4 rounded-lg border-l-4 ${colors.border} ${colors.bg} ${colors.hoverBg} transition-all duration-200 hover:shadow-sm hover:translate-x-0.5 cursor-pointer`}
+      >
+        <BookMarked className={`w-4 h-4 mt-0.5 flex-shrink-0 ${colors.icon}`} />
+        <div className="min-w-0">
+          <span className="font-semibold text-foreground group-hover:text-primary transition-colors leading-tight block">
+            {title}
+          </span>
+          <p className="text-muted-foreground/80 text-xs mt-1.5 leading-relaxed">
+            {description}
+          </p>
+        </div>
+      </a>
+    </li>
+  );
+};
 
 const References = () => {
   return (
@@ -28,11 +81,11 @@ const References = () => {
             
             <div className="grid md:grid-cols-3 gap-6">
               {/* Verilog Books */}
-              <Card className="border-border">
+              <Card className="border-border shadow-sm hover:shadow-md transition-shadow duration-200">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <CardTitle className="text-lg">Verilog</CardTitle>
-                    <Badge variant="outline" className="bg-green-500/10 text-green-600 border-green-500/20">
+                    <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
                       Beginner
                     </Badge>
                   </div>
@@ -42,30 +95,30 @@ const References = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3 text-sm">
-                    <li className="p-3 bg-muted/50 rounded-md">
-                      <a href="https://www.amazon.com/dp/0130449113" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                        Verilog HDL: A Guide to Digital Design and Synthesis – Samir Palnitkar
-                      </a>
-                      <p className="text-muted-foreground mt-1">Industry-standard introduction to Verilog HDL and synthesizable design concepts.</p>
-                    </li>
-                    <li className="p-3 bg-muted/50 rounded-md">
-                      <a href="https://www.amazon.com/dp/0123944244" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                        Digital Design and Computer Architecture – Harris & Harris
-                      </a>
-                      <p className="text-muted-foreground mt-1">Builds strong intuition on how Verilog maps to real hardware systems.</p>
-                    </li>
-                    <li className="p-3 bg-muted/50 rounded-md">
-                      <a href="https://www.amazon.com/dp/0470185325" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                        FPGA Prototyping by Verilog Examples – Pong P. Chu
-                      </a>
-                      <p className="text-muted-foreground mt-1">Hands-on Verilog examples focused on practical FPGA design.</p>
-                    </li>
+                    <BookItem
+                      href="https://www.amazon.com/dp/0130449113"
+                      title="Verilog HDL: A Guide to Digital Design and Synthesis – Samir Palnitkar"
+                      description="Industry-standard introduction to Verilog HDL and synthesizable design concepts."
+                      accentColor="green"
+                    />
+                    <BookItem
+                      href="https://www.amazon.com/dp/0123944244"
+                      title="Digital Design and Computer Architecture – Harris & Harris"
+                      description="Builds strong intuition on how Verilog maps to real hardware systems."
+                      accentColor="green"
+                    />
+                    <BookItem
+                      href="https://www.amazon.com/dp/0470185325"
+                      title="FPGA Prototyping by Verilog Examples – Pong P. Chu"
+                      description="Hands-on Verilog examples focused on practical FPGA design."
+                      accentColor="green"
+                    />
                   </ul>
                 </CardContent>
               </Card>
 
               {/* SystemVerilog Books */}
-              <Card className="border-border">
+              <Card className="border-border shadow-sm hover:shadow-md transition-shadow duration-200">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <CardTitle className="text-lg">SystemVerilog</CardTitle>
@@ -79,30 +132,30 @@ const References = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3 text-sm">
-                    <li className="p-3 bg-muted/50 rounded-md">
-                      <a href="https://www.amazon.com/dp/0387333991" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                        SystemVerilog for Design – Stuart Sutherland
-                      </a>
-                      <p className="text-muted-foreground mt-1">Authoritative guide to SystemVerilog language features for RTL design.</p>
-                    </li>
-                    <li className="p-3 bg-muted/50 rounded-md">
-                      <a href="https://www.amazon.com/dp/038726731X" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                        SystemVerilog for Verification – Chris Spear
-                      </a>
-                      <p className="text-muted-foreground mt-1">Core reference for verification concepts before moving to UVM.</p>
-                    </li>
-                    <li className="p-3 bg-muted/50 rounded-md">
-                      <a href="https://www.amazon.com/dp/1546776346" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                        RTL Modeling with SystemVerilog – Stuart Sutherland
-                      </a>
-                      <p className="text-muted-foreground mt-1">Best practices for writing clean, synthesizable SystemVerilog RTL.</p>
-                    </li>
+                    <BookItem
+                      href="https://www.amazon.com/dp/0387333991"
+                      title="SystemVerilog for Design – Stuart Sutherland"
+                      description="Authoritative guide to SystemVerilog language features for RTL design."
+                      accentColor="blue"
+                    />
+                    <BookItem
+                      href="https://www.amazon.com/dp/038726731X"
+                      title="SystemVerilog for Verification – Chris Spear"
+                      description="Core reference for verification concepts before moving to UVM."
+                      accentColor="blue"
+                    />
+                    <BookItem
+                      href="https://www.amazon.com/dp/1546776346"
+                      title="RTL Modeling with SystemVerilog – Stuart Sutherland"
+                      description="Best practices for writing clean, synthesizable SystemVerilog RTL."
+                      accentColor="blue"
+                    />
                   </ul>
                 </CardContent>
               </Card>
 
               {/* UVM Books */}
-              <Card className="border-border">
+              <Card className="border-border shadow-sm hover:shadow-md transition-shadow duration-200">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <CardTitle className="text-lg">UVM</CardTitle>
@@ -116,24 +169,24 @@ const References = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3 text-sm">
-                    <li className="p-3 bg-muted/50 rounded-md">
-                      <a href="https://www.amazon.com/dp/0974164938" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                        The UVM Primer – Ray Salemi
-                      </a>
-                      <p className="text-muted-foreground mt-1">Beginner-friendly introduction to the UVM methodology.</p>
-                    </li>
-                    <li className="p-3 bg-muted/50 rounded-md">
-                      <a href="https://verificationacademy.com/cookbook" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                        UVM Cookbook – Accellera
-                      </a>
-                      <p className="text-muted-foreground mt-1">Official UVM best practices and reference examples.</p>
-                    </li>
-                    <li className="p-3 bg-muted/50 rounded-md">
-                      <a href="https://www.doulos.com/books/advanced-uvm/" target="_blank" rel="noopener noreferrer" className="font-medium text-foreground hover:text-primary transition-colors">
-                        Advanced UVM – Doulos
-                      </a>
-                      <p className="text-muted-foreground mt-1">Advanced UVM patterns used in real production environments.</p>
-                    </li>
+                    <BookItem
+                      href="https://www.amazon.com/dp/0974164938"
+                      title="The UVM Primer – Ray Salemi"
+                      description="Beginner-friendly introduction to the UVM methodology."
+                      accentColor="purple"
+                    />
+                    <BookItem
+                      href="https://verificationacademy.com/cookbook"
+                      title="UVM Cookbook – Accellera"
+                      description="Official UVM best practices and reference examples."
+                      accentColor="purple"
+                    />
+                    <BookItem
+                      href="https://www.doulos.com/books/advanced-uvm/"
+                      title="Advanced UVM – Doulos"
+                      description="Advanced UVM patterns used in real production environments."
+                      accentColor="purple"
+                    />
                   </ul>
                 </CardContent>
               </Card>
