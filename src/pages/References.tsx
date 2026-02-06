@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, FileText, GraduationCap, Wrench, Users, BookMarked } from "lucide-react";
+import { BookOpen, FileText, GraduationCap, Wrench, Users, BookMarked, ExternalLink, Lock, CheckCircle } from "lucide-react";
 
 interface BookItemProps {
   href: string;
@@ -204,28 +204,134 @@ const References = () => {
             
             <Card className="border-border">
               <CardContent className="pt-6">
-                <p className="text-muted-foreground mb-4">
+                <p className="text-muted-foreground mb-6">
                   Official IEEE standards and language reference manuals are the authoritative sources 
                   for understanding the complete specification of hardware description languages.
                 </p>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <h4 className="font-medium mb-1">IEEE 1364 - Verilog Standard</h4>
-                    <p className="text-sm text-muted-foreground">Official Verilog HDL specification</p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* IEEE 1364 */}
+                  <div className="p-5 bg-muted/30 rounded-xl border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
+                    <h4 className="font-semibold mb-2 text-foreground">IEEE 1364 – Verilog Standard</h4>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Official IEEE language reference manual defining Verilog HDL syntax and semantics.
+                    </p>
+                    <div className="space-y-2">
+                      <a
+                        href="https://standards.ieee.org/standard/1364-2005.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span className="group-hover:underline">IEEE Standard Page</span>
+                      </a>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground/70">
+                        <Lock className="w-3.5 h-3.5" />
+                        <span>Full PDF available via IEEE (paid or academic access)</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <h4 className="font-medium mb-1">IEEE 1800 - SystemVerilog Standard</h4>
-                    <p className="text-sm text-muted-foreground">Unified hardware design and verification language</p>
+
+                  {/* IEEE 1800 */}
+                  <div className="p-5 bg-muted/30 rounded-xl border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
+                    <h4 className="font-semibold mb-2 text-foreground">IEEE 1800 – SystemVerilog Standard</h4>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Official IEEE standard for the unified design and verification language.
+                    </p>
+                    <div className="space-y-2">
+                      <a
+                        href="https://standards.ieee.org/standard/1800-2017.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span className="group-hover:underline">IEEE Standard Page</span>
+                      </a>
+                      <a
+                        href="https://ieeexplore.ieee.org/document/8299595"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span className="group-hover:underline">IEEE Xplore (academic access)</span>
+                      </a>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground/70">
+                        <Lock className="w-3.5 h-3.5" />
+                        <span>Full PDF requires paid or university access</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <h4 className="font-medium mb-1">UVM Reference Manual</h4>
-                    <p className="text-sm text-muted-foreground">Official UVM class library documentation</p>
+
+                  {/* UVM Reference Manual */}
+                  <div className="p-5 bg-muted/30 rounded-xl border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
+                    <h4 className="font-semibold mb-2 text-foreground">UVM Reference Manual</h4>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Official documentation for the Universal Verification Methodology class library.
+                    </p>
+                    <div className="space-y-2">
+                      <a
+                        href="https://accellera.org/downloads/standards/uvm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-colors"
+                      >
+                        <CheckCircle className="w-3.5 h-3.5" />
+                        <span className="group-hover:underline">Accellera Downloads (Free)</span>
+                      </a>
+                      <a
+                        href="https://verificationacademy.com/uvm"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-colors"
+                      >
+                        <CheckCircle className="w-3.5 h-3.5" />
+                        <span className="group-hover:underline">Verification Academy Docs (Free)</span>
+                      </a>
+                    </div>
                   </div>
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <h4 className="font-medium mb-1">Vendor Documentation</h4>
-                    <p className="text-sm text-muted-foreground">Tool-specific guides and tutorials</p>
+
+                  {/* Vendor Documentation */}
+                  <div className="p-5 bg-muted/30 rounded-xl border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
+                    <h4 className="font-semibold mb-2 text-foreground">Vendor Documentation</h4>
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Official tool documentation, language references, and best practices from EDA vendors.
+                    </p>
+                    <div className="space-y-2">
+                      <a
+                        href="https://www.synopsys.com/verification.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span className="group-hover:underline">Synopsys Verification Docs</span>
+                      </a>
+                      <a
+                        href="https://www.cadence.com/en_US/home/training/all-courses.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span className="group-hover:underline">Cadence Training & Docs</span>
+                      </a>
+                      <a
+                        href="https://eda.sw.siemens.com/en-US/documentation/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span className="group-hover:underline">Siemens EDA Documentation</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
+                <p className="text-xs text-muted-foreground/60 mt-6 text-center">
+                  Some IEEE standards require paid or academic access. Free alternatives and official documentation are linked where available.
+                </p>
               </CardContent>
             </Card>
           </section>
