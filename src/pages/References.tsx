@@ -194,146 +194,205 @@ const References = () => {
           </section>
 
           {/* Official Standards & Documentation */}
-          <section>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <FileText className="w-5 h-5 text-primary" />
+          <section className="relative">
+            {/* Section background band */}
+            <div className="absolute inset-0 -mx-4 px-4 bg-gradient-to-b from-muted/30 via-muted/20 to-transparent rounded-3xl -z-10" />
+            
+            <div className="flex items-center gap-3 mb-4 pt-8">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <FileText className="w-6 h-6 text-primary" />
               </div>
-              <h2 className="text-2xl font-bold">Official Standards & Documentation</h2>
+              <div>
+                <h2 className="text-2xl font-bold">Official Standards & Documentation</h2>
+                <p className="text-sm text-muted-foreground">Authoritative sources for HDL specifications</p>
+              </div>
             </div>
             
-            <Card className="border-border">
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground mb-6">
-                  Official IEEE standards and language reference manuals are the authoritative sources 
-                  for understanding the complete specification of hardware description languages.
-                </p>
-                <div className="grid md:grid-cols-2 gap-6">
-                  {/* IEEE 1364 */}
-                  <div className="p-5 bg-muted/30 rounded-xl border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
-                    <h4 className="font-semibold mb-2 text-foreground">IEEE 1364 – Verilog Standard</h4>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Official IEEE language reference manual defining Verilog HDL syntax and semantics.
-                    </p>
-                    <div className="space-y-2">
-                      <a
-                        href="https://standards.ieee.org/standard/1364-2005.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        <span className="group-hover:underline">IEEE Standard Page</span>
-                      </a>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground/70">
-                        <Lock className="w-3.5 h-3.5" />
-                        <span>Full PDF available via IEEE (paid or academic access)</span>
-                      </div>
+            <div className="grid md:grid-cols-2 gap-6 pb-8">
+              {/* IEEE 1364 - Verilog */}
+              <Card className="border-t-4 border-t-blue-500 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20 text-xs">
+                      IEEE Standard
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-xl mt-3">IEEE 1364 – Verilog Standard</CardTitle>
+                  <CardDescription className="text-sm">
+                    Official IEEE language reference manual defining Verilog HDL syntax and semantics.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="space-y-2 border-t border-border/50 pt-4">
+                    <a
+                      href="https://standards.ieee.org/standard/1364-2005.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 p-3 rounded-lg bg-blue-50/50 dark:bg-blue-950/20 hover:bg-blue-100/70 dark:hover:bg-blue-950/40 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      <span className="text-sm font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">IEEE Standard Page</span>
+                    </a>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
+                      <Lock className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm text-muted-foreground">Full PDF available via IEEE</span>
+                      <Badge variant="outline" className="ml-auto text-xs bg-amber-500/10 text-amber-600 border-amber-500/20">
+                        Paid / Academic
+                      </Badge>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
 
-                  {/* IEEE 1800 */}
-                  <div className="p-5 bg-muted/30 rounded-xl border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
-                    <h4 className="font-semibold mb-2 text-foreground">IEEE 1800 – SystemVerilog Standard</h4>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Official IEEE standard for the unified design and verification language.
-                    </p>
-                    <div className="space-y-2">
-                      <a
-                        href="https://standards.ieee.org/standard/1800-2017.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        <span className="group-hover:underline">IEEE Standard Page</span>
-                      </a>
-                      <a
-                        href="https://ieeexplore.ieee.org/document/8299595"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        <span className="group-hover:underline">IEEE Xplore (academic access)</span>
-                      </a>
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground/70">
-                        <Lock className="w-3.5 h-3.5" />
-                        <span>Full PDF requires paid or university access</span>
-                      </div>
+              {/* IEEE 1800 - SystemVerilog */}
+              <Card className="border-t-4 border-t-blue-500 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+                      <BookOpen className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <Badge variant="outline" className="bg-blue-500/10 text-blue-600 border-blue-500/20 text-xs">
+                      IEEE Standard
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-xl mt-3">IEEE 1800 – SystemVerilog Standard</CardTitle>
+                  <CardDescription className="text-sm">
+                    Official IEEE standard for the unified design and verification language.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="space-y-2 border-t border-border/50 pt-4">
+                    <a
+                      href="https://standards.ieee.org/standard/1800-2017.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 p-3 rounded-lg bg-blue-50/50 dark:bg-blue-950/20 hover:bg-blue-100/70 dark:hover:bg-blue-950/40 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      <span className="text-sm font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">IEEE Standard Page</span>
+                    </a>
+                    <a
+                      href="https://ieeexplore.ieee.org/document/8299595"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 p-3 rounded-lg bg-blue-50/50 dark:bg-blue-950/20 hover:bg-blue-100/70 dark:hover:bg-blue-950/40 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      <span className="text-sm font-medium text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">IEEE Xplore</span>
+                      <Badge variant="outline" className="ml-auto text-xs bg-amber-500/10 text-amber-600 border-amber-500/20">
+                        Academic
+                      </Badge>
+                    </a>
+                    <div className="flex items-center gap-3 p-3 rounded-lg bg-muted/30">
+                      <Lock className="w-4 h-4 text-muted-foreground" />
+                      <span className="text-sm text-muted-foreground">Full PDF requires paid or university access</span>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
 
-                  {/* UVM Reference Manual */}
-                  <div className="p-5 bg-muted/30 rounded-xl border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
-                    <h4 className="font-semibold mb-2 text-foreground">UVM Reference Manual</h4>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Official documentation for the Universal Verification Methodology class library.
-                    </p>
-                    <div className="space-y-2">
-                      <a
-                        href="https://accellera.org/downloads/standards/uvm"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-colors"
-                      >
-                        <CheckCircle className="w-3.5 h-3.5" />
-                        <span className="group-hover:underline">Accellera Downloads (Free)</span>
-                      </a>
-                      <a
-                        href="https://verificationacademy.com/uvm"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 transition-colors"
-                      >
-                        <CheckCircle className="w-3.5 h-3.5" />
-                        <span className="group-hover:underline">Verification Academy Docs (Free)</span>
-                      </a>
+              {/* UVM Reference Manual */}
+              <Card className="border-t-4 border-t-emerald-500 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0">
+                      <GraduationCap className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                     </div>
+                    <Badge variant="outline" className="bg-emerald-500/10 text-emerald-600 border-emerald-500/20 text-xs">
+                      Free
+                    </Badge>
                   </div>
+                  <CardTitle className="text-xl mt-3">UVM Reference Manual</CardTitle>
+                  <CardDescription className="text-sm">
+                    Official documentation for the Universal Verification Methodology class library.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="space-y-2 border-t border-border/50 pt-4">
+                    <a
+                      href="https://accellera.org/downloads/standards/uvm"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/20 hover:bg-emerald-100/70 dark:hover:bg-emerald-950/40 transition-colors"
+                    >
+                      <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      <span className="text-sm font-medium text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Accellera Downloads</span>
+                      <Badge variant="outline" className="ml-auto text-xs bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
+                        Free
+                      </Badge>
+                    </a>
+                    <a
+                      href="https://verificationacademy.com/uvm"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 p-3 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/20 hover:bg-emerald-100/70 dark:hover:bg-emerald-950/40 transition-colors"
+                    >
+                      <CheckCircle className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      <span className="text-sm font-medium text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Verification Academy Docs</span>
+                      <Badge variant="outline" className="ml-auto text-xs bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
+                        Free
+                      </Badge>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
 
-                  {/* Vendor Documentation */}
-                  <div className="p-5 bg-muted/30 rounded-xl border border-border/50 hover:border-border hover:shadow-sm transition-all duration-200">
-                    <h4 className="font-semibold mb-2 text-foreground">Vendor Documentation</h4>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Official tool documentation, language references, and best practices from EDA vendors.
-                    </p>
-                    <div className="space-y-2">
-                      <a
-                        href="https://www.synopsys.com/verification.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        <span className="group-hover:underline">Synopsys Verification Docs</span>
-                      </a>
-                      <a
-                        href="https://www.cadence.com/en_US/home/training/all-courses.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        <span className="group-hover:underline">Cadence Training & Docs</span>
-                      </a>
-                      <a
-                        href="https://eda.sw.siemens.com/en-US/documentation/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                        <span className="group-hover:underline">Siemens EDA Documentation</span>
-                      </a>
+              {/* Vendor Documentation */}
+              <Card className="border-t-4 border-t-slate-400 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 overflow-hidden">
+                <CardHeader className="pb-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-slate-500/10 flex items-center justify-center flex-shrink-0">
+                      <Wrench className="w-6 h-6 text-slate-600 dark:text-slate-400" />
                     </div>
+                    <Badge variant="outline" className="bg-slate-500/10 text-slate-600 border-slate-500/20 text-xs">
+                      Vendor Tools
+                    </Badge>
                   </div>
-                </div>
-                <p className="text-xs text-muted-foreground/60 mt-6 text-center">
-                  Some IEEE standards require paid or academic access. Free alternatives and official documentation are linked where available.
-                </p>
-              </CardContent>
-            </Card>
+                  <CardTitle className="text-xl mt-3">Vendor Documentation</CardTitle>
+                  <CardDescription className="text-sm">
+                    Official tool documentation, language references, and best practices from EDA vendors.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <div className="space-y-2 border-t border-border/50 pt-4">
+                    <a
+                      href="https://www.synopsys.com/verification.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 p-3 rounded-lg bg-slate-50/50 dark:bg-slate-950/20 hover:bg-slate-100/70 dark:hover:bg-slate-950/40 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                      <span className="text-sm font-medium text-foreground group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors">Synopsys Verification Docs</span>
+                    </a>
+                    <a
+                      href="https://www.cadence.com/en_US/home/training/all-courses.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 p-3 rounded-lg bg-slate-50/50 dark:bg-slate-950/20 hover:bg-slate-100/70 dark:hover:bg-slate-950/40 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                      <span className="text-sm font-medium text-foreground group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors">Cadence Training & Docs</span>
+                    </a>
+                    <a
+                      href="https://eda.sw.siemens.com/en-US/documentation/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 p-3 rounded-lg bg-slate-50/50 dark:bg-slate-950/20 hover:bg-slate-100/70 dark:hover:bg-slate-950/40 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4 text-slate-600 dark:text-slate-400" />
+                      <span className="text-sm font-medium text-foreground group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors">Siemens EDA Documentation</span>
+                    </a>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+            
+            <p className="text-xs text-muted-foreground/70 text-center pb-4">
+              Some IEEE standards require paid or academic access. Free alternatives and official documentation are linked where available.
+            </p>
           </section>
 
           {/* Online Learning Platforms */}
