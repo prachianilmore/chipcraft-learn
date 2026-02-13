@@ -19,15 +19,17 @@ const Home = () => {
         <div className="container mx-auto px-4 py-20 md:py-32 relative">
           <div className="max-w-3xl mx-auto text-center space-y-6">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight animate-fade-in">
-              Learn Digital Design & Verification the Practical Way
+              Sharpen Your Digital Design & Verification Knowledge
             </h1>
             <p className="text-lg md:text-xl text-primary-foreground/90 animate-fade-in">
-              Free, open-source lessons covering Verilog, SystemVerilog, and UVM — built for beginners 
-              and future verification engineers. Learn step-by-step with clean examples and real hardware concepts.
+              A curated reference hub for Verilog, SystemVerilog, and UVM — bringing together quiz practice, reference books, official IEEE specifications, certification resources, trusted learning platforms, and industry tools in one place.
+            </p>
+            <p className="text-lg md:text-xl text-primary-foreground/90 animate-fade-in">
+              Whether you're revising fundamentals, preparing for interviews, exploring official standards, or strengthening core concepts, ChipLearn helps you find clarity without the noise.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4 animate-fade-in">
               <Button asChild size="lg" variant="secondary" className="text-lg">
-                <Link to="/modules">Start Learning</Link>
+                <Link to="/modules">Explore Resources</Link>
               </Button>
             <Button asChild size="lg" variant="outline" className="text-lg border-primary-foreground hover:bg-primary-foreground hover:text-primary text-primary-foreground">
               
