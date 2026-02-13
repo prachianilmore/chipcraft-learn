@@ -396,62 +396,141 @@ const References = () => {
           </section>
 
           {/* Online Learning Platforms */}
-          <section>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-primary" />
+          <section className="relative">
+            {/* Section background band */}
+            <div className="absolute inset-0 -mx-4 px-4 bg-gradient-to-b from-purple-50/40 via-blue-50/20 to-transparent dark:from-purple-950/20 dark:via-blue-950/10 dark:to-transparent rounded-3xl -z-10" />
+            
+            <div className="flex items-center gap-3 mb-4 pt-8">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <GraduationCap className="w-7 h-7 text-primary" />
               </div>
-              <h2 className="text-2xl font-bold">Online Learning Platforms</h2>
+              <div>
+                <h2 className="text-2xl font-bold">Online Learning Platforms</h2>
+                <p className="text-sm text-muted-foreground">Curated knowledge ecosystem for verification and design engineers</p>
+              </div>
             </div>
             
-            <Card className="border-border">
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground mb-4">
-                  Interactive courses and tutorials from trusted educational platforms to supplement your learning journey.
-                </p>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <a
-                    href="https://verificationacademy.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group p-5 bg-muted/50 rounded-lg hover:bg-purple-50/60 dark:hover:bg-purple-950/20 transition-colors cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <h4 className="font-semibold text-foreground group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Verification Academy</h4>
-                      <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-purple-500 transition-colors" />
-                    </div>
-                    <p className="text-xs text-muted-foreground/80 mb-2">Siemens EDA</p>
-                    <p className="text-sm text-muted-foreground">Free UVM tutorials, methodology guides, webinars, and reference examples widely used in industry.</p>
-                  </a>
-                  <a
-                    href="https://accellera.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group p-5 bg-muted/50 rounded-lg hover:bg-blue-50/60 dark:hover:bg-blue-950/20 transition-colors cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <h4 className="font-semibold text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Accellera Systems Initiative</h4>
-                      <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-blue-500 transition-colors" />
-                    </div>
-                    <p className="text-xs text-muted-foreground/80 mb-2">Standards Body</p>
-                    <p className="text-sm text-muted-foreground">Official standards body for SystemVerilog and UVM. Provides specifications and methodology updates.</p>
-                  </a>
-                  <a
-                    href="https://nptel.ac.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group p-5 bg-muted/50 rounded-lg hover:bg-emerald-50/60 dark:hover:bg-emerald-950/20 transition-colors cursor-pointer"
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <h4 className="font-semibold text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">NPTEL – VLSI & HDL Courses</h4>
-                      <ExternalLink className="w-3.5 h-3.5 text-muted-foreground group-hover:text-emerald-500 transition-colors" />
-                    </div>
-                    <p className="text-xs text-muted-foreground/80 mb-2">University Courses</p>
-                    <p className="text-sm text-muted-foreground">University-level structured courses on digital design, HDL, and VLSI systems.</p>
-                  </a>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 pb-8">
+              {/* Verification Academy */}
+              <a
+                href="https://verificationacademy.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative bg-card border border-border rounded-xl p-6 shadow-medium hover:shadow-large hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-purple-400" />
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                  </div>
+                  <Badge variant="outline" className="text-[10px] bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
+                    Free
+                  </Badge>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-foreground group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Verification Academy</h4>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <p className="text-xs text-purple-600/70 dark:text-purple-400/70 font-medium mb-2">Siemens EDA</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">Free UVM tutorials, methodology guides, industry webinars, and reference examples. Widely used by professional verification engineers for learning and debugging real SoC environments.</p>
+              </a>
+
+              {/* Accellera */}
+              <a
+                href="https://accellera.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative bg-card border border-border rounded-xl p-6 shadow-medium hover:shadow-large hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-400" />
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center">
+                    <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <Badge variant="outline" className="text-[10px] bg-blue-500/10 text-blue-600 border-blue-500/20">
+                    Standards Body
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Accellera Systems Initiative</h4>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <p className="text-xs text-blue-600/70 dark:text-blue-400/70 font-medium mb-2">Industry Standards</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">Official standards organization behind SystemVerilog and UVM. Source of specifications, updates, and methodology evolution used across the semiconductor industry.</p>
+              </a>
+
+              {/* NPTEL */}
+              <a
+                href="https://nptel.ac.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative bg-card border border-border rounded-xl p-6 shadow-medium hover:shadow-large hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-emerald-400" />
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <Badge variant="outline" className="text-[10px] bg-emerald-500/10 text-emerald-600 border-emerald-500/20">
+                    Academic
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">NPTEL – VLSI & HDL Courses</h4>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <p className="text-xs text-emerald-600/70 dark:text-emerald-400/70 font-medium mb-2">University Courses</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">University-level structured video courses covering digital design, HDL implementation, CMOS basics, and VLSI system fundamentals.</p>
+              </a>
+
+              {/* Doulos */}
+              <a
+                href="https://www.doulos.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative bg-card border border-border rounded-xl p-6 shadow-medium hover:shadow-large hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-amber-400" />
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
+                    <Wrench className="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                  </div>
+                  <Badge variant="outline" className="text-[10px] bg-amber-500/10 text-amber-600 border-amber-500/20">
+                    Professional Training
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-foreground group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">Doulos Training</h4>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <p className="text-xs text-amber-600/70 dark:text-amber-400/70 font-medium mb-2">Industry Training</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">Industry-recognized training material focused on SystemVerilog, UVM, and advanced verification methodologies used in production environments.</p>
+              </a>
+
+              {/* Coursera */}
+              <a
+                href="https://www.coursera.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative bg-card border border-border rounded-xl p-6 shadow-medium hover:shadow-large hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+              >
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-cyan-400" />
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+                    <GraduationCap className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
+                  </div>
+                  <Badge variant="outline" className="text-[10px] bg-cyan-500/10 text-cyan-600 border-cyan-500/20">
+                    Academic
+                  </Badge>
+                </div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="font-bold text-foreground group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">Coursera – Digital Design Programs</h4>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <p className="text-xs text-cyan-600/70 dark:text-cyan-400/70 font-medium mb-2">Online Courses</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">Academic-style digital design and FPGA courses useful for strengthening hardware fundamentals and RTL concepts.</p>
+              </a>
+            </div>
           </section>
 
           {/* Tools & Simulators */}
