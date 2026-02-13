@@ -536,109 +536,114 @@ const References = () => {
           {/* Tools & Simulators */}
           <section>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                <Wrench className="w-5 h-5 text-primary" />
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                <Wrench className="w-6 h-6 text-primary" />
               </div>
-              <h2 className="text-2xl font-bold">Tools & Simulators</h2>
+              <div>
+                <h2 className="text-2xl font-bold">Tools & Simulators</h2>
+                <p className="text-sm text-muted-foreground">Industry-standard and open-source tools for simulation, synthesis, and verification workflows.</p>
+              </div>
             </div>
             
-            <Card className="border-border">
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground mb-4">
-                  Industry-standard and open-source tools for simulation, synthesis, and verification workflows.
-                </p>
-                <div className="space-y-6">
-                  {/* Simulators */}
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Simulators</h4>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-                      <a href="https://eda.sw.siemens.com/en-US/ic/questa/" target="_blank" rel="noopener noreferrer" className="group p-4 bg-muted/50 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-950/20 transition-colors cursor-pointer">
-                        <div className="flex items-center justify-between mb-1">
-                          <h5 className="font-semibold text-sm text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">ModelSim / Questa</h5>
-                          <Badge variant="outline" className="text-[10px] bg-blue-500/10 text-blue-600 border-blue-500/20">Industry Standard</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground/80">Siemens EDA</p>
-                        <p className="text-xs text-muted-foreground mt-1">Industry-standard HDL simulator for design and verification.</p>
-                      </a>
-                      <a href="https://www.synopsys.com/verification/simulation/vcs.html" target="_blank" rel="noopener noreferrer" className="group p-4 bg-muted/50 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-950/20 transition-colors cursor-pointer">
-                        <div className="flex items-center justify-between mb-1">
-                          <h5 className="font-semibold text-sm text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">VCS</h5>
-                          <Badge variant="outline" className="text-[10px] bg-blue-500/10 text-blue-600 border-blue-500/20">Industry Standard</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground/80">Synopsys</p>
-                        <p className="text-xs text-muted-foreground mt-1">Enterprise-level verification simulator.</p>
-                      </a>
-                      <a href="https://www.cadence.com/en_US/home/tools/system-design-and-verification/simulation-and-testbench-verification/xcelium-simulator.html" target="_blank" rel="noopener noreferrer" className="group p-4 bg-muted/50 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-950/20 transition-colors cursor-pointer">
-                        <div className="flex items-center justify-between mb-1">
-                          <h5 className="font-semibold text-sm text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Xcelium</h5>
-                          <Badge variant="outline" className="text-[10px] bg-blue-500/10 text-blue-600 border-blue-500/20">Industry Standard</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground/80">Cadence</p>
-                        <p className="text-xs text-muted-foreground mt-1">High-performance SoC verification simulator.</p>
-                      </a>
-                      <a href="http://iverilog.icarus.com/" target="_blank" rel="noopener noreferrer" className="group p-4 bg-muted/50 rounded-lg hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-colors cursor-pointer">
-                        <div className="flex items-center justify-between mb-1">
-                          <h5 className="font-semibold text-sm text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Icarus Verilog</h5>
-                          <Badge variant="outline" className="text-[10px] bg-emerald-500/10 text-emerald-600 border-emerald-500/20">Open Source</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-1">Open-source Verilog simulator for learning and prototyping.</p>
-                      </a>
-                      <a href="https://www.veripool.org/verilator/" target="_blank" rel="noopener noreferrer" className="group p-4 bg-muted/50 rounded-lg hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-colors cursor-pointer">
-                        <div className="flex items-center justify-between mb-1">
-                          <h5 className="font-semibold text-sm text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Verilator</h5>
-                          <Badge variant="outline" className="text-[10px] bg-emerald-500/10 text-emerald-600 border-emerald-500/20">Open Source</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-1">Open-source high-performance Verilog/SystemVerilog simulator.</p>
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Waveform Viewers */}
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Waveform Viewers</h4>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-                      <a href="http://gtkwave.sourceforge.net/" target="_blank" rel="noopener noreferrer" className="group p-4 bg-muted/50 rounded-lg hover:bg-emerald-50/50 dark:hover:bg-emerald-950/20 transition-colors cursor-pointer">
-                        <div className="flex items-center justify-between mb-1">
-                          <h5 className="font-semibold text-sm text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">GTKWave</h5>
-                          <Badge variant="outline" className="text-[10px] bg-emerald-500/10 text-emerald-600 border-emerald-500/20">Open Source</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-1">Free, open-source waveform viewer for VCD and other formats.</p>
-                      </a>
-                      <a href="https://eda.sw.siemens.com/en-US/ic/questa/" target="_blank" rel="noopener noreferrer" className="group p-4 bg-muted/50 rounded-lg hover:bg-slate-100/50 dark:hover:bg-slate-950/20 transition-colors cursor-pointer">
-                        <div className="flex items-center justify-between mb-1">
-                          <h5 className="font-semibold text-sm text-foreground group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">Questa Wave</h5>
-                          <Badge variant="outline" className="text-[10px] bg-slate-500/10 text-slate-600 border-slate-500/20">Commercial</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-1">Commercial waveform debugger integrated with Questa simulator.</p>
-                      </a>
-                    </div>
-                  </div>
-
-                  {/* Synthesis Tools */}
-                  <div>
-                    <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Synthesis Tools</h4>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
-                      <a href="https://www.xilinx.com/products/design-tools/vivado.html" target="_blank" rel="noopener noreferrer" className="group p-4 bg-muted/50 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-950/20 transition-colors cursor-pointer">
-                        <div className="flex items-center justify-between mb-1">
-                          <h5 className="font-semibold text-sm text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Vivado</h5>
-                          <Badge variant="outline" className="text-[10px] bg-blue-500/10 text-blue-600 border-blue-500/20">Industry Standard</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground/80">Xilinx (AMD)</p>
-                        <p className="text-xs text-muted-foreground mt-1">FPGA synthesis, implementation, and programming suite.</p>
-                      </a>
-                      <a href="https://www.intel.com/content/www/us/en/software/programmable/quartus-prime/overview.html" target="_blank" rel="noopener noreferrer" className="group p-4 bg-muted/50 rounded-lg hover:bg-blue-50/50 dark:hover:bg-blue-950/20 transition-colors cursor-pointer">
-                        <div className="flex items-center justify-between mb-1">
-                          <h5 className="font-semibold text-sm text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Quartus</h5>
-                          <Badge variant="outline" className="text-[10px] bg-blue-500/10 text-blue-600 border-blue-500/20">Industry Standard</Badge>
-                        </div>
-                        <p className="text-xs text-muted-foreground/80">Intel FPGA</p>
-                        <p className="text-xs text-muted-foreground mt-1">FPGA development suite for Intel/Altera devices.</p>
-                      </a>
-                    </div>
-                  </div>
+            <div className="space-y-8">
+              {/* Simulators */}
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-foreground/80">Simulators</h4>
                 </div>
-              </CardContent>
-            </Card>
+                <div className="h-px bg-gradient-to-r from-blue-400/40 to-transparent mb-4" />
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <a href="https://eda.sw.siemens.com/en-US/ic/questa/" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-blue-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-semibold text-sm text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">ModelSim / Questa</h5>
+                      <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 border-blue-500/20 font-semibold">Industry Standard</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground/80">Siemens EDA</p>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">Industry-standard HDL simulator for design and verification.</p>
+                  </a>
+                  <a href="https://www.synopsys.com/verification/simulation/vcs.html" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-blue-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-semibold text-sm text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">VCS</h5>
+                      <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 border-blue-500/20 font-semibold">Industry Standard</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground/80">Synopsys</p>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">Enterprise-level verification simulator.</p>
+                  </a>
+                  <a href="https://www.cadence.com/en_US/home/tools/system-design-and-verification/simulation-and-testbench-verification/xcelium-simulator.html" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-blue-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-semibold text-sm text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Xcelium</h5>
+                      <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 border-blue-500/20 font-semibold">Industry Standard</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground/80">Cadence</p>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">High-performance SoC verification simulator.</p>
+                  </a>
+                  <a href="http://iverilog.icarus.com/" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-emerald-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-semibold text-sm text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Icarus Verilog</h5>
+                      <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 border-emerald-500/20 font-semibold">Open Source</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">Open-source Verilog simulator for learning and prototyping.</p>
+                  </a>
+                  <a href="https://www.veripool.org/verilator/" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-emerald-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-semibold text-sm text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Verilator</h5>
+                      <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 border-emerald-500/20 font-semibold">Open Source</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">Open-source high-performance Verilog/SystemVerilog simulator.</p>
+                  </a>
+                </div>
+              </div>
+
+              {/* Waveform Viewers */}
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-foreground/80">Waveform Viewers</h4>
+                </div>
+                <div className="h-px bg-gradient-to-r from-purple-400/40 to-transparent mb-4" />
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <a href="http://gtkwave.sourceforge.net/" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-purple-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-semibold text-sm text-foreground group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">GTKWave</h5>
+                      <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 border-emerald-500/20 font-semibold">Open Source</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">Free, open-source waveform viewer for VCD and other formats.</p>
+                  </a>
+                  <a href="https://eda.sw.siemens.com/en-US/ic/questa/" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-purple-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-semibold text-sm text-foreground group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Questa Wave</h5>
+                      <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-slate-500/10 text-slate-600 border-slate-500/20 font-semibold">Commercial</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">Commercial waveform debugger integrated with Questa simulator.</p>
+                  </a>
+                </div>
+              </div>
+
+              {/* Synthesis Tools */}
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="text-sm font-bold uppercase tracking-wider text-foreground/80">Synthesis Tools</h4>
+                </div>
+                <div className="h-px bg-gradient-to-r from-orange-400/40 to-transparent mb-4" />
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <a href="https://www.xilinx.com/products/design-tools/vivado.html" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-orange-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-semibold text-sm text-foreground group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Vivado</h5>
+                      <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 border-blue-500/20 font-semibold">Industry Standard</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground/80">Xilinx (AMD)</p>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">FPGA synthesis, implementation, and programming suite.</p>
+                  </a>
+                  <a href="https://www.intel.com/content/www/us/en/software/programmable/quartus-prime/overview.html" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-orange-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-2">
+                      <h5 className="font-semibold text-sm text-foreground group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Quartus</h5>
+                      <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 border-blue-500/20 font-semibold">Industry Standard</Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground/80">Intel FPGA</p>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">FPGA development suite for Intel/Altera devices.</p>
+                  </a>
+                </div>
+              </div>
+            </div>
           </section>
 
           {/* Community & Forums */}
