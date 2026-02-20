@@ -655,27 +655,39 @@ const References = () => {
               <h2 className="text-2xl font-bold">Community & Forums</h2>
             </div>
             
-            <Card className="border-border">
-              <CardContent className="pt-6">
-                <p className="text-muted-foreground mb-4">
-                  Connect with other learners and professionals to ask questions, share knowledge, and stay updated.
-                </p>
-                <div className="grid md:grid-cols-3 gap-4">
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <h4 className="font-medium mb-1">Forum Placeholder 1</h4>
-                    <p className="text-sm text-muted-foreground">Active Q&A community</p>
-                  </div>
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <h4 className="font-medium mb-1">Forum Placeholder 2</h4>
-                    <p className="text-sm text-muted-foreground">Discussion boards</p>
-                  </div>
-                  <div className="p-4 bg-muted/50 rounded-lg">
-                    <h4 className="font-medium mb-1">Forum Placeholder 3</h4>
-                    <p className="text-sm text-muted-foreground">Social groups and channels</p>
-                  </div>
+            <p className="text-muted-foreground mb-6">
+              Connect with other learners and professionals to ask questions, share knowledge, and stay updated.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-4">
+              <a href="https://verificationacademy.com/forums" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-blue-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-sm text-foreground group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Verification Academy Forums</h5>
+                  <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-blue-500/10 text-blue-600 border-blue-500/20 font-semibold">Industry Forum</Badge>
                 </div>
-              </CardContent>
-            </Card>
+                <p className="text-xs text-muted-foreground/80">Siemens EDA</p>
+                <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">Professional UVM and SystemVerilog discussion forum used by verification engineers for debugging, methodology guidance, and industry best practices.</p>
+                <ExternalLink className="w-3.5 h-3.5 text-muted-foreground/0 group-hover:text-blue-500 transition-all duration-300 mt-2" />
+              </a>
+
+              <a href="https://stackoverflow.com/questions/tagged/verilog" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-emerald-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-sm text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Stack Overflow – Verilog/SystemVerilog</h5>
+                  <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 border-emerald-500/20 font-semibold">Community Q&A</Badge>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">Community-driven Q&A platform with active HDL discussions and practical debugging solutions.</p>
+                <ExternalLink className="w-3.5 h-3.5 text-muted-foreground/0 group-hover:text-emerald-500 transition-all duration-300 mt-2" />
+              </a>
+
+              <a href="https://accellera.org" target="_blank" rel="noopener noreferrer" className="group bg-card border border-border border-l-[3px] border-l-purple-400 rounded-xl p-5 shadow-subtle hover:shadow-medium hover:-translate-y-0.5 transition-all duration-300 cursor-pointer">
+                <div className="flex items-center justify-between mb-2">
+                  <h5 className="font-semibold text-sm text-foreground group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">IEEE & Accellera Resources</h5>
+                  <Badge variant="outline" className="text-[10px] px-2.5 py-0.5 rounded-full bg-purple-500/10 text-purple-600 border-purple-500/20 font-semibold">Official Standards</Badge>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">Official standards organization updates, working groups, and events related to SystemVerilog and UVM.</p>
+                <ExternalLink className="w-3.5 h-3.5 text-muted-foreground/0 group-hover:text-purple-500 transition-all duration-300 mt-2" />
+              </a>
+            </div>
           </section>
         </div>
       </div>
