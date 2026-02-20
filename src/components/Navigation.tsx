@@ -11,7 +11,7 @@ const Navigation = () => {
     { to: "/modules", label: "Modules" },
     { to: "/quiz", label: "Quiz" },
     { to: "/references", label: "References" },
-    { to: "/community", label: "Community" },
+    { to: "/community", label: "D&V Lab" },
     { to: "/about", label: "About" },
   ];
 
